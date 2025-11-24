@@ -13,15 +13,10 @@ function LoginForm() {
     setError,
     formState: { errors },
   } = useForm<User>();
-
-  const { login } = useLogin();
+  const { handleLogin } = useLogin();
 
   const onSubmit = (data: User) => {
-    const error = login(data);
-    if (error) {
-      setError("username", { type: "manual"});
-      setError("password", { type: "manual", message: error });
-    }
+    handleLogin(data, setError);
   };
 
   return (

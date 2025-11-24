@@ -1,22 +1,36 @@
 "use client";
 
+import { useAuthStore } from "@/src/store/authStore";
 import { User, mockUser } from "@/src/types";
 import { useRouter } from "next/navigation";
 
 export const useLogin = () => {
+  const loginZustand = useAuthStore((state) => state.login);
   const router = useRouter();
 
-  const login = (credentials: User) => {
+  const handleLogin = (
+    credentials: User,
+    setError: (
+      field: keyof User,
+      error: { type: string; message: string }
+    ) => void
+  ) => {
     if (
       credentials.username === mockUser.username &&
       credentials.password === mockUser.password
     ) {
+      loginZustand(mockUser);
+
       router.push("/");
-      return null; // no error
+      return true;
     } else {
-      return "Fel användarnamn eller lösenord"; // return error
+      setError("password", {
+        type: "manual",
+        message: "Fel användarnamn eller lösenord",
+      });
+      return false;
     }
   };
 
-  return { login };
+  return { handleLogin };
 };
