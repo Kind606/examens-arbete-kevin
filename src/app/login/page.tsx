@@ -1,4 +1,5 @@
 import LoginForm from "@/src/components/loginComps/loginForm";
+import Image from "next/image";
 import styles from "./login.module.css";
 
 export default function LoginPage() {
@@ -6,7 +7,13 @@ export default function LoginPage() {
     <div className={styles.LoginContainer}>
       <div className={styles.Splash}>
         <LoginForm />
-        <img src="./Logo.svg" alt="Logo" className={styles.Logo} />
+        <Image
+          src="/Logo.svg"
+          alt="Logo"
+          width={120}
+          height={120}
+          className={styles.Logo}
+        />
       </div>
     </div>
   );

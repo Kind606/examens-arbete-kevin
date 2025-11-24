@@ -25,12 +25,6 @@
     width: 100%;
     border: 1px solid white;
   }
-}
-
-.inputGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 
   & a {
     text-decoration: none;
@@ -40,9 +34,26 @@
       text-decoration: underline;
     }
   }
+}
 
-  & input {
-    padding: 10px 15px;
-    border-radius: 5px;
-  }
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.invalid {
+  border-color: #ff5555;
+  outline: 2px solid #ff5555;
+}
+.error {
+  color: #ff5555;
+  font-size: 14px;
+  margin-top: -5px;
+  margin-bottom: 5px;
 }
