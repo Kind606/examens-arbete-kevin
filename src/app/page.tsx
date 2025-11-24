@@ -6,15 +6,6 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-
         <div className={styles.content}>
           <h1 className={styles.titles}>To get started, edit the page.tsx file.</h1>
 

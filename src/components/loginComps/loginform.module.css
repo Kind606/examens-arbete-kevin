@@ -1,0 +1,48 @@
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 250px;
+  font-size: 18px;
+
+  & h3 {
+    margin: 0;
+    padding: 0;
+    align-self: center;
+  }
+
+  & button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  & hr {
+    width: 100%;
+    border: 1px solid white;
+  }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  & a {
+    text-decoration: none;
+    color: #a0f265;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  & input {
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+}
