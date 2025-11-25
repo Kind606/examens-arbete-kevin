@@ -1,17 +1,10 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import LogoutButton from "../components/logoutBtn";
-import { useAuthStore } from "../store/authStore";
+import { useProtectedRoute } from "../hooks/useProtectedRoute";
 import styles from "./page.module.css";
 
 export default function Home() {
-  const user = useAuthStore((state) => state.user);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!user) router.push("/login"); 
-  }, [user, router]);
+  useProtectedRoute();
   return (
     <div className={styles.container}>
       <main className={styles.main}>

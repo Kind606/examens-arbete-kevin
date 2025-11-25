@@ -1,18 +1,11 @@
-"use client"
+"use client";
 import LoginForm from "@/src/components/loginComps/loginForm";
-import { useAuthStore } from "@/src/store/authStore";
+import { useGuestRoute } from "@/src/hooks/useGuestRoute";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import styles from "./login.module.css";
 
 export default function LoginPage() {
-  const user = useAuthStore((state) => state.user);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (user) router.push("/"); 
-  }, [user, router]);
+  useGuestRoute();
   return (
     <div className={styles.LoginContainer}>
       <div className={styles.Splash}>
