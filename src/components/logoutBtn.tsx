@@ -1,4 +1,5 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "../store/authStore";
 
@@ -7,8 +8,14 @@ export default function LogoutButton() {
   const router = useRouter();
 
   const handleLogout = () => {
+    // Clear Zustand state
     logout();
-    router.push("/login"); 
+
+    // Clear cookie
+    document.cookie = "auth_token=; path=/; max-age=0; samesite=strict";
+
+    // Redirect to login
+    router.push("/login");
   };
 
   return (

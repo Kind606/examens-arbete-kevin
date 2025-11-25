@@ -1,21 +1,22 @@
-"use client"
-import { User } from "@/src/types";
-import { persist } from "zustand/middleware";
-import { create } from "zustand/react";
+"use client";
+
+import { create } from "zustand";
+import { AuthUser } from "@/src/types";
 
 type AuthState = {
-  user: User | null;
-  login: (userData: User) => void;
+  user: AuthUser | null;
+  login: (user: AuthUser) => void;
   logout: () => void;
 };
 
-export const useAuthStore = create<AuthState>()(
-  persist(
-    (set) => ({
-      user: null,
-      login: (userData: User) => set({ user: userData }),
-      logout: () => set({ user: null }),
-    }),
-    { name: "auth-storage" } 
-  )
-);
+export const useAuthStore = create<AuthState>((set) => ({
+  user: null,
+  login: (user: AuthUser) => {
+    set({ user });
+    localStorage.setItem("auth_user", JSON.stringify(user));
+  },
+  logout: () => {
+    set({ user: null });
+    localStorage.removeItem("auth_user");
+  },
+}));

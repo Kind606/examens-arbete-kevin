@@ -13,10 +13,11 @@ function LoginForm() {
     setError,
     formState: { errors },
   } = useForm<User>();
+
   const { handleLogin } = useLogin();
 
   const onSubmit = (data: User) => {
-    handleLogin(data, setError);
+    handleLogin(data.username, data.password, setError);
   };
 
   return (
@@ -30,32 +31,22 @@ function LoginForm() {
           type="text"
           {...register("username", {
             required: "Användarnamn krävs",
-            minLength: {
-              value: 1,
-              message: "Användarnamn måste vara minst 1 tecken",
-            },
+            minLength: { value: 1, message: "Användarnamn måste vara minst 1 tecken" },
           })}
           className={`${styles.input} ${errors.username ? styles.invalid : ""}`}
         />
-        {errors.username && (
-          <span className={styles.error}>{errors.username.message}</span>
-        )}
+        {errors.username && <span className={styles.error}>{errors.username.message}</span>}
 
         <label className={styles.label}>Password</label>
         <input
           type="password"
           {...register("password", {
             required: "Lösenord krävs",
-            minLength: {
-              value: 8,
-              message: "Lösenord måste vara minst 8 tecken",
-            },
+            minLength: { value: 8, message: "Lösenord måste vara minst 8 tecken" },
           })}
           className={`${styles.input} ${errors.password ? styles.invalid : ""}`}
         />
-        {errors.password && (
-          <span className={styles.error}>{errors.password.message}</span>
-        )}
+        {errors.password && <span className={styles.error}>{errors.password.message}</span>}
 
         <Link href="/forgot-password">glömt lösenord?</Link>
       </div>
