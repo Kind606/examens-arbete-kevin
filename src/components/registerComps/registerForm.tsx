@@ -8,10 +8,10 @@ function RegisterForm() {
       <p>välkommen! vänligen fyll i med dina uppgifter</p>
       <div className={styles.inputGroup}>
         <label className={styles.label}>Username</label>
-        <input type="text" />
+        <input type="text" className={styles.input} />
 
         <label className={styles.label}>Password</label>
-        <input type="password" />
+        <input type="password" className={styles.input} />
       </div>
       <hr />
       <div className={styles.NoAccContainer}>

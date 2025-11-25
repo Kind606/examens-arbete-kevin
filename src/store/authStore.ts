@@ -1,3 +1,4 @@
+"use client"
 import { User } from "@/src/types";
 import { persist } from "zustand/middleware";
 import { create } from "zustand/react";
@@ -15,6 +16,6 @@ export const useAuthStore = create<AuthState>()(
       login: (userData: User) => set({ user: userData }),
       logout: () => set({ user: null }),
     }),
-    { name: "auth-storage" } // key i localStorage
+    { name: "auth-storage" } 
   )
 );
