@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "../store/authStore";
+import { useAuthStore } from "../../store/authStore";
 
 export default function LogoutBtnHook() {
   const logout = useAuthStore((state) => state.logout);

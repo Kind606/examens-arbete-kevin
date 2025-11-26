@@ -2,7 +2,7 @@
 
 import { useAuthStore } from "@/src/store/authStore";
 import Link from "next/link";
-import LogoutButton from "../logoutBtn";
+import LogoutButton from "../../logoutBtn/logoutBtn";
 import styles from "./mobileMenu.module.css";
 
 export default function MobileMenu({ close }: { close: () => void }) {

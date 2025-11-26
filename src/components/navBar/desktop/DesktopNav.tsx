@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styles from "./navBar.module.css";
-import ProfileLink from "./profileLink";
+import ProfileLink from "../profileLink/profileLink";
+import styles from "../navBar.module.css";
 
 export default function DesktopNav() {
   return (

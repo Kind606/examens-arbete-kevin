@@ -3,8 +3,8 @@
 import Image from "next/image";
 import styles from "./navBar.module.css";
 
-import DesktopNav from "./DesktopNav";
-import MobileMenu from "./MobileMenu";
+import DesktopNav from "./desktop/DesktopNav";
+import MobileMenu from "./mobileMenu/MobileMenu";
 import useNavBar from "./navBarHook";
 
 export default function NavBar() {
@@ -15,6 +15,7 @@ export default function NavBar() {
       <button
         className={styles.Hamburger}
         onClick={() => setMobileOpen(!mobileOpen)}
+        id="mobile-toggle"
       >
         ☰
       </button>

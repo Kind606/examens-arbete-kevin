@@ -3,7 +3,7 @@
 import { User } from "@/src/types";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { useLogin } from "../../hooks/loginFormHook";
+import { useLogin } from "./loginFormHook";
 import styles from "./loginform.module.css";
 
 function LoginForm() {

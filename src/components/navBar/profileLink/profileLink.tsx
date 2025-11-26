@@ -2,7 +2,7 @@
 
 import { useAuthStore } from "@/src/store/authStore";
 import { useEffect, useRef, useState } from "react";
-import LogoutButton from "../logoutBtn";
+import LogoutButton from "../../logoutBtn/logoutBtn";
 import styles from "./profileLink.module.css";
 
 export default function ProfileLink() {

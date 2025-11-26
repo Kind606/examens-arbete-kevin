@@ -4,7 +4,7 @@ import { useAuthStore } from "@/src/store/authStore";
 import { AuthUser, User } from "@/src/types";
 import { useRouter } from "next/navigation";
 import { UseFormSetError } from "react-hook-form";
-import { loginUser } from "../components/loginComps/loginFormActions";
+import { loginUser } from "./loginFormActions";
 
 export const useLogin = () => {
   const loginZustand = useAuthStore((state) => state.login);
