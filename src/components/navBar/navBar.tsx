@@ -1,20 +1,26 @@
+import Image from "next/image";
 import Link from "next/link";
 import styles from "./navBar.module.css";
-import Image from "next/image";
-
+import ProfileLink from "./profileLink";
 
 export default function NavBar() {
   return (
     <nav className={styles.NavBar}>
       <ul className={styles.NavLinksContainer}>
         <li>
-          <Link href="/" className={styles.NavLink}>HEM</Link>
+          <Link href="/" className={styles.NavLink}>
+            HEM
+          </Link>
         </li>
         <li>
-          <Link href="/" className={styles.NavLink}>HOME</Link>
+          <Link href="/" className={styles.NavLink}>
+            HOME
+          </Link>
         </li>
         <li>
-          <Link href="/" className={styles.NavLink}>HOME</Link>
+          <Link href="/" className={styles.NavLink}>
+            HOME
+          </Link>
         </li>
       </ul>
       <Image
@@ -24,6 +30,7 @@ export default function NavBar() {
         height={120}
         className={styles.Logo}
       />
+      <ProfileLink />
     </nav>
   );
 }
