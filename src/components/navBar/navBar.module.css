@@ -1,0 +1,49 @@
+.NavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  background-color: #3d3c3c;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.NavLinksContainer {
+    display: flex;
+    list-style: none;
+    height: 100%;
+    padding: 0;
+
+    & li {
+        display: flex;
+        height: 100%;
+    }
+}
+
+.NavLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-width: 150px;
+    width: 100%;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bolder;
+    color: #A0F265;
+
+    &:hover {
+        background-color: #575656;
+    }
+
+    &:focus-visible {
+        outline: 3px solid #A0F265;
+    }
+}
+
+.Logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
