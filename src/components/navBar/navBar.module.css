@@ -51,7 +51,10 @@
   transform: translateX(-50%);
 }
 
-/* Hamburger button (hidden on desktop) */
+.desktopLinks {
+  display: flex;
+}
+
 .Hamburger {
   display: none;
   background: none;
@@ -62,7 +65,6 @@
   cursor: pointer;
 }
 
-/* Hide desktop links + show hamburger on mobile */
 @media (max-width: 800px) {
   .NavLinksContainer {
     display: none;

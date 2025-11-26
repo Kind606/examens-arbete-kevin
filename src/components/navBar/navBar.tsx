@@ -1,15 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 import styles from "./navBar.module.css";
 
 import DesktopNav from "./DesktopNav";
 import MobileMenu from "./MobileMenu";
+import useNavBar from "./navBarHook";
 
 export default function NavBar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  
+  const { mobileOpen, setMobileOpen, mobileRef } = useNavBar();
 
   return (
     <nav className={styles.NavBar}>
@@ -29,7 +28,9 @@ export default function NavBar() {
         height={120}
         className={styles.Logo}
       />
-      {mobileOpen && <MobileMenu close={() => setMobileOpen(false)} />}
+      <div ref={mobileRef}>
+        {mobileOpen && <MobileMenu close={() => setMobileOpen(false)} />}
+      </div>
     </nav>
   );
 }
