@@ -17,10 +17,10 @@ export default function MobileMenu({ close }: { close: () => void }) {
         HEM
       </Link>
       <Link className={styles.MobileLink} href="/" onClick={close}>
-        HOME
+        OM OSS
       </Link>
       <Link className={styles.MobileLink} href="/" onClick={close}>
-        HOME
+        KONTAKTA OSS
       </Link>
 
       <LogoutButton />

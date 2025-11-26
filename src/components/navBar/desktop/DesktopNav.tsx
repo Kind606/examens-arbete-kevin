@@ -1,6 +1,6 @@
 import Link from "next/link";
-import ProfileLink from "../profileLink/profileLink";
 import styles from "../navBar.module.css";
+import ProfileLink from "../profileLink/profileLink";
 
 export default function DesktopNav() {
   return (
@@ -13,12 +13,12 @@ export default function DesktopNav() {
         </li>
         <li>
           <Link href="/" className={styles.NavLink}>
-            HOME
+            OM OSS
           </Link>
         </li>
         <li>
           <Link href="/" className={styles.NavLink}>
-            HOME
+            KONTAKTA OSS
           </Link>
         </li>
       </div>
