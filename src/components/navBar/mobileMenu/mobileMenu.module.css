@@ -1,0 +1,48 @@
+.MobileMenu {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background-color: #3d3c3c;
+  display: flex;
+  flex-direction: column;
+  z-index: 2000;
+}
+
+.MobileMenu button {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.MobileLink {
+  padding: 15px 20px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #a0f265;
+  text-decoration: none;
+}
+
+.MobileLink:hover {
+  background-color: #575656;
+}
+
+.MobileProfile {
+  background-color: #575656;
+  padding-top: 10px;
+}
+
+.MobileProfile p {
+  margin: 0;
+  padding: 15px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #a0f265;
+}
+
+.MobileProfile span {
+  font-size: 14px;
+  color: white;
+  margin-right: auto;
+  padding-left: 20px;
+}

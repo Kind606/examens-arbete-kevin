@@ -1,0 +1,53 @@
+.ProfileContainer {
+  height: 100%;
+  display: flex;
+  min-width: 150px;
+  flex-direction: column;
+  position: relative;
+}
+
+.ProfileLink {
+  display: flex;
+  flex-direction: column;
+  color: #a0f265;
+  background-color: #3d3c3c;
+  border: none;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  padding: 0px 20px;
+
+  &:hover {
+    background-color: #575656;
+  }
+
+  & p {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: start;
+  }
+}
+
+.ProfileSpan {
+  padding: 0;
+  font-size: 14px;
+  color: white;
+  margin-right: auto;
+}
+
+.Dropdown {
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  width: 100%;
+  background-color: #3d3c3c;
+  z-index: 1000;
+
+  & button {
+    padding: 0px 20px;
+    text-align: start;
+  }
+}

@@ -11,17 +11,16 @@ export const useGuestRoute = () => {
 
   useEffect(() => {
     if (user) {
-      router.push("/"); // Already logged in
+      router.push("/");
       return;
     }
 
-    // Check cookie if Zustand is empty
     const match = document.cookie.match(/auth_token=([^;]+)/);
     if (match) {
       const token = match[1];
-      // Rehydrate mock user (or fetch from server)
+
       login({ id: "1", username: "mockuser", token });
-      router.push("/"); // redirect after hydration
+      router.push("/");
     }
   }, [user, login, router]);
 };
