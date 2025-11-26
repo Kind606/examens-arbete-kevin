@@ -4,8 +4,8 @@ import ProfileLink from "../profileLink/profileLink";
 
 export default function DesktopNav() {
   return (
-    <ul className={styles.NavLinksContainer}>
-      <div className={styles.desktopLinks}>
+    <div className={styles.NavLinksContainer}>
+      <ul className={styles.desktopLinks}>
         <li>
           <Link href="/" className={styles.NavLink}>
             HEM
@@ -21,9 +21,9 @@ export default function DesktopNav() {
             KONTAKTA OSS
           </Link>
         </li>
-      </div>
+      </ul>
 
       <ProfileLink />
-    </ul>
+    </div>
   );
 }
