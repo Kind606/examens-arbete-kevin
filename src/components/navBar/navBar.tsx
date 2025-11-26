@@ -1,28 +1,27 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
 import styles from "./navBar.module.css";
-import ProfileLink from "./profileLink";
+
+import DesktopNav from "./DesktopNav";
+import MobileMenu from "./MobileMenu";
 
 export default function NavBar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  
+
   return (
     <nav className={styles.NavBar}>
-      <ul className={styles.NavLinksContainer}>
-        <li>
-          <Link href="/" className={styles.NavLink}>
-            HEM
-          </Link>
-        </li>
-        <li>
-          <Link href="/" className={styles.NavLink}>
-            HOME
-          </Link>
-        </li>
-        <li>
-          <Link href="/" className={styles.NavLink}>
-            HOME
-          </Link>
-        </li>
-      </ul>
+      <button
+        className={styles.Hamburger}
+        onClick={() => setMobileOpen(!mobileOpen)}
+      >
+        ☰
+      </button>
+
+      <DesktopNav />
+
       <Image
         src="/Logo.svg"
         alt="Logo"
@@ -30,7 +29,7 @@ export default function NavBar() {
         height={120}
         className={styles.Logo}
       />
-      <ProfileLink />
+      {mobileOpen && <MobileMenu close={() => setMobileOpen(false)} />}
     </nav>
   );
 }
