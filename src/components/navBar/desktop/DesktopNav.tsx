@@ -22,8 +22,9 @@ export default function DesktopNav() {
           </Link>
         </li>
       </ul>
-
-      <ProfileLink />
+      <div>
+        <ProfileLink />
+      </div>
     </div>
   );
 }
