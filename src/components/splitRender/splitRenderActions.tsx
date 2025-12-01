@@ -1,0 +1,25 @@
+"use server"; // This lets you use server-side code directly
+
+import { PrismaClient } from "@/generated/prisma/client";
+
+const prisma = new PrismaClient();
+
+export async function fetchUserSplits(userId: string) {
+  try {
+    const splits = await prisma.split.findMany({
+      where: { userId },
+      orderBy: { createdAt: "desc" },
+    });
+
+    // Map to only what the frontend needs
+    return splits.map((split) => ({
+      id: split.id,
+      title: split.title,
+      slug: split.slug,
+      createdAt: split.createdAt.toISOString(),
+    }));
+  } catch (err) {
+    console.error("Error fetching splits:", err);
+    throw new Error("Failed to fetch splits");
+  }
+}
