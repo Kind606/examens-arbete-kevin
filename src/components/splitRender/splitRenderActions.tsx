@@ -1,4 +1,4 @@
-"use server"; // This lets you use server-side code directly
+"use server"; 
 
 import { PrismaClient } from "@/generated/prisma/client";
 
@@ -11,7 +11,6 @@ export async function fetchUserSplits(userId: string) {
       orderBy: { createdAt: "desc" },
     });
 
-    // Map to only what the frontend needs
     return splits.map((split) => ({
       id: split.id,
       title: split.title,

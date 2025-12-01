@@ -13,7 +13,7 @@ export default function RemoveSplitBtn({ splitId }: RemoveSplitBtnProps) {
   const { removeSplit } = useRemoveSplit();
 
   const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent navigation
+    e.stopPropagation(); 
     removeSplit(splitId);
   };
 
