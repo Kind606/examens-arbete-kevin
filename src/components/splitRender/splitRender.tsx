@@ -3,7 +3,9 @@
 import { useSplitStore } from "@/src/store/splitStore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import AddSplitBtn from "../addSplitbtn/addSplitBtn";
+import AddSplitBtn from "./addSplitbtn/addSplitBtn";
+import EditSplitBtn from "./editSplitBtn/editSplitBtn";
+import RemoveSplitBtn from "./removeSplitBtn/removeSplitBtn";
 import styles from "./splitRender.module.css";
 import { useFetchSplits } from "./splitRenderHook";
 
@@ -12,7 +14,7 @@ interface SplitRenderProps {
 }
 
 export default function SplitRender({ userId }: SplitRenderProps) {
-  const { splits, loading, error, setSplits } = useSplitStore();
+  const { splits, loading, error } = useSplitStore();
   const { fetchSplits } = useFetchSplits();
   const router = useRouter();
 
@@ -21,28 +23,6 @@ export default function SplitRender({ userId }: SplitRenderProps) {
       fetchSplits(userId);
     }
   }, [userId, fetchSplits]);
-
-  const handleDelete = (id: string) => {
-    const confirmed = confirm(
-      "Är du säker på att du vill ta bort denna split?"
-    );
-    if (!confirmed) return;
-
-    setSplits(splits.filter((split) => split.id !== id));
-    // TODO: Call server action to delete split from DB
-  };
-
-  const handleEdit = (id: string) => {
-    const newTitle = prompt("Ange nytt namn för split:");
-    if (!newTitle) return;
-
-    setSplits(
-      splits.map((split) =>
-        split.id === id ? { ...split, title: newTitle } : split
-      )
-    );
-    // TODO: Call server action to update split title in DB
-  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -59,24 +39,9 @@ export default function SplitRender({ userId }: SplitRenderProps) {
         >
           <h3>{split.title}</h3>
 
-          <div style={{ position: "absolute", top: 10, right: 10 }}>
-            <button
-              onClick={(e) => {
-                e.stopPropagation(); // prevent navigating when editing
-                handleEdit(split.id);
-              }}
-              style={{ marginRight: 8 }}
-            >
-              Edit
-            </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation(); // prevent navigating when deleting
-                handleDelete(split.id);
-              }}
-            >
-              Delete
-            </button>
+          <div>
+            <EditSplitBtn splitId={split.id} currentTitle={split.title} />
+            <RemoveSplitBtn splitId={split.id} style={{ marginLeft: "8px" }} />
           </div>
         </div>
       ))}

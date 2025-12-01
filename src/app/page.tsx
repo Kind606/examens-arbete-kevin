@@ -19,8 +19,9 @@ export default function Home() {
             <h1>Här nere ser du alla dina splits</h1>
           </div>
           <div className={styles.splits}>
+            <h1>Dina splits</h1>
             {loading ? (
-              <p>Loading your splits...</p> // only inside splits section
+              <p>Loading your splits...</p> 
             ) : user ? (
               <SplitRender userId={user.id} />
             ) : null}
