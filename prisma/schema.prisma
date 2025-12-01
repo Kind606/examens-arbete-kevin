@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -19,4 +16,57 @@ model User {
   username String  @unique
   password String
   token    String?
+
+  splits   Split[]
+}
+
+model Split {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  slug      String   @unique
+  userId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+
+  days      Day[]
+  createdAt DateTime @default(now())
+}
+
+model Day {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  slug     String   @unique
+
+  splitId  String   @db.ObjectId
+  split    Split    @relation(fields: [splitId], references: [id])
+
+  exercises Exercise[]
+}
+
+model Exercise {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  slug        String   @unique
+  videoUrl    String?
+  description String?
+  defaultSets Int?
+  defaultReps Int?
+
+  dayId       String   @db.ObjectId
+  day         Day      @relation(fields: [dayId], references: [id])
+
+  logs        ExerciseLog[]
+}
+
+model ExerciseLog {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+
+  exerciseId String   @db.ObjectId
+  exercise   Exercise @relation(fields: [exerciseId], references: [id])
+
+  weight     Float?
+  reps       Int?
+  sets       Int?
+  comment    String?
+
+  createdAt  DateTime @default(now())
 }

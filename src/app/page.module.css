@@ -1,0 +1,42 @@
+.main {
+  display: flex;
+  position: relative;
+  height: 150vh;
+  background-image: url("/Landingpageback.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+body {
+  background-color: black;
+}
+
+.welcomeBox {
+  margin-top: 150px;
+  padding: 20px;
+}
+
+.splash {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  backdrop-filter: blur(5px);
+
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1));
+}
+
+.splits {
+  background-color: rgba(61, 60, 60, 0.5);
+  margin-top: 100px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
