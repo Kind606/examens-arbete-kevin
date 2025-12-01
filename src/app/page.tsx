@@ -8,9 +8,6 @@ import styles from "./page.module.css";
 export default function Home() {
   const { user, loading } = useProtectedRoute();
 
-  if (loading) return <div>Loading...</div>;
-  if (!user) return null;
-
   return (
     <div className={styles.container}>
       <NavBar />
@@ -22,8 +19,11 @@ export default function Home() {
             <h1>Här nere ser du alla dina splits</h1>
           </div>
           <div className={styles.splits}>
-            <h1>Dina splits</h1>
-            <SplitRender userId={user.id} />
+            {loading ? (
+              <p>Loading your splits...</p> // only inside splits section
+            ) : user ? (
+              <SplitRender userId={user.id} />
+            ) : null}
           </div>
         </div>
       </main>
