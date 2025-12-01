@@ -3,6 +3,7 @@
 import { useSplitStore } from "@/src/store/splitStore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import AddSplitBtn from "../addSplitbtn/addSplitBtn";
 import styles from "./splitRender.module.css";
 import { useFetchSplits } from "./splitRenderHook";
 
@@ -79,6 +80,7 @@ export default function SplitRender({ userId }: SplitRenderProps) {
           </div>
         </div>
       ))}
+      <AddSplitBtn />
     </div>
   );
 }
