@@ -1,30 +1,23 @@
 "use client";
 
-import { useState } from "react";
 import styles from "./addSplitBtn.module.css";
 import { useAddSplit } from "./addSplitBtnHook";
 
 export default function AddSplitBtn() {
-  const { addSplit } = useAddSplit();
-  const [showPopover, setShowPopover] = useState(false);
-  const [newTitle, setNewTitle] = useState("");
-
-  const handleAdd = async () => {
-    if (!newTitle.trim()) return;
-
-    await addSplit(newTitle.trim());
-    setNewTitle("");
-    setShowPopover(false);
-  };
-
-  const handleCancel = () => {
-    setNewTitle("");
-    setShowPopover(false);
-  };
+  const {
+    showPopover,
+    newTitle,
+    setNewTitle,
+    openPopover,
+    handleAdd,
+    handleCancel,
+  } = useAddSplit();
 
   return (
     <>
-      <button className={styles.addButton} onClick={() => setShowPopover(true)}>Add Split</button>
+      <button className={styles.addButton} onClick={openPopover}>
+        Add Split
+      </button>
 
       {showPopover && (
         <div className={styles.overlay} onClick={handleCancel}>

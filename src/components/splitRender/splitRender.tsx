@@ -39,9 +39,9 @@ export default function SplitRender({ userId }: SplitRenderProps) {
         >
           <h3>{split.title}</h3>
 
-          <div>
+          <div className={styles.buttonGroup}>
             <EditSplitBtn splitId={split.id} currentTitle={split.title} />
-            <RemoveSplitBtn splitId={split.id} style={{ marginLeft: "8px" }} />
+            <RemoveSplitBtn splitId={split.id}/>
           </div>
         </div>
       ))}

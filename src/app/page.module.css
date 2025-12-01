@@ -1,7 +1,8 @@
 .main {
   display: flex;
   position: relative;
-  height: 150vh;
+  min-height: 70vh;
+  height: auto;
   background-image: url("/Landingpageback.png");
   background-size: cover;
   background-position: center;
@@ -9,35 +10,40 @@
   color: white;
 }
 
-
-
 .welcomeBox {
   margin-top: 150px;
   padding: 20px;
+  z-index: 2;
 }
 
 .splash {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  height: auto;
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
-  text-align: center;
-  backdrop-filter: blur(5px);
 
+  text-align: center;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1));
 }
 
+.splash::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(5px);
+  z-index: 1;
+}
+
 .splits {
-  box-sizing: border-box; 
+  box-sizing: border-box;
   background-color: rgba(61, 60, 60, 0.5);
   margin-top: 100px;
   display: flex;
   width: 100%;
-  height: 100%;
   flex-direction: column;
   align-items: center;
   text-align: start;
   padding: 20px;
+  z-index: 2;
 }

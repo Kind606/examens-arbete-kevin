@@ -19,6 +19,11 @@
   }
 }
 
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+}
+
 .splitRender {
   display: flex;
   flex-direction: column;

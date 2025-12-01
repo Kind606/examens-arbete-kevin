@@ -19,3 +19,21 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   min-width: 300px;
 }
+
+.button {
+  background: white;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-direction: row;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+}
