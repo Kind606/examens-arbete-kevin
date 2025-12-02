@@ -15,7 +15,7 @@ function RegisterForm() {
       </div>
       <hr />
       <div className={styles.NoAccContainer}>
-        <p>Har du inte redan ett konto?</p>
+        <p>Har du redan ett konto?</p>
         <Link href="/login">Logga in här!</Link>
       </div>
       <button type="submit">Registera</button>
