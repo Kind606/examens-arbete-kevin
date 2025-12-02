@@ -1,9 +1,10 @@
-"use client";
 import RegisterForm from "@/src/components/registerComps/registerForm";
+import { GuestRoute } from "@/src/hooks/GuestRoute";
 import Image from "next/image";
 import styles from "./Register.module.css";
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
+  await GuestRoute();
   return (
     <div className={styles.LoginContainer}>
       <div className={styles.Splash}>
