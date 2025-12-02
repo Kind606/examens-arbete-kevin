@@ -1,29 +1,16 @@
 "use client";
 
 import SplitRender from "@/src/components/splitRender/splitRender";
-import { useAuthStore } from "@/src/store/authStore";
-import { useSplitStore } from "@/src/store/splitStore";
-import { useEffect } from "react";
-import { AuthUser, Split } from "../types";
+import { useHomeClient } from "../hooks/homeClinetHook";
+import { AuthUser } from "../types";
 import styles from "./page.module.css";
 
 interface HomeClientProps {
   user: AuthUser;
-  initialSplits: Split[];
 }
 
-export default function HomeClient({ user, initialSplits }: HomeClientProps) {
-  const { splits, setSplits } = useSplitStore();
-  const login = useAuthStore((state) => state.login);
-
-  useEffect(() => {
-    login(user);
-
-    if (splits.length === 0 && initialSplits.length > 0) {
-      setSplits(initialSplits);
-    }
-  }, [user, initialSplits, login, splits, setSplits]);
-
+export default function HomeClient({ user }: HomeClientProps) {
+  useHomeClient(user);
   return (
     <main className={styles.main}>
       <div className={styles.splash}>
@@ -34,7 +21,7 @@ export default function HomeClient({ user, initialSplits }: HomeClientProps) {
 
         <div className={styles.splits}>
           <h1>Dina splits</h1>
-          <SplitRender userId={user.id} initialSplits={initialSplits} />
+          <SplitRender userId={user.id} />
         </div>
       </div>
     </main>

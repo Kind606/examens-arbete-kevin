@@ -2,7 +2,7 @@
 
 import { useSplitStore } from "@/src/store/splitStore";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useFetchSplits } from "./splitRenderHook";
 
 import AddSplitBtn from "./addSplitbtn/addSplitBtn";
 import EditSplitBtn from "./editSplitBtn/editSplitBtn";
@@ -12,23 +12,13 @@ import styles from "./splitRender.module.css";
 
 interface SplitRenderProps {
   userId: string;
-  initialSplits: Array<{
-    id: string;
-    title: string;
-    slug: string;
-    createdAt: Date;
-  }>;
 }
 
-export default function SplitRender({ initialSplits }: SplitRenderProps) {
-  const { splits, setSplits } = useSplitStore();
+export default function SplitRender({ userId }: SplitRenderProps) {
+  const { splits } = useSplitStore();
   const router = useRouter();
 
-  useEffect(() => {
-    if (splits.length === 0 && initialSplits.length > 0) {
-      setSplits(initialSplits);
-    }
-  }, [splits, initialSplits, setSplits]);
+  useFetchSplits(userId);
 
   if (splits.length === 0) {
     return (
@@ -49,7 +39,6 @@ export default function SplitRender({ initialSplits }: SplitRenderProps) {
           style={{ cursor: "pointer", position: "relative" }}
         >
           <h3>{split.title}</h3>
-
           <div className={styles.buttonGroup}>
             <EditSplitBtn splitId={split.id} currentTitle={split.title} />
             <RemoveSplitBtn splitId={split.id} />

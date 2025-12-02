@@ -9,6 +9,7 @@ interface SplitState {
   setSplits: (splits: Split[]) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
+  resetSplits: () => void;
 }
 
 export const useSplitStore = create<SplitState>((set) => ({
@@ -18,4 +19,5 @@ export const useSplitStore = create<SplitState>((set) => ({
   setSplits: (splits) => set({ splits }),
   setLoading: (loading) => set({ loading }),
   setError: (error) => set({ error }),
+  resetSplits: () => set({ splits: [], loading: false, error: null }),
 }));
