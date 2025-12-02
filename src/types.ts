@@ -13,5 +13,5 @@ export type Split = {
   id: string;
   title: string;
   slug: string;
-  createdAt: string;
+  createdAt: Date;
 }

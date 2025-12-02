@@ -1,5 +1,5 @@
 import LoginForm from "@/src/components/loginComps/loginForm";
-import { GuestRoute } from "@/src/hooks/useGuestRoute";
+import { GuestRoute } from "@/src/hooks/GuestRoute";
 import Image from "next/image";
 import styles from "./login.module.css";
 

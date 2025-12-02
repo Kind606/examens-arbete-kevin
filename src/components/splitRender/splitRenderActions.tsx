@@ -1,4 +1,4 @@
-"use server"; 
+"use server";
 
 import { PrismaClient } from "@/generated/prisma/client";
 
@@ -15,7 +15,8 @@ export async function fetchUserSplits(userId: string) {
       id: split.id,
       title: split.title,
       slug: split.slug,
-      createdAt: split.createdAt.toISOString(),
+      userId: split.userId,
+      createdAt: split.createdAt,
     }));
   } catch (err) {
     console.error("Error fetching splits:", err);

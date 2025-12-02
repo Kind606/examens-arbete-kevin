@@ -24,12 +24,18 @@ export default function EditSplitBtn({
 
   return (
     <>
-      <button onClick={openPopover} className={styles.button}>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          openPopover();
+        }}
+        className={styles.button}
+      >
         <Image src="/Edit.svg" alt="Edit" width={24} height={24} />
       </button>
 
       {showPopover && (
-        <div className={styles.overlay} onClick={handleCancel}>
+        <div className={styles.overlay} onClick={(e) => { e.stopPropagation(); handleCancel(); }}>
           <div className={styles.popover} onClick={(e) => e.stopPropagation()}>
             <input
               type="text"
