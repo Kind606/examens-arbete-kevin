@@ -1,7 +1,8 @@
 "use client";
 
-import { create } from "zustand";
 import { AuthUser } from "@/src/types";
+import { create } from "zustand";
+import { useSplitStore } from "./splitStore";
 
 type AuthState = {
   user: AuthUser | null;
@@ -16,6 +17,8 @@ export const useAuthStore = create<AuthState>((set) => ({
     localStorage.setItem("auth_user", JSON.stringify(user));
   },
   logout: () => {
+    const resetSplits = useSplitStore.getState().resetSplits;
+    resetSplits();
     set({ user: null });
     localStorage.removeItem("auth_user");
   },

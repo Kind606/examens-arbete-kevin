@@ -1,28 +1,24 @@
-"use client";
-
 import { useSplitStore } from "@/src/store/splitStore";
-import type { Split } from "@/generated/prisma/client";
-import { useCallback } from "react";
+import { useEffect } from "react";
 import { fetchUserSplits } from "./splitRenderActions";
 
-export function useFetchSplits() {
+export function useFetchSplits(userId: string) {
   const { setSplits, setLoading, setError } = useSplitStore();
 
-  const fetchSplits = useCallback(
-    async (userId: string) => {
+  useEffect(() => {
+    const fetchSplits = async () => {
       setLoading(true);
       setError(null);
       try {
-        const data: Split[] = await fetchUserSplits(userId);
+        const data = await fetchUserSplits(userId);
         setSplits(data);
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : "An error occurred");
+        setError(err instanceof Error ? err.message : "Failed to fetch splits");
       } finally {
         setLoading(false);
       }
-    },
-    [setSplits, setLoading, setError]
-  );
+    };
 
-  return { fetchSplits };
+    if (userId) fetchSplits();
+  }, [userId, setSplits, setLoading, setError]);
 }
