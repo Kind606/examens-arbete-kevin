@@ -1,12 +1,6 @@
 // splitStore.ts
 import { create } from "zustand";
-
-interface Split {
-  id: string;
-  title: string;
-  slug: string;
-  createdAt: string;
-}
+import { Split } from "../types";
 
 interface SplitState {
   splits: Split[];

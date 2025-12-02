@@ -14,7 +14,7 @@ interface SplitRenderProps {
 }
 
 export default function SplitRender({ userId }: SplitRenderProps) {
-  const { splits, loading, error } = useSplitStore();
+  const { splits, loading } = useSplitStore();
   const { fetchSplits } = useFetchSplits();
   const router = useRouter();
 
@@ -23,7 +23,6 @@ export default function SplitRender({ userId }: SplitRenderProps) {
   }, [userId, fetchSplits]);
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
   return (
     <div className={styles.splitRender}>
       {splits.map((split) => (

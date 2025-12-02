@@ -12,9 +12,7 @@ export async function addSplitAction(title: string, userId: string) {
       .toLowerCase()
       .trim()
       .replace(/\s+/g, "-")
-      .replace(/[^a-z0-9-]/g, "") +
-    "-" +
-    Date.now();
+      .replace(/[^a-z0-9-]/g, "");
 
   const split = await prisma.split.create({
     data: {

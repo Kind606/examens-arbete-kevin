@@ -11,9 +11,7 @@ export function useFetchSplits() {
     async (userId: string) => {
       setLoading(true);
       setError(null);
-
       try {
-        // Call the server action directly
         const data = await fetchUserSplits(userId);
         setSplits(data);
       } catch (err: unknown) {

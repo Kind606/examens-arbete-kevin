@@ -1,12 +1,10 @@
-"use client";
-
 import NavBar from "../components/navBar/navBar";
 import SplitRender from "../components/splitRender/splitRender";
-import { useProtectedRoute } from "../hooks/useProtectedRoute";
+import { requireUser } from "../hooks/requireUser";
 import styles from "./page.module.css";
 
-export default function Home() {
-  const { user, loading } = useProtectedRoute();
+export default async function Home() {
+  const user = await requireUser();
 
   return (
     <div className={styles.container}>
@@ -18,13 +16,10 @@ export default function Home() {
             <br />
             <h1>Här nere ser du alla dina splits</h1>
           </div>
+
           <div className={styles.splits}>
             <h1>Dina splits</h1>
-            {loading ? (
-              <p>Loading your splits...</p> 
-            ) : user ? (
-              <SplitRender userId={user.id} />
-            ) : null}
+            <SplitRender userId={user.id} />
           </div>
         </div>
       </main>

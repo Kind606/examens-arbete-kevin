@@ -9,7 +9,9 @@ export type AuthUser = {
   token: string;
 };
 
-export const mockUser: User = {
-  username: "testuser",
-  password: "password123",
-};
+export type Split = {
+  id: string;
+  title: string;
+  slug: string;
+  createdAt: string;
+}
