@@ -1,0 +1,51 @@
+.container {
+  background-color: #3d3c3c;
+  min-height: 100vh;
+  color: white;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.textContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  padding: 30px 0;
+
+  & a {
+    position: absolute;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+  }
+
+  & h1 {
+    margin: 0;
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 16px;
+}
+
+.card {
+  padding: 16px;
+  background-color: #3d3c3c;
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.card.empty {
+  background-color: #555;
+  color: #aaa;
+}
