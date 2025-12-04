@@ -1,0 +1,41 @@
+.card {
+  height: 250px;
+  width: 150px;
+  padding: 16px;
+  background-color: #575656;
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #777777;
+  }
+
+  &:active {
+    background-color: #3d3c3c;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #a0f265;
+  }
+
+  & h3 {
+    margin: 0;
+    color: yellowgreen;
+  }
+}
+
+.card.empty {
+  background-color: #679c41;
+  color: white;
+
+  & h3 {
+    margin: 0;
+    color: white;
+  }
+
+  &:hover {
+    background-color: #558235;
+  }
+}

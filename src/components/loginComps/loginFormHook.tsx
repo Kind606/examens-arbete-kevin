@@ -36,7 +36,7 @@ export const useLogin = () => {
       // Redirect to start page
       router.push("/");
       return true;
-    } catch (err) {
+    } catch {
       setError("username", { type: "manual" });
       setError("password", { type: "manual", message: "Något gick fel" });
       return false;

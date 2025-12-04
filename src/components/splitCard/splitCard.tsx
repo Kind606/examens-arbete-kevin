@@ -18,7 +18,10 @@ export default function SplitCard({
     >
       <h3>{dayName}</h3>
       {isEmpty ? (
-        <p>Tomt</p>
+        <>
+          <p>Tomt/vila</p>
+          <p>+</p>
+        </>
       ) : (
         exercises?.map((e) => <p key={e.id}>{e.name}</p>)
       )}

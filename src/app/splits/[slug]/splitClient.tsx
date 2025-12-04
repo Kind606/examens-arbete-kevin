@@ -21,7 +21,7 @@ export default function SplitClient({ user, split }: SplitClientProps) {
         <h1>{split.title}</h1>
       </div>
       <div className={styles.cardsGrid}>
-        {split.days.map((day) => (
+        {split.days?.map((day) => (
           <SplitCard
             splitSlug={split.slug}
             daySlug={day.slug}
@@ -30,7 +30,7 @@ export default function SplitClient({ user, split }: SplitClientProps) {
             dayName={day.name}
             isEmpty={day.exercises.length === 0}
           />
-        ))}
+        )) ?? []}
       </div>
     </div>
   );
