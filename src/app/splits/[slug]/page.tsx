@@ -2,6 +2,7 @@ import { PrismaClient } from "@/generated/prisma/client";
 import NavBar from "@/src/components/navBar/navBar";
 import { requireUser } from "@/src/hooks/requireUser";
 import SplitClient from "./splitClient";
+import styles from "./splitPage.module.css";
 
 const prisma = new PrismaClient();
 
@@ -15,6 +16,13 @@ export default async function SplitPage({ params }: SplitPageProps) {
 
   const split = await prisma.split.findUnique({
     where: { slug },
+    include: {
+      days: {
+        include: {
+          exercises: true, 
+        },
+      },
+    },
   });
 
   if (!split) {
@@ -22,7 +30,7 @@ export default async function SplitPage({ params }: SplitPageProps) {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <NavBar />
       <SplitClient user={user} split={split} />
     </div>

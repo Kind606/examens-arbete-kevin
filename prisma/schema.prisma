@@ -34,13 +34,16 @@ model Split {
 model Day {
   id       String   @id @default(auto()) @map("_id") @db.ObjectId
   name     String
-  slug     String   @unique
+  slug     String
 
   splitId  String   @db.ObjectId
   split    Split    @relation(fields: [splitId], references: [id])
 
   exercises Exercise[]
+
+  @@unique([slug, splitId]) 
 }
+
 
 model Exercise {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
