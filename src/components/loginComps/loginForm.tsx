@@ -28,6 +28,7 @@ function LoginForm() {
       <div className={styles.inputGroup}>
         <label className={styles.label}>Username</label>
         <input
+          aria-label="username"
           type="text"
           {...register("username", {
             required: "Användarnamn krävs",
@@ -44,6 +45,7 @@ function LoginForm() {
 
         <label className={styles.label}>Password</label>
         <input
+          aria-label="password"
           type="password"
           {...register("password", {
             required: "Lösenord krävs",

@@ -2,14 +2,9 @@
 
 import SplitCard from "@/src/components/splitCard/splitCard";
 import { useHydrateAuth } from "@/src/hooks/useHydrateAuth";
-import { AuthUser, Split } from "@/src/types";
+import { SplitClientProps } from "@/src/types";
 import Link from "next/link";
 import styles from "./splitPage.module.css";
-
-interface SplitClientProps {
-  user: AuthUser;
-  split: Split;
-}
 
 export default function SplitClient({ user, split }: SplitClientProps) {
   useHydrateAuth(user);

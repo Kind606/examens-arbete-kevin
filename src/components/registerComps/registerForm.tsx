@@ -17,6 +17,7 @@ function RegisterForm() {
       <div className={styles.inputGroup}>
         <label className={styles.label}>Username</label>
         <input
+          aria-label="username"
           type="text"
           className={styles.input}
           {...register("username", { required: "Username is required" })}
@@ -27,6 +28,7 @@ function RegisterForm() {
 
         <label className={styles.label}>Password</label>
         <input
+          aria-label="password"
           type="password"
           className={styles.input}
           {...register("password", {

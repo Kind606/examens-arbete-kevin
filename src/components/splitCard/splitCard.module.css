@@ -31,11 +31,16 @@
   color: white;
 
   & h3 {
+    font-size: 24px;
     margin: 0;
     color: white;
   }
 
   &:hover {
     background-color: #558235;
+  }
+
+  & p {
+    font-size: 20px;
   }
 }
