@@ -13,6 +13,8 @@ export type Exercise = {
   id: string;
   name: string;
   slug: string;
+  defaultSets: number | null;
+  defaultReps: number | null;
 };
 
 export type Day = {
@@ -21,6 +23,7 @@ export type Day = {
   slug: string;
   exercises: Exercise[];
 };
+
 
 export type Split = {
   id: string;
