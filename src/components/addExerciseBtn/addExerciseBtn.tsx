@@ -1,8 +1,15 @@
 "use client";
 
+import { Exercise } from "@/src/types";
 import { useAddExercise } from "./addExerciseBtnHook";
 
-export default function AddExerciseBtn({ dayId, onExerciseAdded }: { dayId: string; onExerciseAdded: () => void }) {
+export default function AddExerciseBtn({
+  dayId,
+  onExerciseAdded,
+}: {
+  dayId: string;
+  onExerciseAdded: (exercise: Exercise) => void;
+}) {
   const {
     showPopover,
     newExercise,

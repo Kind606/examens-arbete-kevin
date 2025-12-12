@@ -1,11 +1,12 @@
 "use client";
 
+import { Exercise } from "@/src/types";
 import { useState } from "react";
 import { addExerciseAction } from "./addExerciseBtnAction";
 
 export function useAddExercise(
   dayId: string,
-  onExerciseAdded: (ex: unknown) => void
+  onExerciseAdded: (ex: Exercise) => void
 ) {
   const [showPopover, setShowPopover] = useState(false);
   const [newExercise, setNewExercise] = useState("");
@@ -32,7 +33,7 @@ export function useAddExercise(
         newReps
       );
 
-      onExerciseAdded(added); 
+      onExerciseAdded(added);
     } catch (err) {
       console.error(err);
     }

@@ -23,11 +23,11 @@ export default async function DayShowcase({ params }: DayShowcaseProps) {
     where: {
       slug_splitId: {
         slug: daySlug,
-        splitId: split.id, 
+        splitId: split.id,
       },
     },
     include: {
-      exercises: true, 
+      exercises: true,
     },
   });
 
@@ -36,7 +36,7 @@ export default async function DayShowcase({ params }: DayShowcaseProps) {
   return (
     <div>
       <NavBar />
-      <SplitDayClient day={day} />
+      <SplitDayClient day={day} splitSlug={slug} daySlug={daySlug} />
     </div>
   );
 }

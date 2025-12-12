@@ -50,4 +50,6 @@ export interface SplitClientProps {
 
 export interface SplitDayClientProps {
   day: Day;
+  splitSlug: string;
+  daySlug: string;
 }
