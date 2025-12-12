@@ -6,6 +6,7 @@ interface ExerciseState {
   exercises: Exercise[];
   setExercises: (exercises: Exercise[]) => void;
   addExercise: (exercise: Exercise) => void;
+  removeExercise: (id: string) => void;
 }
 
 export const useExerciseStore = create<ExerciseState>((set) => ({
@@ -13,4 +14,6 @@ export const useExerciseStore = create<ExerciseState>((set) => ({
   setExercises: (exercises) => set({ exercises }),
   addExercise: (exercise) =>
     set((state) => ({ exercises: [...state.exercises, exercise] })),
+    removeExercise: (id) =>
+    set((state) => ({ exercises: state.exercises.filter((ex) => ex.id !== id) }))
 }));

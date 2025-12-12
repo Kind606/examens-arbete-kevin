@@ -24,7 +24,6 @@ export type Day = {
   exercises: Exercise[];
 };
 
-
 export type Split = {
   id: string;
   title: string;
@@ -52,4 +51,12 @@ export interface SplitDayClientProps {
   day: Day;
   splitSlug: string;
   daySlug: string;
+  user: AuthUser;
+}
+
+
+export interface ExerciseRenderProps {
+  splitSlug: string;
+  daySlug: string;
+  initialExercises: Exercise[]; 
 }

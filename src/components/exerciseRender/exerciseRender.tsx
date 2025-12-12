@@ -1,16 +1,16 @@
 "use client";
 
-import { useExerciseStore } from "@/src/store/exerciseStore";
+import { ExerciseRenderProps } from "@/src/types";
 import Link from "next/link";
+import { useExerciseRender } from "./exerciseRenderHook";
+
 
 export default function ExerciseRender({
   splitSlug,
   daySlug,
-}: {
-  splitSlug: string;
-  daySlug: string;
-}) {
-  const exercises = useExerciseStore((s) => s.exercises);
+  initialExercises,
+}: ExerciseRenderProps) {
+  const { exercises, handleDelete } = useExerciseRender(initialExercises);
 
   return (
     <ul>
@@ -21,6 +21,15 @@ export default function ExerciseRender({
           >
             {ex.name} — {ex.defaultSets} x {ex.defaultReps}
           </Link>
+              <button
+            className="text-red-500 hover:text-red-700"
+            onClick={(e) => {
+              e.preventDefault(); 
+              handleDelete(ex.id);
+            }}
+          >
+            Delete
+          </button>
         </li>
       ))}
     </ul>

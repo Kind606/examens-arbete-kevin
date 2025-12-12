@@ -2,6 +2,7 @@
 
 import { Exercise } from "@/src/types";
 import { useAddExercise } from "./addExerciseBtnHook";
+import styles from "./addExerciseBtn.module.css";
 
 export default function AddExerciseBtn({
   dayId,
