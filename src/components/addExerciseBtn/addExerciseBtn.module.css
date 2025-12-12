@@ -47,9 +47,13 @@
 }
 
 .setInputGroup {
-    display: flex;
-    gap: 8px;
-    justify-content: space-evenly;
+  display: flex;
+  gap: 8px;
+  justify-content: space-evenly;
+
+  & label {
+    color: black;
+  }
 }
 
 .buttonGroup {

@@ -1,8 +1,8 @@
 "use client";
 
 import { Exercise } from "@/src/types";
-import { useAddExercise } from "./addExerciseBtnHook";
 import styles from "./addExerciseBtn.module.css";
+import { useAddExercise } from "./addExerciseBtnHook";
 
 export default function AddExerciseBtn({
   dayId,
@@ -50,19 +50,20 @@ export default function AddExerciseBtn({
               autoFocus
             />
             <div className={styles.setInputGroup}>
-            <input
-              type="number"
-              placeholder="Sets"
-              value={newSets}
-              onChange={(e) => setNewSets(Number(e.target.value))}
-            />
-
-            <input
-              type="number"
-              placeholder="Reps"
-              value={newReps}
-              onChange={(e) => setNewReps(Number(e.target.value))}
-            />
+                <label htmlFor="sets">Sets:</label>
+                <input
+                  type="number"
+                  placeholder="Sets"
+                  value={newSets}
+                  onChange={(e) => setNewSets(Number(e.target.value))}
+                />
+                <label htmlFor="reps">Reps:</label>
+              <input
+                type="number"
+                placeholder="Reps"
+                value={newReps}
+                onChange={(e) => setNewReps(Number(e.target.value))}
+              />
             </div>
 
             <div className={styles.buttonGroup}>
