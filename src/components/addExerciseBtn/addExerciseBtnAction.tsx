@@ -25,7 +25,8 @@ export async function addExerciseAction(
   dayId: string,
   name: string,
   sets: number,
-  reps: number
+  reps: number,
+  videoURL: string
 ) {
   const baseSlug = slugifyExercise(name);
   let slug = baseSlug;
@@ -42,6 +43,7 @@ export async function addExerciseAction(
       dayId,
       defaultSets: sets,
       defaultReps: reps,
+      videoUrl: videoURL,
     },
   });
 }

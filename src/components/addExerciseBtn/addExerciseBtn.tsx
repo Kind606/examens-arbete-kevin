@@ -16,12 +16,14 @@ export default function AddExerciseBtn({
     newExercise,
     newSets,
     newReps,
+    newVideoURL,
     setNewExercise,
     setNewSets,
     setNewReps,
     openPopover,
     handleCancel,
     handleAdd,
+    setNewVideoURL,
   } = useAddExercise(dayId, onExerciseAdded);
 
   return (
@@ -35,9 +37,16 @@ export default function AddExerciseBtn({
           <div className={styles.popover} onClick={(e) => e.stopPropagation()}>
             <input
               type="text"
-              placeholder="Exercise name"
+              placeholder="Övnings namn"
               value={newExercise}
               onChange={(e) => setNewExercise(e.target.value)}
+              autoFocus
+            />
+            <input
+              type="url"
+              placeholder="VideoURL (valfritt)"
+              value={newVideoURL}
+              onChange={(e) => setNewVideoURL(e.target.value)}
               autoFocus
             />
             <div className={styles.setInputGroup}>

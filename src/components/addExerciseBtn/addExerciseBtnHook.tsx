@@ -12,6 +12,7 @@ export function useAddExercise(
   const [newExercise, setNewExercise] = useState("");
   const [newSets, setNewSets] = useState(3);
   const [newReps, setNewReps] = useState(10);
+  const [newVideoURL, setNewVideoURL] = useState("");
 
   const openPopover = () => setShowPopover(true);
 
@@ -19,6 +20,7 @@ export function useAddExercise(
     setNewExercise("");
     setNewSets(3);
     setNewReps(10);
+    setNewVideoURL("");
     setShowPopover(false);
   };
 
@@ -30,7 +32,8 @@ export function useAddExercise(
         dayId,
         newExercise.trim(),
         newSets,
-        newReps
+        newReps,
+        newVideoURL.trim(),
       );
 
       onExerciseAdded(added);
@@ -45,6 +48,7 @@ export function useAddExercise(
     showPopover,
     newExercise,
     newSets,
+    newVideoURL,
     newReps,
     setNewExercise,
     setNewSets,
@@ -52,5 +56,6 @@ export function useAddExercise(
     openPopover,
     handleAdd,
     handleCancel,
+    setNewVideoURL,
   };
 }
