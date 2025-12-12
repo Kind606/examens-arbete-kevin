@@ -17,12 +17,15 @@
   justify-content: center;
   padding: 30px 0;
 
-  & a {
+   & button {
     position: absolute;
     left: 20px;
+    background-color: transparent;
     color: white;
-    text-decoration: none;
+    border: none;
     font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
   }
 
   & h1 {

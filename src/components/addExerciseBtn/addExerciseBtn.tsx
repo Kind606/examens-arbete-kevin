@@ -26,18 +26,21 @@ export default function AddExerciseBtn({
 
   return (
     <>
-      <button onClick={openPopover}>Add Exercise</button>
+      <button className={styles.addButton} onClick={openPopover}>
+        LÄGG TILL ÖVNING
+      </button>
 
       {showPopover && (
-        <div onClick={handleCancel}>
-          <div onClick={(e) => e.stopPropagation()}>
+        <div className={styles.overlay} onClick={handleCancel}>
+          <div className={styles.popover} onClick={(e) => e.stopPropagation()}>
             <input
               type="text"
               placeholder="Exercise name"
               value={newExercise}
               onChange={(e) => setNewExercise(e.target.value)}
+              autoFocus
             />
-
+            <div className={styles.setInputGroup}>
             <input
               type="number"
               placeholder="Sets"
@@ -51,9 +54,16 @@ export default function AddExerciseBtn({
               value={newReps}
               onChange={(e) => setNewReps(Number(e.target.value))}
             />
+            </div>
 
-            <button onClick={handleAdd}>Add</button>
-            <button onClick={handleCancel}>Cancel</button>
+            <div className={styles.buttonGroup}>
+              <button className={styles.addButton} onClick={handleAdd}>
+                LÄGG TILL
+              </button>
+              <button className={styles.cancelButton} onClick={handleCancel}>
+                AVBRYT
+              </button>
+            </div>
           </div>
         </div>
       )}

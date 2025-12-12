@@ -1,15 +1,10 @@
-
 "use server";
 
 import { PrismaClient } from "@/generated/prisma/client";
-import { verifyToken } from "@/src/components/loginComps/loginFormActions";
 import NavBar from "@/src/components/navBar/navBar";
-import AddExerciseBtn from "@/src/components/addExerciseBtn/addExerciseBtn";
-import ExerciseRender from "@/src/components/exerciseRender/exerciseRender";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import SplitDayClient from "./splitDayClient";
+import { requireUser } from "@/src/hooks/requireUser";
 import styles from "./splitDayPage.module.css";
-
 
 const prisma = new PrismaClient();
 
@@ -18,12 +13,10 @@ interface DayPageProps {
 }
 
 export default async function DayPage({ params }: DayPageProps) {
-  const { slug, daySlug } = await params;
+  // server-side auth
+  const user = await requireUser();
 
-  const cookieStore = await cookies();
-  const token = cookieStore.get("auth_token")?.value;
-  const user = token ? await verifyToken(token) : null;
-  if (!user) return redirect("/login");
+  const { slug, daySlug } = await params;
 
   const split = await prisma.split.findUnique({ where: { slug } });
   if (!split) return <div>Split not found</div>;
@@ -37,19 +30,7 @@ export default async function DayPage({ params }: DayPageProps) {
   return (
     <div className={styles.container}>
       <NavBar />
-      <div className={styles.header}>
-        <a href={`/splits/${slug}`}>&lt; Back</a>
-        <h1>{day.name}</h1>
-      </div>
-
-      <h2>Exercises:</h2>
-      <ExerciseRender
-        splitSlug={slug}
-        daySlug={daySlug}
-        initialExercises={day.exercises}
-      />
-
-      <AddExerciseBtn dayId={day.id} onExerciseAdded={() => {}} />
+      <SplitDayClient user={user} day={day} splitSlug={slug} daySlug={daySlug} />
     </div>
   );
 }
