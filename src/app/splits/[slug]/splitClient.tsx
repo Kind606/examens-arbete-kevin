@@ -2,14 +2,9 @@
 
 import SplitCard from "@/src/components/splitCard/splitCard";
 import { useHydrateAuth } from "@/src/hooks/useHydrateAuth";
-import { AuthUser, Split } from "@/src/types";
+import { SplitClientProps } from "@/src/types";
 import Link from "next/link";
 import styles from "./splitPage.module.css";
-
-interface SplitClientProps {
-  user: AuthUser;
-  split: Split;
-}
 
 export default function SplitClient({ user, split }: SplitClientProps) {
   useHydrateAuth(user);
@@ -17,7 +12,7 @@ export default function SplitClient({ user, split }: SplitClientProps) {
   return (
     <div className={styles.cardContainer}>
       <div className={styles.textContainer}>
-        <Link href="/">&lt; Tillbaka</Link>
+        <button onClick={() => window.history.back()}> ← tillbaka</button>
         <h1>{split.title}</h1>
       </div>
       <div className={styles.cardsGrid}>

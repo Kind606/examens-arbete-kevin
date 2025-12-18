@@ -15,15 +15,12 @@ export function useHomeClient(user: AuthUser | null) {
     const loadSplits = async () => {
       if (!user) return;
 
-      // Reset splits if logging in as a different user
       if (!currentUser || currentUser.id !== user.id) {
         resetSplits();
       }
 
-      // Update auth store
       login(user);
 
-      // Fetch latest splits
       try {
         const freshSplits = await fetchUserSplits(user.id);
         setSplits(freshSplits);

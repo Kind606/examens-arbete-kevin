@@ -13,6 +13,8 @@ export type Exercise = {
   id: string;
   name: string;
   slug: string;
+  defaultSets: number | null;
+  defaultReps: number | null;
 };
 
 export type Day = {
@@ -30,6 +32,7 @@ export type Split = {
   days?: Day[];
 };
 
+// props for components
 
 export interface SplitCardProps {
   splitSlug: string;
@@ -37,4 +40,23 @@ export interface SplitCardProps {
   dayName: string;
   isEmpty: boolean;
   exercises?: { id: string; name: string }[];
+}
+
+export interface SplitClientProps {
+  user: AuthUser;
+  split: Split;
+}
+
+export interface SplitDayClientProps {
+  day: Day;
+  splitSlug: string;
+  daySlug: string;
+  user: AuthUser;
+}
+
+
+export interface ExerciseRenderProps {
+  splitSlug: string;
+  daySlug: string;
+  initialExercises: Exercise[]; 
 }

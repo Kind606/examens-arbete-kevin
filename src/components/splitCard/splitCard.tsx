@@ -11,6 +11,11 @@ export default function SplitCard({
   isEmpty,
   exercises,
 }: SplitCardProps) {
+  const maxVisible = 4;
+
+  const visibleExercises = exercises?.slice(0, maxVisible) ?? [];
+  const hiddenCount = exercises ? exercises.length - maxVisible : 0;
+
   return (
     <Link
       href={`/splits/${splitSlug}/day/${daySlug}`}
@@ -23,7 +28,12 @@ export default function SplitCard({
           <p>+</p>
         </>
       ) : (
-        exercises?.map((e) => <p key={e.id}>{e.name}</p>)
+        <>
+          {visibleExercises.map((e) => (
+            <p key={e.id}>{e.name}</p>
+          ))}
+          {hiddenCount > 0 && <p>... och {hiddenCount} till</p>}
+        </>
       )}
     </Link>
   );
