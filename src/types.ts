@@ -54,6 +54,12 @@ export interface SplitDayClientProps {
   user: AuthUser;
 }
 
+export interface ExerciseLogClientProps {
+  user: AuthUser;
+  day: Day;
+  exercise: Exercise;
+}
+
 
 export interface ExerciseRenderProps {
   splitSlug: string;

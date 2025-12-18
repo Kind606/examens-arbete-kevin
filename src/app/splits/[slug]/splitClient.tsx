@@ -3,7 +3,6 @@
 import SplitCard from "@/src/components/splitCard/splitCard";
 import { useHydrateAuth } from "@/src/hooks/useHydrateAuth";
 import { SplitClientProps } from "@/src/types";
-import Link from "next/link";
 import styles from "./splitPage.module.css";
 
 export default function SplitClient({ user, split }: SplitClientProps) {

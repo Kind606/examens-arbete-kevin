@@ -13,7 +13,6 @@ interface DayPageProps {
 }
 
 export default async function DayPage({ params }: DayPageProps) {
-  // server-side auth
   const user = await requireUser();
 
   const { slug, daySlug } = await params;
