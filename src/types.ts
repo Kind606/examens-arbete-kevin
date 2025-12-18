@@ -9,12 +9,24 @@ export type AuthUser = {
   token: string;
 };
 
+export type ExerciseLog = {
+  id: string;
+  exerciseId: string;
+  sets: number;
+  reps: number;
+  weight: number | null;
+  comments?: string | null;
+  date: Date;
+};
+
 export type Exercise = {
   id: string;
   name: string;
   slug: string;
+  videoUrl: string | null;
   defaultSets: number | null;
   defaultReps: number | null;
+  logs?: ExerciseLog[];
 };
 
 export type Day = {

@@ -1,7 +1,7 @@
 import { PrismaClient } from "@/generated/prisma/client";
 import NavBar from "@/src/components/navBar/navBar";
 import { requireUser } from "@/src/hooks/requireUser";
-import ExerciseLogClient from "./exerciseLogClient";
+import ExerciseClient from "./exerciseClient";
 
 const prisma = new PrismaClient();
 
@@ -31,7 +31,7 @@ export default async function ExercisePage({ params }: ExerciseLogProps) {
   return (
     <div>
       <NavBar />
-      <ExerciseLogClient user={user} day={day} exercise={exercise} />
+      <ExerciseClient user={user} day={day} exercise={exercise} />
     </div>
   );
 }
