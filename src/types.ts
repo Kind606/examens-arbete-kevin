@@ -70,6 +70,8 @@ export interface ExerciseLogClientProps {
   user: AuthUser;
   day: Day;
   exercise: Exercise;
+  splitSlug: string;
+  daySlug: string;
 }
 
 

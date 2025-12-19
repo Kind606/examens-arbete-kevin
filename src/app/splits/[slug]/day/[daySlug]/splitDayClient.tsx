@@ -35,7 +35,7 @@ export default function SplitDayClient({
       <div className={styles.textContainer}>
         <h1>{day.name}</h1>
 
-        <button onClick={() => router.back()} className={styles.backButton}>
+        <button onClick={() => router.push(`/splits/${splitSlug}`)} className={styles.backButton}>
           ← tillbaka
         </button>
       </div>

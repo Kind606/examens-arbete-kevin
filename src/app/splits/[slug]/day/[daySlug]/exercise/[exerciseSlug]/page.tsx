@@ -31,7 +31,13 @@ export default async function ExercisePage({ params }: ExerciseLogProps) {
   return (
     <div>
       <NavBar />
-      <ExerciseClient user={user} day={day} exercise={exercise} />
+      <ExerciseClient
+        user={user}
+        day={day}
+        exercise={exercise}
+        splitSlug={slug}
+        daySlug={daySlug}
+      />
     </div>
   );
 }

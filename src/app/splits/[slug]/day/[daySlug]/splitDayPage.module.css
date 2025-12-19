@@ -5,7 +5,7 @@
   color: white;
   width: 100%;
   min-height: 100vh;
-  align-items: center; 
+  align-items: center;
 }
 
 .textContainer {
@@ -38,7 +38,8 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  min-width: 350px;
+  max-width: 350px;
+  width: 100%;
   align-items: center;
 }
 
@@ -47,4 +48,14 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+  .textContainer {
+    margin: 10px;
+
+    & button {
+      top: 60px;
+    }
+  }
 }
