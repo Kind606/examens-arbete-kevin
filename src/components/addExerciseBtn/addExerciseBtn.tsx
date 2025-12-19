@@ -52,14 +52,14 @@ export default function AddExerciseBtn({
             <div className={styles.setInputGroup}>
                 <label htmlFor="sets">Sets:</label>
                 <input
-                  type="number"
+                  type="text"
                   placeholder="Sets"
                   value={newSets}
                   onChange={(e) => setNewSets(Number(e.target.value))}
                 />
                 <label htmlFor="reps">Reps:</label>
               <input
-                type="number"
+                type="text"
                 placeholder="Reps"
                 value={newReps}
                 onChange={(e) => setNewReps(Number(e.target.value))}

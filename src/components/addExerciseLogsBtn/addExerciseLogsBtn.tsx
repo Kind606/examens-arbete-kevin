@@ -38,21 +38,21 @@ export default function AddExerciseLogBtn({
             <div className={styles.inputGroup}>
               <label>Sets</label>
               <input
-                type="number"
+                type="text"
                 value={sets}
                 onChange={(e) => setSets(Number(e.target.value))}
               />
 
               <label>Reps</label>
               <input
-                type="number"
+                type="text"
                 value={reps}
                 onChange={(e) => setReps(Number(e.target.value))}
               />
 
               <label>Vikt (kg)</label>
               <input
-                type="number"
+                type="text"
                 value={weight ?? ""}
                 onChange={(e) =>
                   setWeight(e.target.value ? Number(e.target.value) : null)

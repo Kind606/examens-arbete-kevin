@@ -7,7 +7,6 @@
 .cardContainer {
   display: flex;
   flex-direction: column;
- 
 }
 
 .textContainer {
@@ -17,7 +16,7 @@
   justify-content: center;
   padding: 30px 0;
 
-   & button {
+  & button {
     position: absolute;
     left: 20px;
     background-color: transparent;
@@ -39,11 +38,28 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  justify-content: center; 
-    padding: 15px;
+  justify-content: center;
+  padding: 15px;
 }
 
 .cardsGrid > * {
-  flex: 1 1 120px; 
+  flex: 1 1 120px;
   max-width: 160px;
+}
+
+.backText {
+  display: inline;
+}
+
+.backArrow {
+  display: none;
+}
+
+@media (max-width: 645px) {
+  .backText {
+    display: none;
+  }
+  .backArrow {
+    display: inline;
+  }
 }

@@ -3,15 +3,21 @@
 import SplitCard from "@/src/components/splitCard/splitCard";
 import { useHydrateAuth } from "@/src/hooks/useHydrateAuth";
 import { SplitClientProps } from "@/src/types";
+import { useRouter } from "next/navigation";
 import styles from "./splitPage.module.css";
 
 export default function SplitClient({ user, split }: SplitClientProps) {
+  const router = useRouter();
   useHydrateAuth(user);
+
 
   return (
     <div className={styles.cardContainer}>
       <div className={styles.textContainer}>
-        <button onClick={() => window.history.back()}> ← tillbaka</button>
+        <button onClick={() => router.push(`/`)}>
+          <span className={styles.backArrow}>←</span>
+          <span className={styles.backText}>← tillbaka</span>
+        </button>{" "}
         <h1>{split.title}</h1>
       </div>
       <div className={styles.cardsGrid}>
