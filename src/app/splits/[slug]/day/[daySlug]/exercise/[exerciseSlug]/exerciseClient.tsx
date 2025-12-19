@@ -1,11 +1,19 @@
 "use client";
 
+import ExerciseLogBtn from "@/src/components/addExerciseLogsBtn/addExerciseLogsBtn";
 import { ExerciseLogClientProps } from "@/src/types";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import styles from "./exerciseClient.module.css";
 
-export default function ExerciseClient({ exercise, splitSlug, daySlug }: ExerciseLogClientProps) {
+export default function ExerciseClient({
+  exercise,
+  splitSlug,
+  daySlug,
+}: ExerciseLogClientProps) {
   const router = useRouter();
+
+  const [logs, setLogs] = useState(exercise.logs ?? []);
 
   const getYouTubeEmbedUrl = (url: string) => {
     const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/);
@@ -42,14 +50,26 @@ export default function ExerciseClient({ exercise, splitSlug, daySlug }: Exercis
         )}
       </div>
 
+      <ExerciseLogBtn
+        exerciseId={exercise.id}
+        onLogAdded={(log) => {
+          setLogs((prev) => [log, ...prev]);
+        }}
+      />
+
       <div className={styles.exerciseLog}>
         <h2>Exercise Logs</h2>
-        {exercise.logs?.map((log) => (
-          <div key={log.id}>
-            <p>Sets: {log.sets}</p>
-            <p>Reps: {log.reps}</p>n<p>Weight: {log.weight ?? "N/A"}</p>
-            <p>Comments: {log.comments ?? "None"}</p>
-            <p>Date: {log.date.toLocaleDateString()}</p>
+        {logs.map((log) => (
+          <div key={log.id} className={styles.logItem}>
+            <p>
+              <strong>
+                {new Date(log.createdAt).toLocaleDateString("sv-SE")}
+              </strong>
+            </p>
+            <p>Sets: {log.sets ?? "-"}</p>
+            <p>Reps: {log.reps ?? "-"}</p>
+            <p>Weight: {log.weight ?? "N/A"} Kg</p>
+            {log.comments && <p>Comment: {log.comments}</p>}
           </div>
         ))}
       </div>

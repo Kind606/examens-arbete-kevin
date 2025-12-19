@@ -12,11 +12,11 @@ export type AuthUser = {
 export type ExerciseLog = {
   id: string;
   exerciseId: string;
-  sets: number;
-  reps: number;
+  sets: number | null;
+  reps: number | null;
   weight: number | null;
   comments?: string | null;
-  date: Date;
+  createdAt: Date;
 };
 
 export type Exercise = {

@@ -25,6 +25,7 @@ export default async function ExercisePage({ params }: ExerciseLogProps) {
 
   const exercise = await prisma.exercise.findFirst({
     where: { slug: exerciseSlug, dayId: day.id },
+    include: { logs: { orderBy: { createdAt: "desc" } } },
   });
   if (!exercise) return <div>Exercise not found</div>;
 
