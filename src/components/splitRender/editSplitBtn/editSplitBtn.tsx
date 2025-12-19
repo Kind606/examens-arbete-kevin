@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import styles from "./editSplitBtn.module.css";
+import styles from "../addSplitbtn/addSplitBtn.module.css";
 import { useEditSplit } from "./editSplitBtnHook";
 
 interface EditSplitBtnProps {
@@ -43,11 +43,11 @@ export default function EditSplitBtn({
               onChange={(e) => setNewTitle(e.target.value)}
               autoFocus
             />
-            <div style={{ marginTop: 8 }}>
-              <button onClick={handleSave} style={{ marginRight: 8 }}>
+            <div className={styles.buttonGroup}>
+              <button onClick={handleSave} className={styles.popaddButton}>
                 Save
               </button>
-              <button onClick={handleCancel}>Cancel</button>
+              <button onClick={handleCancel} className={styles.cancelButton}>Cancel</button>
             </div>
           </div>
         </div>

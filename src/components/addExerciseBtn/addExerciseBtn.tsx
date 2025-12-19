@@ -67,7 +67,7 @@ export default function AddExerciseBtn({
             </div>
 
             <div className={styles.buttonGroup}>
-              <button className={styles.addButton} onClick={handleAdd}>
+              <button className={styles.popaddButton} onClick={handleAdd}>
                 LÄGG TILL
               </button>
               <button className={styles.cancelButton} onClick={handleCancel}>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import styles from "../editSplitBtn/editSplitBtn.module.css";
+import styles from "../addSplitbtn/addSplitBtn.module.css";
 import { useRemoveSplit } from "./removeSplitBtnHook";
 
 

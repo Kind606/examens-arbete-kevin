@@ -61,8 +61,25 @@
   gap: 8px;
 }
 
+.popaddButton {
+  background-color: #679c41;
+  font-size: 18px;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+
+  &:hover {
+    background-color: #558235;
+  }
+}
+
 .cancelButton {
   background-color: #a83232;
+  font-size: 18px;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -75,3 +92,4 @@
     background-color: #8b2828;
   }
 }
+

@@ -1,9 +1,11 @@
 "use client";
 
 import { ExerciseRenderProps } from "@/src/types";
+import Image from "next/image";
 import Link from "next/link";
 import styles from "./exerciseRender.module.css";
 import { useExerciseRender } from "./exerciseRenderHook";
+import Gstyles from "../splitRender/addSplitbtn/addSplitBtn.module.css";
 
 export default function ExerciseRender({
   splitSlug,
@@ -30,14 +32,14 @@ export default function ExerciseRender({
           </Link>
 
           <button
-            className={styles.deleteBtn}
+            className={Gstyles.button}
             onClick={(e) => {
-              e.preventDefault(); 
+              e.preventDefault();
               e.stopPropagation();
               handleDelete(ex.id);
             }}
           >
-            Delete
+            <Image src="/delete.svg" alt="Delete" width={24} height={24} />
           </button>
         </li>
       ))}
