@@ -15,7 +15,7 @@ export type ExerciseLog = {
   sets: number | null;
   reps: number | null;
   weight: number | null;
-  comments?: string | null;
+  comment?: string | null;
   createdAt: Date;
 };
 
@@ -74,9 +74,8 @@ export interface ExerciseLogClientProps {
   daySlug: string;
 }
 
-
 export interface ExerciseRenderProps {
   splitSlug: string;
   daySlug: string;
-  initialExercises: Exercise[]; 
+  initialExercises: Exercise[];
 }

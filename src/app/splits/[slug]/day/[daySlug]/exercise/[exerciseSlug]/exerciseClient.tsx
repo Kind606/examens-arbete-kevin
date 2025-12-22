@@ -75,7 +75,7 @@ export default function ExerciseClient({
                   <p>Weight: {log.weight ?? "N/A"} Kg</p>
                 </div>
               </div>
-              {log.comments && <p>Comment: {log.comments}</p>}
+              {log.comment && <p>Comment: {log.comment}</p>}
             </div>
           ))}
         </div>
