@@ -1,0 +1,25 @@
+.backText {
+  display: inline;
+}
+
+.backArrow {
+  display: none;
+}
+
+@media (max-width: 645px) {
+  .backText {
+    display: none;
+  }
+  .backArrow {
+    display: inline;
+  }
+}
+
+.button {
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}

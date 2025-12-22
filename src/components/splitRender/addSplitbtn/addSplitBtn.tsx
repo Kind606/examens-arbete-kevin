@@ -29,11 +29,11 @@ export default function AddSplitBtn() {
               onChange={(e) => setNewTitle(e.target.value)}
               autoFocus
             />
-            <div style={{ marginTop: "8px" }}>
-              <button onClick={handleAdd} style={{ marginRight: 8 }}>
+            <div className={styles.buttonGroup}>
+              <button onClick={handleAdd} className={styles.popaddButton}>
                 Add
               </button>
-              <button onClick={handleCancel}>Cancel</button>
+              <button onClick={handleCancel} className={styles.cancelButton}>Cancel</button>
             </div>
           </div>
         </div>

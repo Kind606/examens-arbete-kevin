@@ -14,6 +14,19 @@
   }
 }
 
+.addExerciseLogBtn {
+  width: 100%;
+  background-color: #679c41;
+  font-size: 18px;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  height: 56px;
+  cursor: pointer;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -29,30 +42,34 @@
 }
 
 .popover {
-  background-color: #fff;
+  background-color: #3d3c3c;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   max-width: 400px;
   box-sizing: border-box;
-}
+  & input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
 
-.popover input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 12px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+  & label {
+    color: white;
+  }
 }
 
 .setInputGroup {
   display: flex;
   gap: 8px;
   justify-content: space-evenly;
+  align-items: center;
 
   & label {
-    color: black;
+    color: white;
   }
 }
 
@@ -61,8 +78,25 @@
   gap: 8px;
 }
 
+.popaddButton {
+  background-color: #679c41;
+  font-size: 18px;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+
+  &:hover {
+    background-color: #558235;
+  }
+}
+
 .cancelButton {
   background-color: #a83232;
+  font-size: 18px;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -73,5 +107,15 @@
 
   &:hover {
     background-color: #8b2828;
+  }
+}
+
+.commentGroup {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+
+  & textarea {
+    resize: none;
   }
 }

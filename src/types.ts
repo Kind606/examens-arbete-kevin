@@ -9,12 +9,24 @@ export type AuthUser = {
   token: string;
 };
 
+export type ExerciseLog = {
+  id: string;
+  exerciseId: string;
+  sets: number | null;
+  reps: number | null;
+  weight: number | null;
+  comment?: string | null;
+  createdAt: Date;
+};
+
 export type Exercise = {
   id: string;
   name: string;
   slug: string;
+  videoUrl: string | null;
   defaultSets: number | null;
   defaultReps: number | null;
+  logs?: ExerciseLog[];
 };
 
 export type Day = {
@@ -54,9 +66,16 @@ export interface SplitDayClientProps {
   user: AuthUser;
 }
 
+export interface ExerciseLogClientProps {
+  user: AuthUser;
+  day: Day;
+  exercise: Exercise;
+  splitSlug: string;
+  daySlug: string;
+}
 
 export interface ExerciseRenderProps {
   splitSlug: string;
   daySlug: string;
-  initialExercises: Exercise[]; 
+  initialExercises: Exercise[];
 }

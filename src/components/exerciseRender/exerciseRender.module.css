@@ -8,6 +8,8 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  padding-right: 5px;
+  height: 60px;
 
   &:hover {
     background-color: #777777;
@@ -27,24 +29,10 @@
   font-weight: bold;
 }
 
-.deleteBtn {
-  background-color: #a83232;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-right: 8px;
-}
-
-.deleteBtn:hover {
-  background-color: #8b2828;
-}
-
 .exerciseList {
   display: flex;
   flex-direction: column;
   padding: 0;
   width: 100%;
+  margin: 0;
 }
