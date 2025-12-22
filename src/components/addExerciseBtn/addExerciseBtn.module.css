@@ -117,5 +117,7 @@
 
   & textarea {
     resize: none;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
   }
 }

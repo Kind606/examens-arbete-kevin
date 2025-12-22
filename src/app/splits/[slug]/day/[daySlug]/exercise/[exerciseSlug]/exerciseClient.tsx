@@ -55,12 +55,10 @@ export default function ExerciseClient({
       <div className={styles.logsContainer}>
         <ExerciseLogBtn
           exerciseId={exercise.id}
-          onLogAdded={(log) => {
-            setLogs((prev) => [log, ...prev]);
-          }}
+          onLogAdded={(log) => setLogs((prev) => [log, ...prev])}
         />
 
-        <LogList initialLogs={exercise.logs ?? []} />
+        <LogList logs={logs} setLogs={setLogs} />
       </div>
     </div>
   );

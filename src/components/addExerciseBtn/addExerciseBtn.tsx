@@ -50,19 +50,27 @@ export default function AddExerciseBtn({
               autoFocus
             />
             <div className={styles.setInputGroup}>
-                <label htmlFor="sets">Sets:</label>
-                <input
-                  type="text"
-                  placeholder="Sets"
-                  value={newSets}
-                  onChange={(e) => setNewSets(Number(e.target.value))}
-                />
-                <label htmlFor="reps">Reps:</label>
+              <label htmlFor="sets">Sets:</label>
+              <input
+                type="text"
+                placeholder="Sets"
+                value={newSets}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (/^\d*$/.test(val))
+                    setNewSets(val === "" ? 0 : Number(val));
+                }}
+              />
+              <label htmlFor="reps">Reps:</label>
               <input
                 type="text"
                 placeholder="Reps"
                 value={newReps}
-                onChange={(e) => setNewReps(Number(e.target.value))}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (/^\d*$/.test(val))
+                    setNewReps(val === "" ? 0 : Number(val));
+                }}
               />
             </div>
 

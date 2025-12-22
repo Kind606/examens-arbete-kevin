@@ -1,16 +1,18 @@
 "use client";
 
-import { ExerciseLog } from "@/src/types";
-import Image from "next/image";
+import { LogListProps } from "@/src/types";
 import styles from "./logList.module.css";
-import { useLogRender } from "./logListRemoveBtnHook";
+import { deleteExerciseLogAction } from "./logListRemoveBtnAction";
 
-interface LogListProps {
-  initialLogs: ExerciseLog[];
-}
-
-export default function LogList({ initialLogs }: LogListProps) {
-  const { logs, handleDelete } = useLogRender(initialLogs);
+export default function LogList({ logs, setLogs }: LogListProps) {
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteExerciseLogAction(id);
+      setLogs((prev) => prev.filter((log) => log.id !== id));
+    } catch (err) {
+      console.error("Failed to delete log:", err);
+    }
+  };
 
   if (logs.length === 0) return <p>Inga loggar tillagda än.</p>;
 
@@ -31,7 +33,7 @@ export default function LogList({ initialLogs }: LogListProps) {
               <p>Vikt: {log.weight ?? "N/A"} Kg</p>
             </div>
           </div>
-          {log.comment && <p>Kommentar: {log.comment}</p>}
+          {log.comment && <p className={styles.comment}>Kommentar: {log.comment}</p>}
           <button
             className={styles.deleteBtn}
             onClick={(e) => {

@@ -1,44 +1,32 @@
 "use server";
 
 import { PrismaClient } from "@/generated/prisma/client";
+import { slugify } from "@/src/utils/slugify";
 
 const prisma = new PrismaClient();
 
-const DAYS = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
-
-// Helper to convert day names to ASCII-friendly slugs
-function slugifyDay(name: string) {
-  const map: Record<string, string> = {
-    å: "a",
-    ä: "a",
-    ö: "o",
-    Å: "a",
-    Ä: "a",
-    Ö: "o",
-  };
-  return name
-    .toLowerCase()
-    .replace(/[åäöÅÄÖ]/g, (match) => map[match] || match)
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "");
-}
+const DAYS = [
+  "Måndag",
+  "Tisdag",
+  "Onsdag",
+  "Torsdag",
+  "Fredag",
+  "Lördag",
+  "Söndag",
+];
 
 export async function addSplitAction(title: string, userId: string) {
-  const slug = title
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "");
+  const splitSlug = slugify(title);
 
   const split = await prisma.split.create({
     data: {
       title,
-      slug,
+      slug: splitSlug,
       userId,
       days: {
         create: DAYS.map((day) => ({
-          name: day, // Keep original name with å, ö, etc.
-          slug: slugifyDay(day), // ASCII-friendly slug
+          name: day,
+          slug: slugify(day),
         })),
       },
     },

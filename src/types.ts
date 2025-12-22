@@ -79,3 +79,10 @@ export interface ExerciseRenderProps {
   daySlug: string;
   initialExercises: Exercise[];
 }
+
+
+
+export interface LogListProps {
+  logs: ExerciseLog[];
+  setLogs: React.Dispatch<React.SetStateAction<ExerciseLog[]>>;
+}

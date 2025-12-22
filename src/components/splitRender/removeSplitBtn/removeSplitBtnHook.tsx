@@ -14,8 +14,6 @@ export function useRemoveSplit() {
       return;
     }
 
-    const confirmed = confirm("Är du säker på att du vill ta bort denna split?");
-    if (!confirmed) return;
 
     try {
       await removeSplitAction(splitId, user.id); // pass userId

@@ -1,25 +1,9 @@
 "use server";
 
 import { PrismaClient } from "@/generated/prisma/client";
+import { slugify } from "@/src/utils/slugify";
 
 const prisma = new PrismaClient();
-
-function slugifyExercise(name: string) {
-  const map: Record<string, string> = {
-    å: "a",
-    ä: "a",
-    ö: "o",
-    Å: "a",
-    Ä: "a",
-    Ö: "o",
-  };
-
-  return name
-    .toLowerCase()
-    .replace(/[åäöÅÄÖ]/g, (match) => map[match] || match)
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "");
-}
 
 export async function addExerciseAction(
   dayId: string,
@@ -28,7 +12,7 @@ export async function addExerciseAction(
   reps: number,
   videoURL: string
 ) {
-  const baseSlug = slugifyExercise(name);
+  const baseSlug = slugify(name);
   let slug = baseSlug;
   let counter = 1;
 

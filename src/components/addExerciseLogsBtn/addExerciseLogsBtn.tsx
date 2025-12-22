@@ -60,9 +60,11 @@ export default function AddExerciseLogBtn({
               <input
                 type="text"
                 value={weight ?? ""}
-                onChange={(e) =>
-                  setWeight(e.target.value ? Number(e.target.value) : null)
-                }
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (/^\d*$/.test(val))
+                    setWeight(val === "" ? 0 : Number(val));
+                }}
               />
               <div className={styles.commentGroup}>
                 <label>Kommentar</label>
