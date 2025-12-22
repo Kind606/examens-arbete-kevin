@@ -35,9 +35,16 @@ export default function EditSplitBtn({
       </button>
 
       {showPopover && (
-        <div className={styles.overlay} onClick={(e) => { e.stopPropagation(); handleCancel(); }}>
+        <div
+          className={styles.overlay}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleCancel();
+          }}
+        >
           <div className={styles.popover} onClick={(e) => e.stopPropagation()}>
             <input
+              aria-label="New split title"
               type="text"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
@@ -47,7 +54,9 @@ export default function EditSplitBtn({
               <button onClick={handleSave} className={styles.popaddButton}>
                 Save
               </button>
-              <button onClick={handleCancel} className={styles.cancelButton}>Cancel</button>
+              <button onClick={handleCancel} className={styles.cancelButton}>
+                Cancel
+              </button>
             </div>
           </div>
         </div>

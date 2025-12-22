@@ -23,6 +23,7 @@ export default function AddSplitBtn() {
         <div className={styles.overlay} onClick={handleCancel}>
           <div className={styles.popover} onClick={(e) => e.stopPropagation()}>
             <input
+              aria-label="Split Title"
               type="text"
               placeholder="Enter split name"
               value={newTitle}
@@ -33,7 +34,9 @@ export default function AddSplitBtn() {
               <button onClick={handleAdd} className={styles.popaddButton}>
                 Add
               </button>
-              <button onClick={handleCancel} className={styles.cancelButton}>Cancel</button>
+              <button onClick={handleCancel} className={styles.cancelButton}>
+                Cancel
+              </button>
             </div>
           </div>
         </div>
