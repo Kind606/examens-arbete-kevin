@@ -1,6 +1,6 @@
 .container {
-  background-color: #3d3c3c;
-  color: white;
+  background-color: var(--color-gray-3);
+  color: var(--color-white);
   min-height: 100vh;
 }
 
@@ -13,7 +13,7 @@
 
   & button {
     position: absolute;
-    left: 20px;
+    left: var(--padding-xlarge);
   }
 
   & h1 {
@@ -24,7 +24,7 @@
 }
 
 .exerciseSection {
-  gap: 16px;
+  gap: var(--margin-large);
   max-width: 350px;
   width: 100%;
   text-align: center;
@@ -35,7 +35,7 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
-  padding: 0 16px;
+  padding: 0 var(--padding-large);
   box-sizing: border-box;
 }
 

@@ -1,13 +1,13 @@
 .container {
-  background-color: #3d3c3c;
+  background-color: var(--color-gray-3);
   min-height: 100vh;
-  color: white;
+  color: var(--color-white);
 }
 
 .cardContainer {
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
+  padding: 0 var(--padding-large);
 }
 
 .textContainer {
@@ -19,9 +19,9 @@
 
   & button {
     position: absolute;
-    left: 20px;
+    left: var(--padding-xlarge);
     background-color: transparent;
-    color: white;
+    color: var(--color-white);
     border: none;
     font-size: 24px;
     font-weight: bold;
@@ -38,7 +38,7 @@
 .cardsGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: var(--margin-large);
   justify-content: center;
   padding: 15px;
 }

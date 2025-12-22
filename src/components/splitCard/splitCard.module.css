@@ -1,43 +1,53 @@
 .card {
   height: 250px;
   width: 150px;
-  padding: 16px;
-  background-color: #679c41;
-  color: white;
+  padding: var(--padding-large);
+  background-color: var(--card-bg-color);
+  color: var(--card-text-color);
   border-radius: 8px;
   text-align: center;
   text-decoration: none;
+  transition: background-color var(--transition-duration) ease;
 
   &:hover {
-    background-color: #558235;
+    background-color: var(--card-hover-bg-color);
   }
 
   &:active {
-    background-color: #3d3c3c;
+    background-color: var(--card-bg-color);
   }
 
   &:focus-visible {
-    outline: 2px solid #a0f265;
+    outline: 2px solid var(--color-accent-green);
   }
 
   & h3 {
     margin: 0;
-    color: white;
+    color: var(--card-text-color);
   }
 }
 
 .card.empty {
-  background-color: #575656;
-  color: white;
+  background-color: var(--card-empty-bg-color);
+  color: var(--card-text-color);
+  transition: background-color var(--transition-duration) ease;
 
   & h3 {
     font-size: 24px;
     margin: 0;
-    color: yellowgreen;
+    color: var(--color-yellowgreen);
   }
 
   &:hover {
-    background-color: #777777;
+    background-color: var(--card-empty-hover-bg-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent-green);
+  }
+
+  &:active {
+    background-color: var(--card-empty-bg-color);
   }
 
   & p {

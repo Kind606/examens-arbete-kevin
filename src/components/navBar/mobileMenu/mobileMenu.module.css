@@ -3,7 +3,7 @@
   top: 80px;
   left: 0;
   width: 100%;
-  background-color: #3d3c3c;
+  background-color: var(--color-gray-3);
   display: flex;
   flex-direction: column;
   z-index: 2000;
@@ -12,37 +12,37 @@
 .MobileMenu button {
   display: flex;
   align-items: center;
-  padding: 15px 20px;
+  padding: 15px var(--padding-xlarge);
 }
 
 .MobileLink {
-  padding: 15px 20px;
+  padding: 15px var(--padding-xlarge);
   font-size: 22px;
   font-weight: bold;
-  color: #a0f265;
+  color: var(--color-accent-green);
   text-decoration: none;
 }
 
 .MobileLink:hover {
-  background-color: #575656;
+  background-color: var(--color-gray-1);
 }
 
 .MobileProfile {
-  background-color: #575656;
+  background-color: var(--color-gray-1);
   padding-top: 10px;
 }
 
 .MobileProfile p {
   margin: 0;
-  padding: 15px 20px;
+  padding: 15px var(--padding-xlarge);
   font-size: 24px;
   font-weight: bold;
-  color: #a0f265;
+  color: var(--color-accent-green);
 }
 
 .MobileProfile span {
   font-size: 14px;
-  color: white;
+  color: var(--color-white);
   margin-right: auto;
-  padding-left: 20px;
+  padding-left: var(--padding-xlarge);
 }

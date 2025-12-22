@@ -17,7 +17,7 @@
 
 .button {
   background: transparent;
-  color: white;
+  color: var(--color-white);
   border: none;
   font-size: 24px;
   font-weight: bold;

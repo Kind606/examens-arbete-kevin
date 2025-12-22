@@ -4,7 +4,7 @@
   background-image: url("/gym.webp");
   background-size: cover;
   background-position: center;
-  color: white;
+  color: var(--color-white);
   background-repeat: no-repeat;
 }
 
@@ -12,7 +12,7 @@
   width: 50%;
   display: flex;
   height: 100%;
-  padding: 10px;
+  padding: var(--padding-small);
   box-sizing: border-box;
   background-color: rgba(40, 35, 35, 0.7);
   align-items: center;
@@ -21,7 +21,7 @@
 }
 
 .Logo {
-  margin-top: 20px;
+  margin-top: var(--margin-xlarge);
   width: 120px;
   height: auto;
   align-self: center;
@@ -30,7 +30,7 @@
 
 @media (max-width: 768px) {
   .LoginContainer {
-    flex-direction: column; 
+    flex-direction: column;
   }
 
   .Splash {

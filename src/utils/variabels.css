@@ -1,0 +1,56 @@
+:root {
+  /********** Base HEX Colors  **********/
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-light-gray: #cccccc;
+  --color-dark-gray: #171717;
+  --color-red: #ff5555;
+  --color-green: #679c41;
+  --color-dark-green: #558235;
+  --color-dark-red: #a83232;
+  --color-accent-green: #a0f265;
+  --color-yellowgreen: yellowgreen;
+  --color-gray-1: #575656;
+  --color-gray-2: #777777;
+  --color-gray-3: #3d3c3c;
+
+  /********** Transition Durations **********/
+  --transition-duration: 0.3s;
+
+  /********** Base Border Radius  **********/
+  --border-radius: 5px;
+
+  /********** Margin Sizes **********/
+  --margin-small: 8px;
+  --margin-medium: 12px;
+  --margin-large: 16px;
+  --margin-xlarge: 20px;
+
+  /********** Padding Sizes **********/
+  --padding-small: 8px;
+  --padding-medium: 12px;
+  --padding-large: 16px;
+  --padding-xlarge: 20px;
+
+  /********** Error Messages **********/
+  --error-color: var(--color-red);
+
+  /********** Success Messages **********/
+  --success-color: var(--color-green);
+
+  /********** Button colors **********/
+  --button-bg-color: var(--color-green);
+  --button-hover-bg-color: var(--color-dark-green);
+  --button-text-color: var(--color-white);
+  --button-cancel-bg-color: var(--color-dark-red);
+  --button-cancel-hover-bg-color: var(--color-red);
+  --button-default-bg-color: var(--color-black);
+  --button-default-hover-bg-color: var(--color-dark-gray);
+
+  /********** Card colors **********/
+  --card-bg-color: var(--color-green);
+  --card-hover-bg-color: var(--color-dark-green);
+  --card-empty-bg-color: var(--color-gray-1);
+  --card-empty-hover-bg-color: var(--color-gray-2);
+  --card-text-color: var(--color-white);
+}

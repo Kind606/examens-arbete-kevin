@@ -12,23 +12,27 @@
   }
 
   & button {
-    background-color: black;
-    color: white;
+    background-color: var(--button-default-bg-color);
+    color: var(--button-text-color);
     border: none;
     padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     cursor: pointer;
     font-size: 20px;
+
+    &:hover {
+      background-color: var(--button-default-hover-bg-color);
+    }
   }
 
   & hr {
     width: 100%;
-    border: 1px solid white;
+    border: 1px solid var(--color-white);
   }
 
   & a {
     text-decoration: none;
-    color: #a0f265;
+    color: var(--color-accent-green);
 
     &:hover {
       text-decoration: underline;
@@ -44,15 +48,15 @@
 
 .input {
   padding: 10px 15px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-light-gray);
 }
 .invalid {
-  border-color: #ff5555;
-  outline: 2px solid #ff5555;
+  border-color: var(--error-color);
+  outline: 2px solid var(--error-color);
 }
 .error {
-  color: #ff5555;
+  color: var(--error-color);
   font-size: 14px;
   margin-top: -5px;
   margin-bottom: 5px;

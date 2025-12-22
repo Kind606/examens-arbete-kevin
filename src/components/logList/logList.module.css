@@ -18,17 +18,16 @@
 .logCard {
   display: flex;
   flex-direction: column;
-  background-color: #575656;
-  padding: 10px;
-  border-radius: 5px;
-  
+  background-color: var(--color-gray-1);
+  padding: var(--padding-small);
+  border-radius: var(--border-radius);
 }
 
 .logsList {
-  padding-top: 20px;
+  padding-top: var(--padding-xlarge);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--margin-medium);
 
   & h2 {
     padding: 0;
@@ -36,23 +35,23 @@
 }
 
 .deleteBtn {
-  background-color: #a83232;
+  background-color: var(--button-cancel-bg-color);
   font-size: 16px;
-  color: white;
+  color: var(--button-text-color);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   font-weight: bold;
 
   &:hover {
-    background-color: #8b2828;
+    background-color: var(--button-cancel-hover-bg-color);
   }
 }
 
 .comment {
-  margin-top: 8px;
+  margin-top: var(--margin-small);
   font-size: 20px;
   padding: 4px 10px;
-  border: solid 1px #777777;
-  border-radius: 5px;
+  border: solid 1px var(--color-gray-2);
+  border-radius: var(--border-radius);
 }

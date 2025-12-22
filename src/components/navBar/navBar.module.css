@@ -4,7 +4,7 @@
   align-items: center;
   height: 80px;
   width: 100%;
-  background-color: #3d3c3c;
+  background-color: var(--color-gray-3);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   position: relative;
   position: sticky;
@@ -38,16 +38,20 @@
   font-size: 24px;
   text-decoration: none;
   font-weight: bolder;
-  color: #a0f265;
-
+  color: var(--color-accent-green);
+  transition: background-color var(--transition-duration) ease;
 }
 
 .NavLink:hover {
-  background-color: #575656;
+  background-color: var(--color-gray-1);
+}
+
+.NavLink:active {
+  background-color: transparent;
 }
 
 .NavLink:focus-visible {
-  outline: 3px solid #a0f265;
+  outline: 3px solid var(--color-accent-green);
 }
 
 .Logo {
@@ -64,7 +68,7 @@
   display: none;
   background: none;
   border: none;
-  color: #a0f265;
+  color: var(--color-accent-green);
   font-size: 32px;
   padding: 10px;
   cursor: pointer;
