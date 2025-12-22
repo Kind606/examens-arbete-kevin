@@ -12,6 +12,8 @@
   width: 50%;
   display: flex;
   height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
   background-color: rgba(40, 35, 35, 0.7);
   align-items: center;
   justify-content: center;
@@ -20,8 +22,18 @@
 
 .Logo {
   margin-top: 20px;
-  width: 120px;   
+  width: 120px;
   height: auto;
   align-self: center;
-  opacity: 0.9;   
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .LoginContainer {
+    flex-direction: column; 
+  }
+
+  .Splash {
+    width: 100%;
+  }
 }

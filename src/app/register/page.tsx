@@ -1,7 +1,7 @@
 import RegisterForm from "@/src/components/registerComps/registerForm";
 import { GuestRoute } from "@/src/hooks/GuestRoute";
 import Image from "next/image";
-import styles from "./Register.module.css";
+import styles from "../login/login.module.css";
 
 export default async function RegisterPage() {
   await GuestRoute();
