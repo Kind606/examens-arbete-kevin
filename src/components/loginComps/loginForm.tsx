@@ -65,6 +65,7 @@ function LoginForm() {
 
       <hr />
 
+
       <div className={styles.NoAccContainer}>
         <p>Har du inte ett konto?</p>
         <Link href="/register">Skapa konto</Link>
