@@ -44,7 +44,7 @@ export default function EditSplitBtn({
         >
           <div className={styles.popover} onClick={(e) => e.stopPropagation()}>
             <input
-              aria-label="New split title"
+              aria-label="Ny split title"
               type="text"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
