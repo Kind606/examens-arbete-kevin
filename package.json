@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "npx prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
-    "push": "prisma db push",
-    "seed": "prisma db seed",
-    "studio": "prisma studio",
+    "push": "npx prisma db push",
+    "seed": "npx prisma db seed",
+    "studio": "npx prisma studio",
     "postinstall": "prisma generate"
   },
   "prisma": {
