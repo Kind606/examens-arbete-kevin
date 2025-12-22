@@ -44,7 +44,7 @@ Projektet är mitt **examensarbete** och visar hela processen från planering ti
 
 ## 🌐 Live-demo
 
-[Se den deployade sidan här](LÄGG_TILL_LIVE_LÄNK)
+[Se den deployade sidan här](https://examens-arbete-kevin.vercel.app/login)
 
 ---
 
@@ -149,9 +149,9 @@ src/
 
 ## 🔗 Länkar
 
-- GitHub repo: [Repo-länk här](LÄGG_TILL_REPO)
-- Figma-prototyp: [Figma-länk här](LÄGG_TILL_FIGMA)
-- Live-demo: [Länk till deployad sida](LÄGG_TILL_LIVE_LÄNK)
+- GitHub repo: [Repo-länk här](https://github.com/Kind606/examens-arbete-kevin)
+- Figma-prototyp: [Figma-länk här](https://www.figma.com/design/4gq3KzIK57YgWOGjoaNLLd/ExamensArbete---SplitPlaner?node-id=0-1&p=f&t=I7gzuB6YgOlEM4U6-0)
+- Live-demo: [Länk till deployad sida](https://examens-arbete-kevin.vercel.app/login)
 
 ---
 
