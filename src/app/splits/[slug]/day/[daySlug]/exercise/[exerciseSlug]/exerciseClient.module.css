@@ -67,24 +67,3 @@
     padding: 0;
   }
 }
-
-.logItem {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-
-  & div {
-    width: 300px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-  }
-}
-
-.logCard {
-  display: flex;
-  flex-direction: column;
-}

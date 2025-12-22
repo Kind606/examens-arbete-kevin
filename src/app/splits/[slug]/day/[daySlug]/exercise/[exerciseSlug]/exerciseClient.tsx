@@ -1,6 +1,7 @@
 "use client";
 
 import ExerciseLogBtn from "@/src/components/addExerciseLogsBtn/addExerciseLogsBtn";
+import LogList from "@/src/components/logList/logList";
 import ReturnBtn from "@/src/components/returnBtn/returnBtn";
 import { useHydrateAuth } from "@/src/hooks/useHydrateAuth";
 import { ExerciseLogClientProps } from "@/src/types";
@@ -59,26 +60,7 @@ export default function ExerciseClient({
           }}
         />
 
-        <div>
-          <h2>Exercise Logs</h2>
-          {logs.map((log) => (
-            <div key={log.id} className={styles.logCard}>
-              <div className={styles.logItem}>
-                <p>
-                  <strong>
-                    {new Date(log.createdAt).toLocaleDateString("sv-SE")}
-                  </strong>
-                </p>
-                <div>
-                  <p>Sets: {log.sets ?? "-"}</p>
-                  <p>Reps: {log.reps ?? "-"}</p>
-                  <p>Weight: {log.weight ?? "N/A"} Kg</p>
-                </div>
-              </div>
-              {log.comment && <p>Comment: {log.comment}</p>}
-            </div>
-          ))}
-        </div>
+        <LogList initialLogs={exercise.logs ?? []} />
       </div>
     </div>
   );

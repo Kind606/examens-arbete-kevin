@@ -40,14 +40,20 @@ export default function AddExerciseLogBtn({
               <input
                 type="text"
                 value={sets}
-                onChange={(e) => setSets(Number(e.target.value))}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (/^\d*$/.test(val)) setSets(val === "" ? 0 : Number(val));
+                }}
               />
 
               <label>Reps</label>
               <input
                 type="text"
                 value={reps}
-                onChange={(e) => setReps(Number(e.target.value))}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (/^\d*$/.test(val)) setReps(val === "" ? 0 : Number(val));
+                }}
               />
 
               <label>Vikt (kg)</label>
