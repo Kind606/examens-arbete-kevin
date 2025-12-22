@@ -13,7 +13,6 @@ export function useAddExerciseLog(
   const [reps, setReps] = useState(10);
   const [weight, setWeight] = useState<number | null>(null);
   const [comment, setComment] = useState("");
-  const [error, setError] = useState<string | null>(null);
 
   const openPopover = () => setShowPopover(true);
 
@@ -22,21 +21,10 @@ export function useAddExerciseLog(
     setReps(10);
     setWeight(null);
     setComment("");
-    setError(null);
     setShowPopover(false);
   };
 
   const handleAdd = async () => {
-    if (weight === null || isNaN(weight)) {
-      setError("Vikt är obligatoriskt");
-      return;
-    }
-
-    if (sets <= 0 || reps <= 0) {
-      setError("Sets och reps måste vara större än 0");
-      return;
-    }
-
     try {
       const log = await addExerciseLogAction(
         exerciseId,
@@ -46,18 +34,10 @@ export function useAddExerciseLog(
         comment.trim()
       );
 
-      onLogAdded({
-        ...log,
-        sets: log.sets ?? 0,
-        reps: log.reps ?? 0,
-        weight: log.weight ?? 0,
-        comments: log.comment ?? "",
-      });
-
+      onLogAdded(log);
       handleCancel();
     } catch (err) {
       console.error("Failed to add exercise log:", err);
-      setError("Något gick fel när loggen skulle sparas");
     }
   };
 
@@ -67,7 +47,6 @@ export function useAddExerciseLog(
     reps,
     weight,
     comment,
-    error,
     setSets,
     setReps,
     setWeight,
