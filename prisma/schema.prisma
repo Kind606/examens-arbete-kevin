@@ -2,8 +2,9 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider      = "prisma-client"
+  output        = "../generated/prisma"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"] 
 }
 
 datasource db {
@@ -17,59 +18,58 @@ model User {
   password String
   token    String?
 
-  splits   Split[]
+  splits Split[]
 }
 
 model Split {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  slug      String   @unique
-  userId    String   @db.ObjectId
-  user      User     @relation(fields: [userId], references: [id])
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  title  String
+  slug   String @unique
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
 
   days      Day[]
   createdAt DateTime @default(now())
 }
 
 model Day {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  slug     String
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  slug String
 
-  splitId  String   @db.ObjectId
-  split    Split    @relation(fields: [splitId], references: [id])
+  splitId String @db.ObjectId
+  split   Split  @relation(fields: [splitId], references: [id])
 
   exercises Exercise[]
 
-  @@unique([slug, splitId]) 
+  @@unique([slug, splitId])
 }
 
-
 model Exercise {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
   name        String
-  slug        String   @unique
+  slug        String  @unique
   videoUrl    String?
   description String?
   defaultSets Int?
   defaultReps Int?
 
-  dayId       String   @db.ObjectId
-  day         Day      @relation(fields: [dayId], references: [id])
+  dayId String @db.ObjectId
+  day   Day    @relation(fields: [dayId], references: [id])
 
-  logs        ExerciseLog[]
+  logs ExerciseLog[]
 }
 
 model ExerciseLog {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   exerciseId String   @db.ObjectId
   exercise   Exercise @relation(fields: [exerciseId], references: [id])
 
-  weight     Float?
-  reps       Int?
-  sets       Int?
-  comment    String?
+  weight  Float?
+  reps    Int?
+  sets    Int?
+  comment String?
 
-  createdAt  DateTime @default(now())
+  createdAt DateTime @default(now())
 }
