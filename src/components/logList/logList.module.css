@@ -5,14 +5,11 @@
   flex-wrap: wrap;
   gap: 10px;
   font-size: 20px;
+}
 
-  & div {
-    width: 300px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-  }
+.stats {
+  display: flex;
+  gap: var(--margin-medium);
 }
 
 .logCard {
@@ -52,6 +49,6 @@
   margin-top: var(--margin-small);
   font-size: 20px;
   padding: 4px 10px;
-  border: solid 1px var(--color-gray-2);
+  background-color: var(--color-gray-2);
   border-radius: var(--border-radius);
 }

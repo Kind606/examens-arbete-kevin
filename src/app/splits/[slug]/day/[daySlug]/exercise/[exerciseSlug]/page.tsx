@@ -1,36 +1,25 @@
-import { PrismaClient } from "@/generated/prisma/client";
+import { getExerciseContext } from "@/src/app/lib/getExerciseContext";
 import NavBar from "@/src/components/navBar/navBar";
 import { requireUser } from "@/src/hooks/requireUser";
+import { ExercisePageProps } from "@/src/types";
 import ExerciseClient from "./exerciseClient";
 
-const prisma = new PrismaClient();
-
-interface ExerciseLogProps {
-  params: Promise<{ slug: string; daySlug: string; exerciseSlug: string }>;
-}
-
-export default async function ExercisePage({ params }: ExerciseLogProps) {
+export default async function ExercisePage({ params }: ExercisePageProps) {
   const user = await requireUser();
-
   const { slug, daySlug, exerciseSlug } = await params;
 
-  const split = await prisma.split.findUnique({ where: { slug } });
-  if (!split) return <div>Split not found</div>;
-
-  const day = await prisma.day.findUnique({
-    where: { slug_splitId: { slug: daySlug, splitId: split.id } },
-    include: { exercises: true },
+  const context = await getExerciseContext({
+    splitSlug: slug,
+    daySlug,
+    exerciseSlug,
   });
-  if (!day) return <div>Day not found</div>;
 
-  const exercise = await prisma.exercise.findFirst({
-    where: { slug: exerciseSlug, dayId: day.id },
-    include: { logs: { orderBy: { createdAt: "desc" } } },
-  });
-  if (!exercise) return <div>Exercise not found</div>;
+  if (!context) return <div>Exercise not found</div>;
+
+  const { day, exercise, prevExercise, nextExercise } = context;
 
   return (
-    <div>
+    <>
       <NavBar />
       <ExerciseClient
         user={user}
@@ -38,7 +27,9 @@ export default async function ExercisePage({ params }: ExerciseLogProps) {
         exercise={exercise}
         splitSlug={slug}
         daySlug={daySlug}
+        prevExercise={prevExercise}
+        nextExercise={nextExercise}
       />
-    </div>
+    </>
   );
 }

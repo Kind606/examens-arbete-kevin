@@ -23,8 +23,7 @@ function LoginForm() {
   return (
     <form className={styles.LoginForm} onSubmit={handleSubmit(onSubmit)}>
       <h3>LOGIN</h3>
-      <p>välkommen! </p>
-      <p>vänligen fyll i med dina uppgifter</p>
+      <p>välkommen! vänligen fyll i med dina uppgifter</p>
 
       <div className={styles.inputGroup}>
         <label className={styles.label}>Username</label>
