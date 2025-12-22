@@ -8,6 +8,7 @@ import { SplitDayClientProps } from "@/src/types";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import styles from "./splitDayPage.module.css";
+import ReturnBtn from "@/src/components/returnBtn/returnBtn";
 
 export default function SplitDayClient({
   user,
@@ -35,10 +36,7 @@ export default function SplitDayClient({
       <div className={styles.textContainer}>
         <h1>{day.name}</h1>
 
-        <button onClick={() => router.push(`/splits/${splitSlug}`)}>
-          <span className={styles.backArrow}>←</span>
-          <span className={styles.backText}>← tillbaka</span>
-        </button>
+       <ReturnBtn onClick={() => router.push(`/splits/${splitSlug}`)} />
       </div>
       <div className={styles.exerciseSection}>
         <ExerciseRender

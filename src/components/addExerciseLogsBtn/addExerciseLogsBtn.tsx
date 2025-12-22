@@ -1,7 +1,7 @@
 "use client";
 
 import { ExerciseLog } from "@/src/types";
-import styles from "./addExerciseLogsBtn.module.css";
+import styles from "../addExerciseBtn/addExerciseBtn.module.css";
 import { useAddExerciseLog } from "./addExerciseLogsBtnHook";
 
 export default function AddExerciseLogBtn({
@@ -58,18 +58,24 @@ export default function AddExerciseLogBtn({
                   setWeight(e.target.value ? Number(e.target.value) : null)
                 }
               />
-
-              <label>Kommentar</label>
-              <textarea
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                placeholder="Kändes tungt, PR, osv..."
-              />
+              <div className={styles.commentGroup}>
+                <label>Kommentar</label>
+                <textarea
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  placeholder="Kändes tungt, PR, osv..."
+                  rows={4}
+                />
+              </div>
             </div>
 
             <div className={styles.buttonGroup}>
-              <button onClick={handleAdd}>LÄGG TILL</button>
-              <button onClick={handleCancel}>AVBRYT</button>
+              <button onClick={handleAdd} className={styles.popaddButton}>
+                LÄGG TILL
+              </button>
+              <button onClick={handleCancel} className={styles.cancelButton}>
+                AVBRYT
+              </button>
             </div>
           </div>
         </div>

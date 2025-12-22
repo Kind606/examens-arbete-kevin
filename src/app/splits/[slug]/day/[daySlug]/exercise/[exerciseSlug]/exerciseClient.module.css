@@ -1,0 +1,90 @@
+.container {
+  background-color: #3d3c3c;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0px 16px;
+
+  & h1 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.textContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+  padding: 30px 0;
+
+  & button {
+    position: absolute;
+    left: 20px;
+  }
+
+  & h1 {
+    margin: 0;
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
+.logsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.videoContainer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #575656;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 560px;
+  box-sizing: border-box;
+
+  & iframe {
+    width: 100%;
+    height: 315px;
+    border: none;
+    border-radius: 5px;
+  }
+
+  & p {
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.logItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  & div {
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.logCard {
+  display: flex;
+  flex-direction: column;
+}

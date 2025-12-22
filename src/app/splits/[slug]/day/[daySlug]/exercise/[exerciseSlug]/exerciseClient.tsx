@@ -1,17 +1,21 @@
 "use client";
 
 import ExerciseLogBtn from "@/src/components/addExerciseLogsBtn/addExerciseLogsBtn";
+import ReturnBtn from "@/src/components/returnBtn/returnBtn";
+import { useHydrateAuth } from "@/src/hooks/useHydrateAuth";
 import { ExerciseLogClientProps } from "@/src/types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "./exerciseClient.module.css";
 
 export default function ExerciseClient({
+  user,
   exercise,
   splitSlug,
   daySlug,
 }: ExerciseLogClientProps) {
   const router = useRouter();
+  useHydrateAuth(user);
 
   const [logs, setLogs] = useState(exercise.logs ?? []);
 
@@ -25,53 +29,56 @@ export default function ExerciseClient({
     : null;
 
   return (
-    <div>
-      <h1>{exercise.name}</h1>
+    <div className={styles.container}>
+      <div className={styles.textContainer}>
+        <h1>{exercise.name}</h1>
 
-      <button
-        onClick={() => router.push(`/splits/${splitSlug}/day/${daySlug}`)}
-        className={styles.backButton}
-      >
-        ← tillbaka
-      </button>
+        <ReturnBtn
+          onClick={() => router.push(`/splits/${splitSlug}/day/${daySlug}`)}
+        />
+      </div>
 
       <div className={styles.videoContainer}>
         {embedUrl ? (
           <iframe
-            width="560"
-            height="315"
             src={embedUrl}
             title="Exercise video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
         ) : (
-          <p>Invalid video URL</p>
+          <p>Ingen video till denna övning</p>
         )}
       </div>
 
-      <ExerciseLogBtn
-        exerciseId={exercise.id}
-        onLogAdded={(log) => {
-          setLogs((prev) => [log, ...prev]);
-        }}
-      />
+      <div className={styles.logsContainer}>
+        <ExerciseLogBtn
+          exerciseId={exercise.id}
+          onLogAdded={(log) => {
+            setLogs((prev) => [log, ...prev]);
+          }}
+        />
 
-      <div className={styles.exerciseLog}>
-        <h2>Exercise Logs</h2>
-        {logs.map((log) => (
-          <div key={log.id} className={styles.logItem}>
-            <p>
-              <strong>
-                {new Date(log.createdAt).toLocaleDateString("sv-SE")}
-              </strong>
-            </p>
-            <p>Sets: {log.sets ?? "-"}</p>
-            <p>Reps: {log.reps ?? "-"}</p>
-            <p>Weight: {log.weight ?? "N/A"} Kg</p>
-            {log.comments && <p>Comment: {log.comments}</p>}
-          </div>
-        ))}
+        <div>
+          <h2>Exercise Logs</h2>
+          {logs.map((log) => (
+            <div key={log.id} className={styles.logCard}>
+              <div className={styles.logItem}>
+                <p>
+                  <strong>
+                    {new Date(log.createdAt).toLocaleDateString("sv-SE")}
+                  </strong>
+                </p>
+                <div>
+                  <p>Sets: {log.sets ?? "-"}</p>
+                  <p>Reps: {log.reps ?? "-"}</p>
+                  <p>Weight: {log.weight ?? "N/A"} Kg</p>
+                </div>
+              </div>
+              {log.comments && <p>Comment: {log.comments}</p>}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

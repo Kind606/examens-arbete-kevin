@@ -14,12 +14,6 @@
   & button {
     position: absolute;
     left: 20px;
-    background: transparent;
-    color: white;
-    border: none;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
   }
 
   & h1 {
