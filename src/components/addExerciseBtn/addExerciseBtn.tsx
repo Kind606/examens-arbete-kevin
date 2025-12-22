@@ -36,6 +36,7 @@ export default function AddExerciseBtn({
         <div className={styles.overlay} onClick={handleCancel}>
           <div className={styles.popover} onClick={(e) => e.stopPropagation()}>
             <input
+              aria-label="Övnings namn"
               type="text"
               placeholder="Övnings namn"
               value={newExercise}
@@ -43,6 +44,7 @@ export default function AddExerciseBtn({
               autoFocus
             />
             <input
+              aria-label="VideoURL"
               type="url"
               placeholder="VideoURL (valfritt)"
               value={newVideoURL}
@@ -52,6 +54,7 @@ export default function AddExerciseBtn({
             <div className={styles.setInputGroup}>
               <label htmlFor="sets">Sets:</label>
               <input
+                aria-label="Sets"
                 type="text"
                 placeholder="Sets"
                 value={newSets}
@@ -63,6 +66,7 @@ export default function AddExerciseBtn({
               />
               <label htmlFor="reps">Reps:</label>
               <input
+                aria-label="Reps"
                 type="text"
                 placeholder="Reps"
                 value={newReps}

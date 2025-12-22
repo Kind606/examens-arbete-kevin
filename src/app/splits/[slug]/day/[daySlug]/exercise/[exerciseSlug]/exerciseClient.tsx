@@ -14,6 +14,8 @@ export default function ExerciseClient({
   exercise,
   splitSlug,
   daySlug,
+  prevExercise,
+  nextExercise,
 }: ExerciseLogClientProps) {
   const router = useRouter();
   useHydrateAuth(user);
@@ -28,6 +30,10 @@ export default function ExerciseClient({
   const embedUrl = exercise.videoUrl
     ? getYouTubeEmbedUrl(exercise.videoUrl)
     : null;
+
+  const goToExercise = (slug: string) => {
+    router.push(`/splits/${splitSlug}/day/${daySlug}/exercise/${slug}`);
+  };
 
   return (
     <div className={styles.container}>
@@ -52,12 +58,31 @@ export default function ExerciseClient({
         )}
       </div>
 
+      <div className={styles.navigation}>
+        {prevExercise && (
+          <button
+            className={styles.leftButton}
+            onClick={() => goToExercise(prevExercise.slug)}
+          >
+            ← {prevExercise.name}
+          </button>
+        )}
+
+        {nextExercise && (
+          <button
+            className={styles.rightButton}
+            onClick={() => goToExercise(nextExercise.slug)}
+          >
+            {nextExercise.name} →
+          </button>
+        )}
+      </div>
+
       <div className={styles.logsContainer}>
         <ExerciseLogBtn
           exerciseId={exercise.id}
           onLogAdded={(log) => setLogs((prev) => [log, ...prev])}
         />
-
         <LogList logs={logs} setLogs={setLogs} />
       </div>
     </div>

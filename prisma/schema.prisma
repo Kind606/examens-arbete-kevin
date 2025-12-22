@@ -58,6 +58,8 @@ model Exercise {
   day   Day    @relation(fields: [dayId], references: [id])
 
   logs ExerciseLog[]
+
+  createdAt DateTime @default(now())
 }
 
 model ExerciseLog {

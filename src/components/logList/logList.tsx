@@ -22,18 +22,22 @@ export default function LogList({ logs, setLogs }: LogListProps) {
       {logs.map((log) => (
         <div key={log.id} className={styles.logCard}>
           <div className={styles.logItem}>
-            <p>
-              <strong>
-                {new Date(log.createdAt).toLocaleDateString("sv-SE")}
-              </strong>
-            </p>
-            <div>
+            <div className={styles.date}>
+              <p>
+                <strong>
+                  {new Date(log.createdAt).toLocaleDateString("sv-SE")}
+                </strong>
+              </p>
+            </div>
+            <div className={styles.stats}>
               <p>Sets: {log.sets ?? "-"}</p>
               <p>Reps: {log.reps ?? "-"}</p>
               <p>Vikt: {log.weight ?? "N/A"} Kg</p>
             </div>
           </div>
-          {log.comment && <p className={styles.comment}>Kommentar: {log.comment}</p>}
+          {log.comment && (
+            <p className={styles.comment}>Kommentar: {log.comment}</p>
+          )}
           <button
             className={styles.deleteBtn}
             onClick={(e) => {

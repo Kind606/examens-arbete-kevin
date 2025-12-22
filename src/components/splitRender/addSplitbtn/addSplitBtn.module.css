@@ -59,6 +59,7 @@
   font-weight: bold;
   height: 70px;
   cursor: pointer;
+  transition: background-color var(--transition-duration) ease;
 
   &:hover {
     background-color: var(--button-hover-bg-color);
