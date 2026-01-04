@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { UseFormSetError } from "react-hook-form";
 import { registerUser } from "./registerFormAction";
-import { useForm } from "react-hook-form";
 
 interface RegisterFormData {
   username: string;
@@ -13,36 +13,41 @@ interface RegisterFormData {
 export function useRegisterForm() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const {
-    register,
-    handleSubmit: rhfHandleSubmit,
-    formState: { errors },
-  } = useForm<RegisterFormData>();
-
-  const onSubmit = rhfHandleSubmit(async (data) => {
+  const handleRegister = async (
+    username: string,
+    password: string,
+    setError: UseFormSetError<RegisterFormData>
+  ) => {
     setLoading(true);
-    setError(null);
 
     try {
-      const user = await registerUser(data.username, data.password);
+      const user = await registerUser(username, password);
       console.log("User registered:", user);
 
-      // Client-side navigation
       router.push("/login");
+      return true;
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Failed to register");
+      const errorMessage =
+        err instanceof Error ? err.message : "Något gick fel";
+
+      if (errorMessage === "Username already taken") {
+        setError("username", {
+          type: "manual",
+          message: "Användarnamnet är redan taget",
+        });
+      } else {
+        setError("username", { type: "manual" });
+        setError("password", { type: "manual", message: errorMessage });
+      }
+      return false;
     } finally {
       setLoading(false);
     }
-  });
+  };
 
   return {
-    register,
-    handleSubmit: onSubmit,
-    errors,
+    handleRegister,
     loading,
-    error,
   };
 }

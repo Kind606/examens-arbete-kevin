@@ -50,6 +50,7 @@
   padding: 10px 15px;
   border-radius: var(--border-radius);
   border: 1px solid var(--color-light-gray);
+  font-size: 16px;
 }
 .invalid {
   border-color: var(--error-color);

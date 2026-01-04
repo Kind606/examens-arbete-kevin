@@ -3,41 +3,65 @@
 import Link from "next/link";
 import styles from "../loginComps/loginform.module.css";
 import { useRegisterForm } from "./registerFormHook";
+import { useForm } from "react-hook-form";
+
+interface RegisterFormData {
+  username: string;
+  password: string;
+}
 
 function RegisterForm() {
-  const { register, handleSubmit, errors, loading, error } = useRegisterForm();
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<RegisterFormData>();
+
+  const { handleRegister, loading } = useRegisterForm();
+
+  const onSubmit = (data: RegisterFormData) => {
+    handleRegister(data.username, data.password, setError);
+  };
 
   return (
-    <form className={styles.LoginForm} onSubmit={handleSubmit}>
+    <form className={styles.LoginForm} onSubmit={handleSubmit(onSubmit)}>
       <h3>REGISTERA</h3>
       <p>välkommen! vänligen fyll i med dina uppgifter</p>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
 
       <div className={styles.inputGroup}>
         <label className={styles.label}>Username</label>
         <input
           aria-label="username"
           type="text"
-          className={styles.input}
-          {...register("username", { required: "Username is required" })}
+          {...register("username", {
+            required: "Användarnamn krävs",
+            minLength: {
+              value: 1,
+              message: "Användarnamn måste vara minst 1 tecken",
+            },
+          })}
+          className={`${styles.input} ${errors.username ? styles.invalid : ""}`}
         />
         {errors.username && (
-          <p style={{ color: "red" }}>{errors.username.message}</p>
+          <span className={styles.error}>{errors.username.message}</span>
         )}
 
         <label className={styles.label}>Password</label>
         <input
           aria-label="password"
           type="password"
-          className={styles.input}
           {...register("password", {
-            required: "Password is required",
-            minLength: { value: 8, message: "Password must be at least 8 characters" },
+            required: "Lösenord krävs",
+            minLength: {
+              value: 8,
+              message: "Lösenord måste vara minst 8 tecken",
+            },
           })}
+          className={`${styles.input} ${errors.password ? styles.invalid : ""}`}
         />
         {errors.password && (
-          <p style={{ color: "red" }}>{errors.password.message}</p>
+          <span className={styles.error}>{errors.password.message}</span>
         )}
       </div>
 

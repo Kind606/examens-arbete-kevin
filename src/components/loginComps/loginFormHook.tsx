@@ -29,11 +29,9 @@ export const useLogin = () => {
         return false;
       }
 
-      // Persist in Zustand + cookie
       loginZustand(user);
       document.cookie = `auth_token=${user.token}; path=/; max-age=86400; samesite=strict`;
 
-      // Redirect to start page
       router.push("/");
       return true;
     } catch {

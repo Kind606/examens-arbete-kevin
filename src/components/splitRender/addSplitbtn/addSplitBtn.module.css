@@ -45,6 +45,7 @@
     border-radius: 4px;
     border: 1px solid var(--color-light-gray);
     box-sizing: border-box;
+    font-size: 16px;
   }
 }
 
