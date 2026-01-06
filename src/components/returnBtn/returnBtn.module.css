@@ -22,4 +22,10 @@
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
+  border-radius: 4px;
+  padding: var(--padding-small) var(--padding-medium);
+
+  &:hover {
+    background-color: var(--color-gray-1);
+  }
 }
