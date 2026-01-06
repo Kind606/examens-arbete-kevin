@@ -9,6 +9,7 @@ export default function LogoutBtnHook() {
     logout();
     document.cookie = "auth_token=; path=/; max-age=0; samesite=strict";
     router.push("/login");
+    router.refresh();
   };
   return { handleLogout };
 }
