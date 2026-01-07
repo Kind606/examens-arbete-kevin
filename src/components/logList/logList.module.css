@@ -52,3 +52,60 @@
   background-color: var(--color-gray-2);
   border-radius: var(--border-radius);
 }
+
+.latestBadge {
+  margin-left: 5px;
+  background-color: var(--color-green);
+  color: white;
+  font-weight: bold;
+  padding: 6px 8px;
+  border-radius: 25px;
+  align-self: flex-start;
+  margin-bottom: var(--margin-small);
+}
+
+.strengthComparison {
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.strengthComparison.positive {
+  background-color: #d4edda;
+  border: 1px solid #28a745;
+}
+
+.strengthComparison.negative {
+  background-color: #f8d7da;
+  border: 1px solid #dc3545;
+}
+
+.strengthComparison.neutral {
+  background-color: #fff3cd;
+  border: 1px solid #ffc107;
+}
+
+.comparisonText {
+  margin: 0;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.comparisonText.positive {
+  color: #155724;
+}
+
+.comparisonText.negative {
+  color: #721c24;
+}
+
+.comparisonText.neutral {
+  color: #856404;
+}
+
+.comparisonDetail {
+  margin: 4px 0 0 0;
+  font-size: 0.85em;
+  color: #666;
+}
