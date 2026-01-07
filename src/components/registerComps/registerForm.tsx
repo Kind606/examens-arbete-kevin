@@ -1,14 +1,10 @@
 "use client";
 
+import { RegisterFormData } from "@/src/types";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
 import styles from "../loginComps/loginform.module.css";
 import { useRegisterForm } from "./registerFormHook";
-import { useForm } from "react-hook-form";
-
-interface RegisterFormData {
-  username: string;
-  password: string;
-}
 
 function RegisterForm() {
   const {

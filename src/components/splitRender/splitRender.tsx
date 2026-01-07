@@ -8,11 +8,8 @@ import AddSplitBtn from "./addSplitbtn/addSplitBtn";
 import EditSplitBtn from "./editSplitBtn/editSplitBtn";
 import RemoveSplitBtn from "./removeSplitBtn/removeSplitBtn";
 
+import { SplitRenderProps } from "@/src/types";
 import styles from "./splitRender.module.css";
-
-interface SplitRenderProps {
-  userId: string;
-}
 
 export default function SplitRender({ userId }: SplitRenderProps) {
   const { splits } = useSplitStore();

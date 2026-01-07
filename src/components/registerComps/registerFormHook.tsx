@@ -39,7 +39,6 @@ export function useRegisterForm() {
         return false;
       }
 
-      console.log("User registered:", result.data);
       router.push("/login");
       return true;
     } catch (err: unknown) {

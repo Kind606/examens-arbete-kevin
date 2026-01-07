@@ -66,6 +66,10 @@ export interface SplitDayClientProps {
   user: AuthUser;
 }
 
+export interface SplitRenderProps {
+  userId: string;
+}
+
 export interface GetExerciseContextProps {
   splitSlug: string;
   daySlug: string;
@@ -101,4 +105,9 @@ export interface ExerciseRenderProps {
 export interface LogListProps {
   logs: ExerciseLog[];
   setLogs: React.Dispatch<React.SetStateAction<ExerciseLog[]>>;
+}
+
+export interface RegisterFormData {
+  username: string;
+  password: string;
 }
