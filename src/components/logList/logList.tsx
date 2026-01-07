@@ -8,8 +8,10 @@ export default function LogList({ logs, setLogs }: LogListProps) {
   const {
     sortedLogs,
     sortOrder,
+    expandedLogs,
     handleDelete,
     toggleSortOrder,
+    toggleExpanded,
     getStrengthComparison,
   } = useLogList(logs, setLogs);
 
@@ -25,12 +27,20 @@ export default function LogList({ logs, setLogs }: LogListProps) {
       </div>
       {sortedLogs.map((log, index) => {
         const comparison = getStrengthComparison(index);
+        const isExpanded = expandedLogs.has(log.id);
 
         return (
           <div key={log.id} className={styles.logCard}>
             <div className={styles.logItem}>
-              <div className={styles.date}>
+              <div
+                className={styles.date}
+                onClick={() => toggleExpanded(log.id)}
+                style={{ cursor: "pointer" }}
+              >
                 <p>
+                  <span className={styles.expandIcon}>
+                    {isExpanded ? "▼" : "▶"}
+                  </span>
                   <strong>
                     {new Date(log.createdAt).toLocaleDateString("sv-SE")}
                   </strong>
@@ -41,58 +51,67 @@ export default function LogList({ logs, setLogs }: LogListProps) {
                   )}
                 </p>
               </div>
-              <div className={styles.stats}>
-                <p>Antal sets: {log.sets.length}</p>
-                {log.sets.map((set, idx) => (
-                  <div key={idx} className={styles.setInfo}>
-                    <span className={styles.setLabel}>Set {idx + 1}:</span>
-                    <span className={`${styles.setBadge} ${styles.repsBadge}`}>
-                      {set.reps ?? "-"} reps
-                    </span>
-                    <span
-                      className={`${styles.setBadge} ${styles.weightBadge}`}
-                    >
-                      {set.weight ?? "Kroppsvikt"} kg
-                    </span>
+
+              {isExpanded && (
+                <>
+                  <div className={styles.stats}>
+                    <p>Antal sets: {log.sets.length}</p>
+                    {log.sets.map((set, idx) => (
+                      <div key={idx} className={styles.setInfo}>
+                        <span className={styles.setLabel}>Set {idx + 1}:</span>
+                        <span
+                          className={`${styles.setBadge} ${styles.repsBadge}`}
+                        >
+                          {set.reps ?? "-"} reps
+                        </span>
+                        <span
+                          className={`${styles.setBadge} ${styles.weightBadge}`}
+                        >
+                          {set.weight ?? "Kroppsvikt"} kg
+                        </span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+
+                  {comparison && comparison.weightDiff !== 0 && (
+                    <div
+                      className={`${styles.strengthComparison} ${
+                        comparison.weightDiff > 0
+                          ? styles.positive
+                          : styles.negative
+                      }`}
+                    >
+                      <p
+                        className={`${styles.comparisonText} ${
+                          comparison.weightDiff > 0
+                            ? styles.positive
+                            : styles.negative
+                        }`}
+                      >
+                        {comparison.weightDiff > 0 &&
+                          `Ökning! +${comparison.weightDiff} kg sedan senaste`}
+                        {comparison.weightDiff < 0 &&
+                          `Minskning: ${comparison.weightDiff} kg sedan senaste`}
+                      </p>
+                    </div>
+                  )}
+
+                  {log.comment && (
+                    <p className={styles.comment}>Kommentar: {log.comment}</p>
+                  )}
+                  <button
+                    className={styles.deleteBtn}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleDelete(log.id);
+                    }}
+                  >
+                    <p>Ta bort</p>
+                  </button>
+                </>
+              )}
             </div>
-
-            {comparison && comparison.weightDiff !== 0 && (
-              <div
-                className={`${styles.strengthComparison} ${
-                  comparison.weightDiff > 0 ? styles.positive : styles.negative
-                }`}
-              >
-                <p
-                  className={`${styles.comparisonText} ${
-                    comparison.weightDiff > 0
-                      ? styles.positive
-                      : styles.negative
-                  }`}
-                >
-                  {comparison.weightDiff > 0 &&
-                    `Ökning! +${comparison.weightDiff} kg sedan senaste`}
-                  {comparison.weightDiff < 0 &&
-                    `Minskning: ${comparison.weightDiff} kg sedan senaste`}
-                </p>
-              </div>
-            )}
-
-            {log.comment && (
-              <p className={styles.comment}>Kommentar: {log.comment}</p>
-            )}
-            <button
-              className={styles.deleteBtn}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleDelete(log.id);
-              }}
-            >
-              <p>Ta bort</p>
-            </button>
           </div>
         );
       })}

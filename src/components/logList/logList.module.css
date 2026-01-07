@@ -88,6 +88,14 @@
   margin-bottom: var(--margin-small);
 }
 
+.expandIcon {
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--accent-green);
+  transition: transform 0.2s ease;
+}
+
 .strengthComparison {
   padding: var(--padding-small);
   margin-top: var(--margin-small);

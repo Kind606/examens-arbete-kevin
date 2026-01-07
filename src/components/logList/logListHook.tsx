@@ -9,6 +9,20 @@ export function useLogList(
   setLogs: React.Dispatch<React.SetStateAction<ExerciseLog[]>>
 ) {
   const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
+  const [expandedLogs, setExpandedLogs] = useState<Set<string>>(new Set());
+
+    const toggleExpanded = (logId: string) => {
+    setExpandedLogs((prev) => {
+      const newSet = new Set(prev);
+
+        if (newSet.has(logId)) {
+        newSet.delete(logId);
+        } else {
+        newSet.add(logId);
+        }
+        return newSet;
+    });
+  }
 
   const handleDelete = async (id: string) => {
     try {
@@ -55,5 +69,7 @@ export function useLogList(
     handleDelete,
     toggleSortOrder,
     getStrengthComparison,
+    expandedLogs,
+    toggleExpanded,
   };
 }
