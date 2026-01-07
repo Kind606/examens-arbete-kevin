@@ -12,6 +12,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ExerciseType {
+  STRENGTH
+  CARDIO
+}
+
 model User {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
   username String  @unique
@@ -46,13 +51,14 @@ model Day {
 }
 
 model Exercise {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  slug        String  @unique
-  videoUrl    String?
-  description String?
-  defaultSets Int?
-  defaultReps Int?
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  slug         String       @unique
+  exerciseType ExerciseType @default(STRENGTH)
+  videoUrl     String?
+  description  String?
+  defaultSets  Int?
+  defaultReps  Int?
 
   dayId String @db.ObjectId
   day   Day    @relation(fields: [dayId], references: [id])
@@ -75,6 +81,11 @@ model ExerciseLog {
 }
 
 type SetData {
+  // Strength fields
   reps   Int?
   weight Float?
+
+  // Cardio fields
+  time     Int? 
+  distance Float? 
 }

@@ -1,10 +1,10 @@
 "use client";
 
-import { LogListProps } from "@/src/types";
+import { ExerciseType, LogListProps } from "@/src/types";
 import styles from "./logList.module.css";
 import { useLogList } from "./logListHook";
 
-export default function LogList({ logs, setLogs }: LogListProps) {
+export default function LogList({ exercise, logs, setLogs }: LogListProps) {
   const {
     sortedLogs,
     sortOrder,
@@ -14,6 +14,8 @@ export default function LogList({ logs, setLogs }: LogListProps) {
     toggleExpanded,
     getStrengthComparison,
   } = useLogList(logs, setLogs);
+
+  const isCardio = exercise.exerciseType === ExerciseType.CARDIO;
 
   if (logs.length === 0) return <p>Inga loggar tillagda än.</p>;
 
@@ -59,16 +61,40 @@ export default function LogList({ logs, setLogs }: LogListProps) {
                     {log.sets.map((set, idx) => (
                       <div key={idx} className={styles.setInfo}>
                         <span className={styles.setLabel}>Set {idx + 1}:</span>
-                        <span
-                          className={`${styles.setBadge} ${styles.repsBadge}`}
-                        >
-                          {set.reps ?? "-"} reps
-                        </span>
-                        <span
-                          className={`${styles.setBadge} ${styles.weightBadge}`}
-                        >
-                          {set.weight ?? "Kroppsvikt"} kg
-                        </span>
+                        {isCardio ? (
+                          <>
+                            <span
+                              className={`${styles.setBadge} ${styles.timeBadge}`}
+                            >
+                              {set.time
+                                ? `${Math.floor(set.time / 60)}:${String(
+                                    set.time % 60
+                                  ).padStart(2, "0")} min`
+                                : "-"}
+                            </span>
+                            {set.distance && (
+                              <span
+                                className={`${styles.setBadge} ${styles.distanceBadge}`}
+                              >
+                                {set.distance} km
+                              </span>
+                            )}
+                          </>
+                        ) : (
+                          // Strength display: reps and weight
+                          <>
+                            <span
+                              className={`${styles.setBadge} ${styles.repsBadge}`}
+                            >
+                              {set.reps ?? "-"} reps
+                            </span>
+                            <span
+                              className={`${styles.setBadge} ${styles.weightBadge}`}
+                            >
+                              {set.weight ?? "Kroppsvikt"} kg
+                            </span>
+                          </>
+                        )}
                       </div>
                     ))}
                   </div>

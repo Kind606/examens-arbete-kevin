@@ -172,3 +172,13 @@
   background-color: var(--color-green);
   color: var(--color-white);
 }
+
+.timeBadge {
+  background-color: var(--color-gray-3);
+  color: var(--color-accent-green);
+}
+
+.distanceBadge {
+  background-color: var(--color-green);
+  color: var(--color-white);
+}

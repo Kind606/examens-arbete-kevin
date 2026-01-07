@@ -1,6 +1,7 @@
 "use server";
 
 import { PrismaClient } from "@/generated/prisma/client";
+import { ExerciseType } from "@/src/types";
 import { slugify } from "@/src/utils/slugify";
 
 const prisma = new PrismaClient();
@@ -8,6 +9,7 @@ const prisma = new PrismaClient();
 export async function addExerciseAction(
   dayId: string,
   name: string,
+  exerciseType: ExerciseType,
   sets: number,
   reps: number,
   videoURL: string
@@ -24,6 +26,7 @@ export async function addExerciseAction(
     data: {
       name,
       slug,
+      exerciseType,
       dayId,
       defaultSets: sets,
       defaultReps: reps,

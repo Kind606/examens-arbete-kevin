@@ -1,6 +1,6 @@
 "use client";
 
-import { Exercise } from "@/src/types";
+import { Exercise, ExerciseType } from "@/src/types";
 import { useState } from "react";
 import { addExerciseAction } from "./addExerciseBtnAction";
 
@@ -10,6 +10,9 @@ export function useAddExercise(
 ) {
   const [showPopover, setShowPopover] = useState(false);
   const [newExercise, setNewExercise] = useState("");
+  const [exerciseType, setExerciseType] = useState<ExerciseType>(
+    ExerciseType.STRENGTH
+  );
   const [newSets, setNewSets] = useState(3);
   const [newReps, setNewReps] = useState(10);
   const [newVideoURL, setNewVideoURL] = useState("");
@@ -18,6 +21,7 @@ export function useAddExercise(
 
   const handleCancel = () => {
     setNewExercise("");
+    setExerciseType(ExerciseType.STRENGTH);
     setNewSets(3);
     setNewReps(10);
     setNewVideoURL("");
@@ -31,9 +35,10 @@ export function useAddExercise(
       const added = await addExerciseAction(
         dayId,
         newExercise.trim(),
+        exerciseType,
         newSets,
         newReps,
-        newVideoURL.trim(),
+        newVideoURL.trim()
       );
 
       onExerciseAdded(added);
@@ -47,10 +52,12 @@ export function useAddExercise(
   return {
     showPopover,
     newExercise,
+    exerciseType,
     newSets,
     newVideoURL,
     newReps,
     setNewExercise,
+    setExerciseType,
     setNewSets,
     setNewReps,
     openPopover,

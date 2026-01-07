@@ -9,9 +9,16 @@ export type AuthUser = {
   token: string;
 };
 
+export { ExerciseType } from "@/generated/prisma/client";
+
 export type SetData = {
+  // Strength fields
   reps: number | null;
   weight: number | null;
+
+  // Cardio fields
+  time: number | null;
+  distance: number | null; 
 };
 
 export type ExerciseLog = {
@@ -26,6 +33,7 @@ export type Exercise = {
   id: string;
   name: string;
   slug: string;
+  exerciseType: import("@/generated/prisma/client").$Enums.ExerciseType;
   videoUrl: string | null;
   defaultSets: number | null;
   defaultReps: number | null;
@@ -104,6 +112,7 @@ export interface ExerciseRenderProps {
 }
 
 export interface LogListProps {
+  exercise: Exercise;
   logs: ExerciseLog[];
   setLogs: React.Dispatch<React.SetStateAction<ExerciseLog[]>>;
 }
