@@ -2,7 +2,7 @@
   display: flex;
   position: relative;
   min-height: 70vh;
-  height: auto;
+  height: 100%;
   background-image: url("/Landingpageback.png");
   background-size: cover;
   background-position: center;
@@ -18,7 +18,8 @@
 
 .splash {
   position: relative;
-  height: auto;
+  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   width: 100%;

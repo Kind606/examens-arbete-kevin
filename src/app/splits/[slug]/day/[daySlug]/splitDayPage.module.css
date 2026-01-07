@@ -2,6 +2,7 @@
   background-color: var(--color-gray-3);
   color: var(--color-white);
   min-height: 100vh;
+  height: 100%;
 }
 
 .textContainer {
