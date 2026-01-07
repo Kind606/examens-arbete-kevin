@@ -76,12 +76,12 @@ export default function AddExerciseLogBtn({
                       {isCardio ? (
                         <>
                           <div>
-                            <label>Tid (sekunder) *</label>
+                            <label>Tid (minuter) *</label>
                             <input
                               type="number"
                               {...register(`sets.${index}.time`, {
                                 required: "Tid krävs",
-                                min: { value: 1, message: "Minst 1 sekund" },
+                                min: { value: 1, message: "Minst 1 minut" },
                                 valueAsNumber: true,
                               })}
                               className={
