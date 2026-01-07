@@ -26,6 +26,11 @@
   font-weight: bold;
   height: 56px;
   cursor: pointer;
+  transition: background-color var(--transition-duration) ease;
+
+  &:hover {
+    background-color: var(--button-hover-bg-color);
+  }
 }
 
 .overlay {
