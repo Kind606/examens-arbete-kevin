@@ -2,12 +2,15 @@
 
 import { PrismaClient } from "@/generated/prisma/client";
 import NavBar from "@/src/components/navBar/navBar";
-import { requireUser } from "@/src/hooks/requireUser";
-import { SplitPageProps } from "@/src/types";
 import SplitClient from "./splitClient";
+import { requireUser } from "@/src/hooks/requireUser";
 import styles from "./splitPage.module.css";
 
 const prisma = new PrismaClient();
+
+interface SplitPageProps {
+  params: Promise<{ slug: string }>;
+}
 
 export default async function SplitPage({ params }: SplitPageProps) {
   const user = await requireUser();

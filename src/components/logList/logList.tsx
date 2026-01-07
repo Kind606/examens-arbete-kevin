@@ -2,28 +2,43 @@
 
 import { LogListProps } from "@/src/types";
 import styles from "./logList.module.css";
-import { useLogList } from "./logListHook";
+import { deleteExerciseLogAction } from "./logListRemoveBtnAction";
 
 export default function LogList({ logs, setLogs }: LogListProps) {
-  const {
-    sortedLogs,
-    sortOrder,
-    handleDelete,
-    toggleSortOrder,
-    getStrengthComparison,
-  } = useLogList(logs, setLogs);
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteExerciseLogAction(id);
+      setLogs((prev) => prev.filter((log) => log.id !== id));
+    } catch (err) {
+      console.error("Failed to delete log:", err);
+    }
+  };
 
   if (logs.length === 0) return <p>Inga loggar tillagda än.</p>;
 
+  const getStrengthComparison = (index: number) => {
+    if (index !== 0) return null;
+    if (logs.length < 2) return null;
+
+    const currentLog = logs[0];
+    const previousLog = logs[1];
+
+    const currentMaxWeight = Math.max(
+      ...currentLog.sets.map((s) => s.weight ?? 0)
+    );
+    const previousMaxWeight = Math.max(
+      ...previousLog.sets.map((s) => s.weight ?? 0)
+    );
+
+    const weightDiff = currentMaxWeight - previousMaxWeight;
+
+    return { weightDiff };
+  };
+
   return (
     <div className={styles.logsList}>
-      <div className={styles.header}>
-        <h2>Exercise Logs</h2>
-        <button className={styles.sortButton} onClick={toggleSortOrder}>
-          {sortOrder === "newest" ? "↓ Nyaste" : "↑ Äldsta"}
-        </button>
-      </div>
-      {sortedLogs.map((log, index) => {
+      <h2>Exercise Logs</h2>
+      {logs.map((log, index) => {
         const comparison = getStrengthComparison(index);
 
         return (
@@ -34,9 +49,7 @@ export default function LogList({ logs, setLogs }: LogListProps) {
                   <strong>
                     {new Date(log.createdAt).toLocaleDateString("sv-SE")}
                   </strong>
-                  {((sortOrder === "newest" && index === 0) ||
-                    (sortOrder === "oldest" &&
-                      index === sortedLogs.length - 1)) && (
+                  {index === 0 && (
                     <span className={styles.latestBadge}>Senaste</span>
                   )}
                 </p>

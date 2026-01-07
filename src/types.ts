@@ -113,28 +113,3 @@ export interface RegisterFormData {
   password: string;
   confirmPassword: string;
 }
-
-export interface HomeClientProps {
-  user: AuthUser;
-}
-
-export interface DayPageProps {
-  params: Promise<{ slug: string; daySlug: string }>;
-}
-
-export interface SplitPageProps {
-  params: Promise<{ slug: string }>;
-}
-
-export interface ExerciseLogFormData {
-  sets: SetData[];
-  comment: string;
-}
-
-export interface RemoveSplitBtnProps {
-  splitId: string;
-  splitSlug: string;
-}
-
-
-

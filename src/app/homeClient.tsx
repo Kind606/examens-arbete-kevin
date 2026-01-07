@@ -2,8 +2,12 @@
 
 import SplitRender from "@/src/components/splitRender/splitRender";
 import { useHomeClient } from "../hooks/homeClinetHook";
-import { HomeClientProps } from "../types";
+import { AuthUser } from "../types";
 import styles from "./page.module.css";
+
+interface HomeClientProps {
+  user: AuthUser;
+}
 
 export default function HomeClient({ user }: HomeClientProps) {
   useHomeClient(user);
