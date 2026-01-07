@@ -11,6 +11,7 @@ function RegisterForm() {
     register,
     handleSubmit,
     setError,
+    getValues,
     formState: { errors },
   } = useForm<RegisterFormData>();
 
@@ -58,6 +59,23 @@ function RegisterForm() {
         />
         {errors.password && (
           <span className={styles.error}>{errors.password.message}</span>
+        )}
+
+        <label className={styles.label}>Confirm Password</label>
+        <input
+          aria-label="confirm password"
+          type="password"
+          {...register("confirmPassword", {
+            required: "Bekräfta lösenord krävs",
+            validate: (value) =>
+              value === getValues("password") || "Lösenorden matchar inte",
+          })}
+          className={`${styles.input} ${
+            errors.confirmPassword ? styles.invalid : ""
+          }`}
+        />
+        {errors.confirmPassword && (
+          <span className={styles.error}>{errors.confirmPassword.message}</span>
         )}
       </div>
 

@@ -17,13 +17,20 @@ export default function LogList({ logs, setLogs }: LogListProps) {
   if (logs.length === 0) return <p>Inga loggar tillagda än.</p>;
 
   const getStrengthComparison = (index: number) => {
-    if (index !== 0) return null; 
-    if (logs.length < 2) return null; 
+    if (index !== 0) return null;
+    if (logs.length < 2) return null;
 
     const currentLog = logs[0];
     const previousLog = logs[1];
 
-    const weightDiff = (currentLog.weight || 0) - (previousLog.weight || 0);
+    const currentMaxWeight = Math.max(
+      ...currentLog.sets.map((s) => s.weight ?? 0)
+    );
+    const previousMaxWeight = Math.max(
+      ...previousLog.sets.map((s) => s.weight ?? 0)
+    );
+
+    const weightDiff = currentMaxWeight - previousMaxWeight;
 
     return { weightDiff };
   };
@@ -48,9 +55,20 @@ export default function LogList({ logs, setLogs }: LogListProps) {
                 </p>
               </div>
               <div className={styles.stats}>
-                <p>Sets: {log.sets ?? "-"}</p>
-                <p>Reps: {log.reps ?? "-"}</p>
-                <p>Vikt: {log.weight ?? "N/A"} Kg</p>
+                <p>Antal sets: {log.sets.length}</p>
+                {log.sets.map((set, idx) => (
+                  <div key={idx} className={styles.setInfo}>
+                    <span className={styles.setLabel}>Set {idx + 1}:</span>
+                    <span className={`${styles.setBadge} ${styles.repsBadge}`}>
+                      {set.reps ?? "-"} reps
+                    </span>
+                    <span
+                      className={`${styles.setBadge} ${styles.weightBadge}`}
+                    >
+                      {set.weight ?? "Kroppsvikt"} kg
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -68,9 +86,9 @@ export default function LogList({ logs, setLogs }: LogListProps) {
                   }`}
                 >
                   {comparison.weightDiff > 0 &&
-                    `Ökning! +${comparison.weightDiff} kg`}
+                    `Ökning! +${comparison.weightDiff} kg sedan senaste`}
                   {comparison.weightDiff < 0 &&
-                    `Minskning: ${comparison.weightDiff} kg`}
+                    `Minskning: ${comparison.weightDiff} kg sedan senaste`}
                 </p>
               </div>
             )}

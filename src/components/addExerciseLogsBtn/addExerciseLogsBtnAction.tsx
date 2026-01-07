@@ -1,22 +1,19 @@
 "use server";
 
+import { SetData } from "@/generated/prisma";
 import { PrismaClient } from "@/generated/prisma/client";
 
 const prisma = new PrismaClient();
 
 export async function addExerciseLogAction(
   exerciseId: string,
-  sets: number,
-  reps: number,
-  weight: number | null,
+  sets: SetData[],
   comment: string
 ) {
   return await prisma.exerciseLog.create({
     data: {
       exerciseId,
       sets,
-      reps,
-      weight,
       comment,
     },
   });

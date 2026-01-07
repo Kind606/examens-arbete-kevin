@@ -9,12 +9,15 @@ export type AuthUser = {
   token: string;
 };
 
+export type SetData = {
+  reps: number | null;
+  weight: number | null;
+};
+
 export type ExerciseLog = {
   id: string;
   exerciseId: string;
-  sets: number | null;
-  reps: number | null;
-  weight: number | null;
+  sets: SetData[];
   comment?: string | null;
   createdAt: Date;
 };
@@ -100,8 +103,6 @@ export interface ExerciseRenderProps {
   initialExercises: Exercise[];
 }
 
-
-
 export interface LogListProps {
   logs: ExerciseLog[];
   setLogs: React.Dispatch<React.SetStateAction<ExerciseLog[]>>;
@@ -110,4 +111,5 @@ export interface LogListProps {
 export interface RegisterFormData {
   username: string;
   password: string;
+  confirmPassword: string;
 }

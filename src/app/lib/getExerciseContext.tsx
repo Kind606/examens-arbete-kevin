@@ -1,5 +1,5 @@
 import { PrismaClient } from "@/generated/prisma/client";
-import { GetExerciseContextProps } from "@/src/types";
+import { Day, Exercise, GetExerciseContextProps } from "@/src/types";
 
 const prisma = new PrismaClient();
 
@@ -40,10 +40,12 @@ export async function getExerciseContext({
   if (!exercise) return null;
 
   return {
-    day,
-    exercise,
-    prevExercise: index > 0 ? day.exercises[index - 1] : null,
+    day: day as Day,
+    exercise: exercise as Exercise,
+    prevExercise: index > 0 ? (day.exercises[index - 1] as Exercise) : null,
     nextExercise:
-      index < day.exercises.length - 1 ? day.exercises[index + 1] : null,
+      index < day.exercises.length - 1
+        ? (day.exercises[index + 1] as Exercise)
+        : null,
   };
 }

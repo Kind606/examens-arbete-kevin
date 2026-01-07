@@ -1,6 +1,7 @@
 .LoginContainer {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   background-image: url("/gym.webp");
   background-size: cover;
   background-position: center;
@@ -11,6 +12,7 @@
 .Splash {
   width: 50%;
   display: flex;
+  min-height: 100vh;
   height: 100%;
   padding: var(--padding-small);
   box-sizing: border-box;

@@ -1,14 +1,15 @@
 .logItem {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
   font-size: 20px;
 }
 
 .stats {
   display: flex;
+  flex-direction: column;
   gap: var(--margin-medium);
 }
 
@@ -48,37 +49,37 @@
 .comment {
   margin-top: var(--margin-small);
   font-size: 20px;
-  padding: 4px 10px;
+  padding: var(--padding-small) 10px;
   background-color: var(--color-gray-2);
   border-radius: var(--border-radius);
 }
 
 .latestBadge {
-  margin-left: 5px;
+  margin-left: var(--margin-small);
   background-color: var(--color-green);
-  color: white;
+  color: var(--color-white);
   font-weight: bold;
-  padding: 6px 8px;
+  padding: 6px var(--padding-small);
   border-radius: 25px;
   align-self: flex-start;
   margin-bottom: var(--margin-small);
 }
 
 .strengthComparison {
-  padding: 8px;
-  margin-top: 8px;
-  border-radius: 4px;
-  margin-bottom: 5px;
+  padding: var(--padding-small);
+  margin-top: var(--margin-small);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--margin-small);
 }
 
 .strengthComparison.positive {
   background-color: #d4edda;
-  border: 1px solid #28a745;
+  border: 1px solid var(--color-green);
 }
 
 .strengthComparison.negative {
   background-color: #f8d7da;
-  border: 1px solid #dc3545;
+  border: 1px solid var(--button-cancel-bg-color);
 }
 
 .strengthComparison.neutral {
@@ -107,5 +108,36 @@
 .comparisonDetail {
   margin: 4px 0 0 0;
   font-size: 0.85em;
-  color: #666;
+  color: var(--color-gray-2);
+}
+
+.setInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-small);
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.setLabel {
+  font-weight: bold;
+}
+
+.setBadge {
+  display: inline-block;
+  padding: 4px var(--padding-small);
+  background-color: var(--color-gray-3);
+  border-radius: var(--border-radius);
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.repsBadge {
+  background-color: var(--color-gray-3);
+  color: var(--color-accent-green);
+}
+
+.weightBadge {
+  background-color: var(--color-green);
+  color: var(--color-white);
 }
