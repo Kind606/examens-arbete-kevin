@@ -32,8 +32,9 @@
 }
 
 .popover {
-  background-color: var(--color-gray-3);
+  background: linear-gradient(145deg, var(--color-gray-3), var(--color-gray-1));
   padding: var(--padding-xlarge);
+  border: 1px solid rgba(160, 242, 101, 0.2);
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   min-width: 300px;
@@ -46,6 +47,20 @@
     border: 1px solid var(--color-light-gray);
     box-sizing: border-box;
     font-size: 16px;
+    border: 2px solid var(--color-gray-2);
+    background-color: rgba(255, 255, 255, 0.95);
+    box-sizing: border-box;
+    transition: all var(--transition-duration) ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-accent-green);
+      box-shadow: 0 0 0 3px rgba(160, 242, 101, 0.15);
+    }
+
+    &::placeholder {
+      color: var(--color-gray-2);
+    }
   }
 }
 

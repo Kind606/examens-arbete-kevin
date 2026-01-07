@@ -9,7 +9,6 @@
   font-weight: bold;
   height: 60px;
   cursor: pointer;
-  transition: background-color var(--transition-duration) ease;
   &:hover {
     background-color: var(--button-hover-bg-color);
   }
@@ -194,11 +193,7 @@
 }
 
 .popaddButton {
-  background: linear-gradient(
-    135deg,
-    var(--color-green),
-    var(--color-dark-green)
-  );
+  background-color: var(--color-green);
   font-size: 16px;
   color: var(--button-text-color);
   padding: 12px var(--padding-large);
@@ -213,13 +208,9 @@
   transition: all var(--transition-duration) ease;
 
   &:hover {
-    background: linear-gradient(
-      135deg,
-      var(--color-dark-green),
-      var(--color-green)
-    );
+    background-color: var(--color-dark-green);
     box-shadow: 0 6px 16px rgba(86, 129, 54, 0.4);
-    transform: translateY(-2px);
+   
   }
 
   &:active {
@@ -228,7 +219,7 @@
 }
 
 .cancelButton {
-  background: linear-gradient(135deg, var(--color-dark-red), var(--color-red));
+  background-color: var(--color-dark-red);
   font-size: 16px;
   color: var(--button-text-color);
   border: none;
@@ -243,13 +234,9 @@
   transition: all var(--transition-duration) ease;
 
   &:hover {
-    background: linear-gradient(
-      135deg,
-      var(--color-red),
-      var(--color-dark-red)
-    );
+    background-color: var(--color-red);
     box-shadow: 0 6px 16px rgba(168, 50, 50, 0.4);
-    transform: translateY(-2px);
+  
   }
 
   &:active {
@@ -338,7 +325,7 @@
 }
 
 .removeSetBtn {
-  background: linear-gradient(135deg, var(--color-dark-red), var(--color-red));
+  background-color: var(--color-dark-red);
   color: var(--button-text-color);
   border: none;
   border-radius: 6px;
@@ -352,11 +339,7 @@
   box-shadow: 0 2px 8px rgba(168, 50, 50, 0.3);
 
   &:hover {
-    background: linear-gradient(
-      135deg,
-      var(--color-red),
-      var(--color-dark-red)
-    );
+    background-color: var(--color-red);
     box-shadow: 0 4px 12px rgba(168, 50, 50, 0.4);
     transform: translateY(-2px);
   }
@@ -370,11 +353,7 @@
   width: 100%;
   margin: var(--margin-medium) 0;
   padding: 12px;
-  background: linear-gradient(
-    135deg,
-    var(--color-green),
-    var(--color-dark-green)
-  );
+  background-color: var(--color-green);
   color: var(--button-text-color);
   border: none;
   border-radius: 6px;
@@ -387,11 +366,7 @@
   border: 1px dashed rgba(160, 242, 101, 0.3);
 
   &:hover {
-    background: linear-gradient(
-      135deg,
-      var(--color-dark-green),
-      var(--color-green)
-    );
+    background-color: var(--color-dark-green);
     box-shadow: 0 4px 12px rgba(86, 129, 54, 0.4);
     border-color: var(--color-accent-green);
     transform: translateY(-2px);
