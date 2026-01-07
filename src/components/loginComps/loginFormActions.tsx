@@ -1,12 +1,17 @@
 "use server";
 
 import { PrismaClient } from "@/generated/prisma/client";
-import { AuthUser, JwtPayload } from "@/src/types";
+import { AuthUser } from "@/src/types";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || "supersecret";
+
+interface JwtPayload {
+  id: string;
+  username: string;
+}
 
 export async function loginUser(
   username: string,
