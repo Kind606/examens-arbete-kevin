@@ -1,14 +1,9 @@
 "use client";
 
-import { ExerciseLog, SetData } from "@/src/types";
+import { ExerciseLog, ExerciseLogFormData, SetData } from "@/src/types";
 import { useState } from "react";
 import { UseFormSetError } from "react-hook-form";
 import { addExerciseLogAction } from "./addExerciseLogsBtnAction";
-
-interface ExerciseLogFormData {
-  sets: SetData[];
-  comment: string;
-}
 
 export function useAddExerciseLog(
   exerciseId: string,

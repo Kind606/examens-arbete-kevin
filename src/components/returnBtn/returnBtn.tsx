@@ -1,10 +1,7 @@
 "use client";
 
 import styles from "./returnBtn.module.css";
-
-export interface ReturnBtnProps {
-  onClick?: () => void;
-}
+import { ReturnBtnProps } from "@/src/types";
 
 export default function ReturnBtn({ onClick }: ReturnBtnProps) {
   return (

@@ -3,17 +3,13 @@
 import Image from "next/image";
 import styles from "../addSplitbtn/addSplitBtn.module.css";
 import { useRemoveSplit } from "./removeSplitBtnHook";
-
-
-interface RemoveSplitBtnProps {
-  splitId: string;
-}
+import { RemoveSplitBtnProps } from "@/src/types";
 
 export default function RemoveSplitBtn({ splitId }: RemoveSplitBtnProps) {
   const { removeSplit } = useRemoveSplit();
 
   const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     removeSplit(splitId);
   };
 

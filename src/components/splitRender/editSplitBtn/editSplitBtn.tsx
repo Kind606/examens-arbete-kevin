@@ -3,11 +3,7 @@
 import Image from "next/image";
 import styles from "../addSplitbtn/addSplitBtn.module.css";
 import { useEditSplit } from "./editSplitBtnHook";
-
-interface EditSplitBtnProps {
-  splitId: string;
-  currentTitle: string;
-}
+import { EditSplitBtnProps } from "@/src/types";
 
 export default function EditSplitBtn({
   splitId,

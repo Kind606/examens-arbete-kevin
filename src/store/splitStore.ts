@@ -1,16 +1,6 @@
 // splitStore.ts
 import { create } from "zustand";
-import { Split } from "../types";
-
-interface SplitState {
-  splits: Split[];
-  loading: boolean;
-  error: string | null;
-  setSplits: (splits: Split[]) => void;
-  setLoading: (loading: boolean) => void;
-  setError: (error: string | null) => void;
-  resetSplits: () => void;
-}
+import { Split, SplitState } from "../types";
 
 export const useSplitStore = create<SplitState>((set) => ({
   splits: [],

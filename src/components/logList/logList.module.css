@@ -32,6 +32,29 @@
   }
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--margin-medium);
+}
+
+.sortButton {
+  background-color: var(--color-gray-3);
+  color: var(--color-white);
+  border: none;
+  padding: var(--padding-small) var(--padding-medium);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color var(--transition-duration) ease;
+
+  &:hover {
+    background-color: var(--color-gray-2);
+  }
+}
+
 .deleteBtn {
   background-color: var(--button-cancel-bg-color);
   font-size: 16px;

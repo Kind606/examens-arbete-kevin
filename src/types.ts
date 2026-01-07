@@ -113,3 +113,47 @@ export interface RegisterFormData {
   password: string;
   confirmPassword: string;
 }
+
+export interface HomeClientProps {
+  user: AuthUser;
+}
+
+export interface DayPageProps {
+  params: Promise<{ slug: string; daySlug: string }>;
+}
+
+export interface SplitPageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export interface ExerciseLogFormData {
+  sets: SetData[];
+  comment: string;
+}
+
+export interface RemoveSplitBtnProps {
+  splitId: string;
+  splitSlug: string;
+}
+
+export interface EditSplitBtnProps {
+  splitId: string;
+  currentName: string;
+}
+
+export interface JwtPayload {
+  userId: string;
+  username: string;
+  iat?: number;
+  exp?: number;
+}
+
+export interface ExerciseState {
+  exercises: Exercise[];
+  setExercises: (exercises: Exercise[]) => void;
+}
+
+export interface SplitState {
+  splits: Split[];
+  setSplits: (splits: Split[]) => void;
+}
