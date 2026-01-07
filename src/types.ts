@@ -136,24 +136,5 @@ export interface RemoveSplitBtnProps {
   splitSlug: string;
 }
 
-export interface EditSplitBtnProps {
-  splitId: string;
-  currentName: string;
-}
 
-export interface JwtPayload {
-  userId: string;
-  username: string;
-  iat?: number;
-  exp?: number;
-}
 
-export interface ExerciseState {
-  exercises: Exercise[];
-  setExercises: (exercises: Exercise[]) => void;
-}
-
-export interface SplitState {
-  splits: Split[];
-  setSplits: (splits: Split[]) => void;
-}
