@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 5px;
   min-width: 250px;
-  font-size: 18px;
+  font-size: 16px;
 
   & h3 {
     margin: 0;
@@ -18,7 +18,7 @@
     padding: 10px 15px;
     border-radius: var(--border-radius);
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
 
     &:hover {
       background-color: var(--button-default-hover-bg-color);

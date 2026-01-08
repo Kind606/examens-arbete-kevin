@@ -1,7 +1,7 @@
 .addButton {
   width: 100%;
   background-color: var(--button-bg-color);
-  font-size: 20px;
+  font-size: 18px;
   color: var(--button-text-color);
   padding: var(--padding-medium) var(--padding-large);
   border-radius: var(--border-radius);
@@ -20,7 +20,7 @@
 .addExerciseLogBtn {
   width: 100%;
   background-color: var(--button-bg-color);
-  font-size: 18px;
+  font-size: 16px;
   color: var(--button-text-color);
   padding: var(--padding-medium) var(--padding-large);
   border-radius: var(--border-radius);
@@ -126,7 +126,7 @@
     color: var(--color-accent-green);
     margin-top: 0;
     margin-bottom: var(--margin-medium);
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
     border-bottom: 2px solid rgba(160, 242, 101, 0.3);
     padding-bottom: var(--padding-small);
@@ -331,7 +331,7 @@
   border-radius: 6px;
   padding: 8px 14px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   margin-top: var(--margin-xlarge);
   transition: all var(--transition-duration) ease;
@@ -341,11 +341,6 @@
   &:hover {
     background-color: var(--color-red);
     box-shadow: 0 4px 12px rgba(168, 50, 50, 0.4);
-    transform: translateY(-2px);
-  }
-
-  &:active {
-    transform: translateY(0);
   }
 }
 

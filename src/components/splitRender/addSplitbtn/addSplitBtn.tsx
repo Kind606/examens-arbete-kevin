@@ -16,7 +16,7 @@ export default function AddSplitBtn() {
   return (
     <>
       <button className={styles.addButton} onClick={openPopover}>
-        Add Split
+        Lägg till split
       </button>
 
       {showPopover && (
@@ -32,10 +32,10 @@ export default function AddSplitBtn() {
             />
             <div className={styles.buttonGroup}>
               <button onClick={handleAdd} className={styles.popaddButton}>
-                Add
+                Lägg till
               </button>
               <button onClick={handleCancel} className={styles.cancelButton}>
-                Cancel
+                Avbryt
               </button>
             </div>
           </div>

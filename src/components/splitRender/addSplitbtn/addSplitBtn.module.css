@@ -67,13 +67,14 @@
 .addButton {
   width: 100%;
   background-color: var(--button-bg-color);
-  font-size: 24px;
+  font-size: 20px;
+  text-transform: uppercase;
   color: var(--button-text-color);
   padding: var(--padding-medium) var(--padding-large);
   border-radius: var(--border-radius);
   border: none;
   font-weight: bold;
-  height: 70px;
+  height: 60px;
   cursor: pointer;
   transition: all var(--transition-duration) ease;
 
@@ -91,7 +92,8 @@
 
 .popaddButton {
   background-color: var(--button-bg-color);
-  font-size: 18px;
+  font-size: 16px;
+  text-transform: uppercase;
   color: var(--button-text-color);
   padding: var(--padding-small) var(--padding-medium);
   border-radius: 4px;
@@ -108,9 +110,10 @@
 
 .cancelButton {
   background-color: var(--button-cancel-bg-color);
-  font-size: 18px;
+  font-size: 16px;
   color: var(--button-text-color);
   border: none;
+  text-transform: uppercase;
   padding: var(--padding-small) var(--padding-medium);
   border-radius: 4px;
   cursor: pointer;
