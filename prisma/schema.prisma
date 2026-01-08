@@ -8,8 +8,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider     = "mongodb"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 enum ExerciseType {
@@ -35,6 +36,8 @@ model Split {
 
   days      Day[]
   createdAt DateTime @default(now())
+
+  @@index([userId])
 }
 
 model Day {
@@ -48,6 +51,7 @@ model Day {
   exercises Exercise[]
 
   @@unique([slug, splitId])
+  @@index([splitId])
 }
 
 model Exercise {
@@ -63,9 +67,10 @@ model Exercise {
   dayId String @db.ObjectId
   day   Day    @relation(fields: [dayId], references: [id])
 
-  logs ExerciseLog[]
+  logs      ExerciseLog[]
+  createdAt DateTime      @default(now())
 
-  createdAt DateTime @default(now())
+  @@index([dayId])
 }
 
 model ExerciseLog {
@@ -78,6 +83,9 @@ model ExerciseLog {
   comment String?
 
   createdAt DateTime @default(now())
+
+  @@index([exerciseId])
+  @@index([createdAt])
 }
 
 type SetData {
@@ -86,6 +94,6 @@ type SetData {
   weight Float?
 
   // Cardio fields
-  time     Int? 
-  distance Float? 
+  time     Int?
+  distance Float?
 }
