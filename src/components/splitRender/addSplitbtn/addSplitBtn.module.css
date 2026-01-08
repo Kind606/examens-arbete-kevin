@@ -75,9 +75,10 @@
   font-weight: bold;
   height: 70px;
   cursor: pointer;
-  transition: background-color var(--transition-duration) ease;
+  transition: all var(--transition-duration) ease;
 
   &:hover {
+    box-shadow: 0 0 10px var(--color-green);
     background-color: var(--button-hover-bg-color);
   }
 }
@@ -98,6 +99,7 @@
   font-weight: bold;
   cursor: pointer;
   width: 100%;
+  transition: background-color var(--transition-duration) ease;
 
   &:hover {
     background-color: var(--button-hover-bg-color);
@@ -114,6 +116,7 @@
   cursor: pointer;
   font-weight: bold;
   width: 100%;
+  transition: background-color var(--transition-duration) ease;
 
   &:hover {
     background-color: var(--button-cancel-hover-bg-color);

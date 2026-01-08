@@ -81,7 +81,6 @@ export default function LogList({ exercise, logs, setLogs }: LogListProps) {
                             )}
                           </>
                         ) : (
-                          // Strength display: reps and weight
                           <>
                             <span
                               className={`${styles.setBadge} ${styles.repsBadge}`}

@@ -1,5 +1,5 @@
 .container {
-  background-color: var(--color-gray-3);
+  background: var(--color-gray-3);
   color: var(--color-white);
   min-height: 100vh;
   height: 100%;
@@ -13,6 +13,7 @@
     text-align: center;
     margin: 0;
     padding: 0;
+    color: var(--color-accent-green);
   }
 }
 
@@ -32,6 +33,8 @@
     margin: 0;
     font-size: 24px;
     text-align: center;
+    color: var(--color-white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -47,25 +50,34 @@
 .videoContainer {
   margin-top: var(--margin-xlarge);
   margin-bottom: var(--margin-xlarge);
-  background-color: var(--color-gray-1);
-  padding: var(--padding-small);
-  border-radius: var(--border-radius);
+  background: linear-gradient(145deg, var(--color-gray-1), var(--color-gray-3));
+  padding: var(--padding-medium);
+  border-radius: 8px;
+  border: 1px solid rgba(160, 242, 101, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 500px;
   box-sizing: border-box;
+  transition: all var(--transition-duration) ease;
+
+  &:hover {
+    border-color: rgba(160, 242, 101, 0.4);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  }
 
   & iframe {
     width: 100%;
     height: 315px;
     border: none;
-    border-radius: var(--border-radius);
+    border-radius: 6px;
   }
 
   & p {
     color: var(--color-white);
     text-align: center;
     margin: 0;
-    padding: 0;
+    padding: var(--padding-medium);
+    font-style: italic;
   }
 }
 
@@ -77,20 +89,27 @@
   margin-bottom: var(--margin-xlarge);
 }
 
-.leftButton, .rightButton  {
-  background-color: transparent;
-  font-size: 16px;
+.leftButton,
+.rightButton {
+  background-color: var(--color-green);
+  font-size: 14px;
   text-transform: uppercase;
   font-weight: bold;
   color: var(--button-text-color);
   padding: var(--padding-small) var(--padding-medium);
-  border-radius: 4px;
+  border-radius: 6px;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-duration) ease;
 
   &:hover {
-    background-color: var(--color-gray-1);
+    box-shadow: 0 0 6px var(--color-green);
+    background-color: var(--color-dark-green);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }
 .rightButton {
