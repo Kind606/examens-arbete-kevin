@@ -57,7 +57,6 @@ export default function LogList({ exercise, logs, setLogs }: LogListProps) {
               {isExpanded && (
                 <>
                   <div className={styles.stats}>
-                    <p>Antal sets: {log.sets.length}</p>
                     {log.sets.map((set, idx) => (
                       <div key={idx} className={styles.setInfo}>
                         <span className={styles.setLabel}>Set {idx + 1}:</span>
