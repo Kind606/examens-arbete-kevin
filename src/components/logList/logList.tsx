@@ -40,8 +40,12 @@ export default function LogList({ exercise, logs, setLogs }: LogListProps) {
                 style={{ cursor: "pointer" }}
               >
                 <p>
-                  <span className={styles.expandIcon}>
-                    {isExpanded ? "▼" : "▶"}
+                  <span
+                    className={`${styles.expandIcon} ${
+                      isExpanded ? styles.open : ""
+                    }`}
+                  >
+                    ▶
                   </span>
                   <strong>
                     {new Date(log.createdAt).toLocaleDateString("sv-SE")}

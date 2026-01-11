@@ -129,6 +129,10 @@
   margin-left: 5px;
 }
 
+.open {
+  transform: rotate(90deg);
+}
+
 .strengthComparison {
   padding: var(--padding-small);
   margin-top: var(--margin-small);
