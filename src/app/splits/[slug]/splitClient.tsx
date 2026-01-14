@@ -1,7 +1,6 @@
 "use client";
 
-import ReturnBtn from "@/src/components/returnBtn/returnBtn";
-import SplitCard from "@/src/components/splitCard/splitCard";
+import { ReturnBtn, SplitCard } from "@/src";
 import { useHydrateAuth } from "@/src/hooks/useHydrateAuth";
 import { SplitClientProps } from "@/src/types";
 import { useRouter } from "next/navigation";

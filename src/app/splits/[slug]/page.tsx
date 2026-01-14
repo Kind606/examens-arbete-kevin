@@ -1,9 +1,9 @@
 "use server";
 
 import { PrismaClient } from "@/generated/prisma/client";
-import NavBar from "@/src/components/navBar/navBar";
-import SplitClient from "./splitClient";
+import { NavBar } from "@/src";
 import { requireUser } from "@/src/hooks/requireUser";
+import SplitClient from "./splitClient";
 import styles from "./splitPage.module.css";
 
 const prisma = new PrismaClient();

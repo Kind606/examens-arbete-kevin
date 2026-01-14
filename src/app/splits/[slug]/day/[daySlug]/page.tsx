@@ -1,9 +1,9 @@
 "use server";
 
 import { PrismaClient } from "@/generated/prisma/client";
-import NavBar from "@/src/components/navBar/navBar";
-import SplitDayClient from "./splitDayClient";
+import { NavBar } from "@/src";
 import { requireUser } from "@/src/hooks/requireUser";
+import SplitDayClient from "./splitDayClient";
 import styles from "./splitDayPage.module.css";
 
 const prisma = new PrismaClient();
@@ -29,7 +29,12 @@ export default async function DayPage({ params }: DayPageProps) {
   return (
     <div className={styles.container}>
       <NavBar />
-      <SplitDayClient user={user} day={day} splitSlug={slug} daySlug={daySlug} />
+      <SplitDayClient
+        user={user}
+        day={day}
+        splitSlug={slug}
+        daySlug={daySlug}
+      />
     </div>
   );
 }

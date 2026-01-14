@@ -1,5 +1,5 @@
+import { NavBar } from "@/src";
 import { getExerciseContext } from "@/src/app/lib/getExerciseContext";
-import NavBar from "@/src/components/navBar/navBar";
 import { requireUser } from "@/src/hooks/requireUser";
 import { ExercisePageProps } from "@/src/types";
 import ExerciseClient from "./exerciseClient";

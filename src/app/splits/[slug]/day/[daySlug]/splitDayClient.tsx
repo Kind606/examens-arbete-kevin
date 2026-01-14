@@ -1,8 +1,6 @@
 "use client";
 
-import AddExerciseBtn from "@/src/components/addExerciseBtn/addExerciseBtn";
-import ExerciseRender from "@/src/components/exerciseRender/exerciseRender";
-import ReturnBtn from "@/src/components/returnBtn/returnBtn";
+import { AddExerciseBtn, ExerciseRender, ReturnBtn } from "@/src";
 import { useSplitDayClient } from "@/src/hooks/splitDayClientHook";
 import { useExerciseStore } from "@/src/store/exerciseStore";
 import { SplitDayClientProps } from "@/src/types";

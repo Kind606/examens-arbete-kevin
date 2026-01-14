@@ -1,8 +1,10 @@
 "use client";
 
-import ExerciseLogBtn from "@/src/components/addExerciseLogsBtn/addExerciseLogsBtn";
-import LogList from "@/src/components/logList/logList";
-import ReturnBtn from "@/src/components/returnBtn/returnBtn";
+import {
+  AddExerciseLogsBtn as ExerciseLogBtn,
+  LogList,
+  ReturnBtn,
+} from "@/src";
 import { useHydrateAuth } from "@/src/hooks/useHydrateAuth";
 import { ExerciseLogClientProps } from "@/src/types";
 import { useRouter } from "next/navigation";

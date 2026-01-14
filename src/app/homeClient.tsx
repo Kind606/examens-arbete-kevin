@@ -1,6 +1,6 @@
 "use client";
 
-import SplitRender from "@/src/components/splitRender/splitRender";
+import { SplitRender } from "@/src";
 import { useHomeClient } from "../hooks/homeClinetHook";
 import { AuthUser } from "../types";
 import styles from "./page.module.css";

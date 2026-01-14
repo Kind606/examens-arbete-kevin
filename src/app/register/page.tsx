@@ -1,4 +1,4 @@
-import RegisterForm from "@/src/components/registerComps/registerForm";
+import { RegisterForm } from "@/src";
 import { GuestRoute } from "@/src/hooks/GuestRoute";
 import Image from "next/image";
 import styles from "../login/login.module.css";
