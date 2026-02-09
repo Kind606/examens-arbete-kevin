@@ -6,11 +6,13 @@ import { useAddSplit } from "./addSplitBtnHook";
 export default function AddSplitBtn() {
   const {
     showPopover,
-    newTitle,
-    setNewTitle,
+    register,
+    handleSubmit,
+    errors,
     openPopover,
-    handleAdd,
+    onSubmit,
     handleCancel,
+    validateSplitName,
   } = useAddSplit();
 
   return (
@@ -22,22 +24,39 @@ export default function AddSplitBtn() {
       {showPopover && (
         <div className={styles.overlay} onClick={handleCancel}>
           <div className={styles.popover} onClick={(e) => e.stopPropagation()}>
-            <input
-              aria-label="Split Title"
-              type="text"
-              placeholder="Enter split name"
-              value={newTitle}
-              onChange={(e) => setNewTitle(e.target.value)}
-              autoFocus
-            />
-            <div className={styles.buttonGroup}>
-              <button onClick={handleAdd} className={styles.popaddButton}>
-                Lägg till
-              </button>
-              <button onClick={handleCancel} className={styles.cancelButton}>
-                Avbryt
-              </button>
-            </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input
+                aria-label="Split Title"
+                type="text"
+                placeholder="Enter split name"
+                {...register("title", {
+                  required: "Title is required",
+                  minLength: {
+                    value: 1,
+                    message: "Title must be at least 1 character",
+                  },
+                  validate: (value) => validateSplitName(value),
+                })}
+                autoFocus
+              />
+              {errors.title && (
+                <p style={{ color: "red", fontSize: "12px" }}>
+                  {errors.title.message}
+                </p>
+              )}
+              <div className={styles.buttonGroup}>
+                <button type="submit" className={styles.popaddButton}>
+                  Lägg till
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCancel}
+                  className={styles.cancelButton}
+                >
+                  Avbryt
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

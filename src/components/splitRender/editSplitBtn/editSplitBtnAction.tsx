@@ -1,6 +1,7 @@
 "use server";
 
 import { PrismaClient } from "@/generated/prisma/client";
+import { slugify } from "@/src/utils/slugify";
 
 const prisma = new PrismaClient();
 
@@ -13,9 +14,10 @@ const prisma = new PrismaClient();
 export async function editSplitAction(
   splitId: string,
   newTitle: string,
-  userId: string
+  userId: string,
 ) {
-  // Only update the split if it belongs to this user
+  const newSlug = slugify(newTitle);
+
   const split = await prisma.split.updateMany({
     where: {
       id: splitId,
@@ -23,6 +25,7 @@ export async function editSplitAction(
     },
     data: {
       title: newTitle,
+      slug: newSlug,
     },
   });
 
@@ -33,5 +36,6 @@ export async function editSplitAction(
   return {
     id: splitId,
     title: newTitle,
+    slug: newSlug,
   };
 }

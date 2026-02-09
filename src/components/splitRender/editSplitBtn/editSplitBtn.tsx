@@ -15,11 +15,13 @@ export default function EditSplitBtn({
 }: EditSplitBtnProps) {
   const {
     showPopover,
-    newTitle,
-    setNewTitle,
+    register,
+    handleSubmit,
+    errors,
     openPopover,
-    handleSave,
+    onSubmit,
     handleCancel,
+    validateSplitName,
   } = useEditSplit(splitId, currentTitle);
 
   return (
@@ -43,21 +45,38 @@ export default function EditSplitBtn({
           }}
         >
           <div className={styles.popover} onClick={(e) => e.stopPropagation()}>
-            <input
-              aria-label="Ny split title"
-              type="text"
-              value={newTitle}
-              onChange={(e) => setNewTitle(e.target.value)}
-              autoFocus
-            />
-            <div className={styles.buttonGroup}>
-              <button onClick={handleSave} className={styles.popaddButton}>
-                Save
-              </button>
-              <button onClick={handleCancel} className={styles.cancelButton}>
-                Cancel
-              </button>
-            </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input
+                aria-label="Ny split title"
+                type="text"
+                {...register("title", {
+                  required: "Title is required",
+                  minLength: {
+                    value: 1,
+                    message: "Title must be at least 1 character",
+                  },
+                  validate: (value) => validateSplitName(value),
+                })}
+                autoFocus
+              />
+              {errors.title && (
+                <p style={{ color: "red", fontSize: "12px" }}>
+                  {errors.title.message}
+                </p>
+              )}
+              <div className={styles.buttonGroup}>
+                <button type="submit" className={styles.popaddButton}>
+                  Save
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCancel}
+                  className={styles.cancelButton}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

@@ -1,48 +1,91 @@
 "use client";
 
-import { useState } from "react";
-import { useSplitStore } from "@/src/store/splitStore";
 import { useAuthStore } from "@/src/store/authStore";
+import { useSplitStore } from "@/src/store/splitStore";
+import { slugify } from "@/src/utils/slugify";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { editSplitAction } from "./editSplitBtnAction";
+
+interface EditSplitFormData {
+  title: string;
+}
 
 export function useEditSplit(splitId: string, currentTitle: string) {
   const { splits, setSplits } = useSplitStore();
   const user = useAuthStore((state) => state.user);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const [showPopover, setShowPopover] = useState(false);
-  const [newTitle, setNewTitle] = useState(currentTitle);
 
-  const openPopover = () => setShowPopover(true);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<EditSplitFormData>({
+    defaultValues: {
+      title: currentTitle,
+    },
+  });
+
+  const validateSplitName = (value: string) => {
+    const newSlug = slugify(value.trim());
+    const existingSplit = splits.find(
+      (split) => split.slug === newSlug && split.id !== splitId,
+    );
+
+    if (existingSplit) {
+      return "A split with this name already exists";
+    }
+
+    return true;
+  };
+
+  const openPopover = () => {
+    reset({ title: currentTitle });
+    setShowPopover(true);
+  };
 
   const handleCancel = () => {
-    setNewTitle(currentTitle);
+    reset({ title: currentTitle });
     setShowPopover(false);
   };
 
-  const handleSave = async () => {
-    if (!newTitle.trim() || !user) return;
+  const onSubmit = async (data: EditSplitFormData) => {
+    if (!data.title.trim() || !user) return;
 
     try {
-      await editSplitAction(splitId, newTitle.trim(), user.id);
+      const result = await editSplitAction(splitId, data.title.trim(), user.id);
 
       setSplits(
         splits.map((split) =>
-          split.id === splitId ? { ...split, title: newTitle.trim() } : split
-        )
+          split.id === splitId
+            ? { ...split, title: data.title.trim(), slug: result.slug }
+            : split,
+        ),
       );
+
+      if (pathname?.startsWith("/splits/")) {
+        router.push(`/splits/${result.slug}`);
+      }
+
+      setShowPopover(false);
     } catch (err) {
       console.error("Failed to edit split:", err);
-    } finally {
-      setShowPopover(false);
     }
   };
 
   return {
     showPopover,
-    newTitle,
-    setNewTitle,
+    register,
+    handleSubmit,
+    errors,
     openPopover,
-    handleSave,
+    onSubmit,
     handleCancel,
+    validateSplitName,
   };
 }

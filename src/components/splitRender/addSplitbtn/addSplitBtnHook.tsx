@@ -3,9 +3,15 @@
 import type { Split } from "@/generated/prisma/client";
 import { useAuthStore } from "@/src/store/authStore";
 import { useSplitStore } from "@/src/store/splitStore";
+import { slugify } from "@/src/utils/slugify";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { addSplitAction } from "./addSplitBtnAction";
+
+interface AddSplitFormData {
+  title: string;
+}
 
 export function useAddSplit() {
   const { splits, setSplits } = useSplitStore();
@@ -13,35 +19,60 @@ export function useAddSplit() {
   const router = useRouter();
 
   const [showPopover, setShowPopover] = useState(false);
-  const [newTitle, setNewTitle] = useState("");
 
-  const openPopover = () => setShowPopover(true);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<AddSplitFormData>({
+    defaultValues: {
+      title: "",
+    },
+  });
+
+  const validateSplitName = (value: string) => {
+    const newSlug = slugify(value.trim());
+    const existingSplit = splits.find((split) => split.slug === newSlug);
+
+    if (existingSplit) {
+      return "A split with this name already exists";
+    }
+
+    return true;
+  };
+
+  const openPopover = () => {
+    reset({ title: "" });
+    setShowPopover(true);
+  };
 
   const handleCancel = () => {
-    setNewTitle("");
+    reset({ title: "" });
     setShowPopover(false);
   };
 
-  const handleAdd = async () => {
-    if (!newTitle.trim() || !user) return;
+  const onSubmit = async (data: AddSplitFormData) => {
+    if (!data.title.trim() || !user) return;
 
     try {
-      const newSplit: Split = await addSplitAction(newTitle.trim(), user.id);
-      setNewTitle("");
+      const newSplit: Split = await addSplitAction(data.title.trim(), user.id);
+      reset({ title: "" });
       setShowPopover(false);
       router.push(`/splits/${newSplit.slug}`);
     } catch (err) {
       console.error("Failed to add split:", err);
     }
-    setShowPopover(false);
   };
 
   return {
     showPopover,
-    newTitle,
-    setNewTitle,
+    register,
+    handleSubmit,
+    errors,
     openPopover,
-    handleAdd,
+    onSubmit,
     handleCancel,
+    validateSplitName,
   };
 }
