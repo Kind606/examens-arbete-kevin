@@ -7,7 +7,15 @@ export default function useNavBar() {
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (mobileRef.current && !mobileRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      const toggleButton = document.getElementById("mobile-toggle");
+
+      if (
+        mobileRef.current &&
+        !mobileRef.current.contains(target) &&
+        toggleButton !== target &&
+        !toggleButton?.contains(target)
+      ) {
         setMobileOpen(false);
       }
     };
