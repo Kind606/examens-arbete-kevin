@@ -25,8 +25,8 @@ export default function NavBar() {
       <Image
         src="/Logo.svg"
         alt="Logo"
-        width={120}
-        height={120}
+        width={80}
+        height={60}
         className={styles.Logo}
       />
       <div ref={mobileRef}>
