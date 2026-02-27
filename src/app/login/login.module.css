@@ -2,7 +2,8 @@
   display: flex;
   min-height: 100vh;
   height: 100%;
-  background-image: url("/gym.webp");
+  width: 100%;
+  background-image: url("/gym.png");
   background-size: cover;
   background-position: center;
   color: var(--color-white);
