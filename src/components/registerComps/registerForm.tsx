@@ -31,6 +31,7 @@ function RegisterForm() {
         <input
           aria-label="username"
           type="text"
+          placeholder="användarnamn"
           {...register("username", {
             required: "Användarnamn krävs",
             minLength: {
@@ -48,6 +49,7 @@ function RegisterForm() {
         <input
           aria-label="password"
           type="password"
+          placeholder="lösenord"
           {...register("password", {
             required: "Lösenord krävs",
             minLength: {
@@ -65,6 +67,7 @@ function RegisterForm() {
         <input
           aria-label="confirm password"
           type="password"
+          placeholder="bekräfta lösenord"
           {...register("confirmPassword", {
             required: "Bekräfta lösenord krävs",
             validate: (value) =>

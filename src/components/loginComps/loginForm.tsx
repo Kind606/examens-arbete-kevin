@@ -30,6 +30,7 @@ function LoginForm() {
         <input
           aria-label="username"
           type="text"
+          placeholder="användarnamn"
           {...register("username", {
             required: "Användarnamn krävs",
             minLength: {
@@ -47,6 +48,7 @@ function LoginForm() {
         <input
           aria-label="password"
           type="password"
+          placeholder="lösenord"
           {...register("password", {
             required: "Lösenord krävs",
             minLength: {
