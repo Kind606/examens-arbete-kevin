@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./navBar.module.css";
 
 import DesktopNav from "./desktop/DesktopNav";
@@ -22,13 +23,15 @@ export default function NavBar() {
 
       <DesktopNav />
 
-      <Image
-        src="/Logo.svg"
-        alt="Logo"
-        width={80}
-        height={60}
-        className={styles.Logo}
-      />
+      <Link href="/" className={styles.LogoLink}>
+        <Image
+          src="/Logo.svg"
+          alt="Logo"
+          width={80}
+          height={60}
+          className={styles.Logo}
+        />
+      </Link>
       <div ref={mobileRef}>
         {mobileOpen && <MobileMenu close={() => setMobileOpen(false)} />}
       </div>

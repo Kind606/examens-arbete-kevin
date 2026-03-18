@@ -1,5 +1,6 @@
 .backText {
   display: inline;
+  text-transform: uppercase;
 }
 
 .backArrow {

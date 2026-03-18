@@ -36,6 +36,7 @@
   min-width: 150px;
   width: 100%;
   font-size: 24px;
+  padding: 0 5px;
   text-decoration: none;
   font-weight: bolder;
   color: var(--color-accent-green);
@@ -54,7 +55,7 @@
   outline: 3px solid var(--color-accent-green);
 }
 
-.Logo {
+.LogoLink {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -74,7 +75,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1200px) {
   .NavLinksContainer {
     display: none;
   }

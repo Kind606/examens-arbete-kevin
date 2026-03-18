@@ -1,14 +1,8 @@
 "use client";
 
-import { Exercise, ExerciseLog, ExerciseType, SetData } from "@/src/types";
-import { useFieldArray, useForm } from "react-hook-form";
+import { Exercise, ExerciseLog } from "@/src/types";
 import styles from "../addExerciseBtn/addExerciseBtn.module.css";
 import { useAddExerciseLog } from "./addExerciseLogsBtnHook";
-
-interface ExerciseLogFormData {
-  sets: SetData[];
-  comment: string;
-}
 
 export default function AddExerciseLogBtn({
   exercise,
@@ -17,43 +11,20 @@ export default function AddExerciseLogBtn({
   exercise: Exercise;
   onLogAdded: (log: ExerciseLog) => void;
 }) {
-  const { showPopover, loading, openPopover, handleAdd, handleCancel } =
-    useAddExerciseLog(exercise.id, onLogAdded);
-
-  const isCardio = exercise.exerciseType === ExerciseType.CARDIO;
-
   const {
+    showPopover,
+    loading,
+    isCardio,
     register,
-    control,
     handleSubmit,
-    formState: { errors },
-    reset,
-    setError,
-  } = useForm<ExerciseLogFormData>({
-    defaultValues: {
-      sets: isCardio
-        ? [{ time: 0, distance: null, reps: null, weight: null }]
-        : [{ reps: 0, weight: null, time: null, distance: null }],
-      comment: "",
-    },
-  });
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "sets",
-  });
-
-  const onSubmit = async (data: ExerciseLogFormData) => {
-    const success = await handleAdd(data.sets, data.comment, setError);
-    if (success) {
-      reset();
-    }
-  };
-
-  const onCancel = () => {
-    handleCancel();
-    reset();
-  };
+    errors,
+    fields,
+    append,
+    remove,
+    openPopover,
+    onSubmit,
+    onCancel,
+  } = useAddExerciseLog(exercise.id, exercise.exerciseType, onLogAdded);
 
   return (
     <>
@@ -190,7 +161,7 @@ export default function AddExerciseLogBtn({
                     append(
                       isCardio
                         ? { time: 0, distance: null, reps: null, weight: null }
-                        : { reps: 0, weight: null, time: null, distance: null }
+                        : { reps: 0, weight: null, time: null, distance: null },
                     )
                   }
                   className={styles.addSetBtn}

@@ -1,6 +1,7 @@
 :root {
   /********** Base HEX Colors  **********/
   --color-white: #ffffff;
+  --color-darker-white: #f0f0f093;
   --color-black: #000000;
   --color-light-gray: #cccccc;
   --color-dark-gray: #171717;

@@ -28,7 +28,7 @@ export default function AddSplitBtn() {
               <input
                 aria-label="Split Title"
                 type="text"
-                placeholder="Enter split name"
+                placeholder="Skriv split namn"
                 {...register("title", {
                   required: "Title is required",
                   minLength: {
@@ -38,6 +38,7 @@ export default function AddSplitBtn() {
                   validate: (value) => validateSplitName(value),
                 })}
                 autoFocus
+                className={`${styles.input} ${errors.title ? styles.invalid : ""}`}
               />
               {errors.title && (
                 <p style={{ color: "red", fontSize: "12px" }}>

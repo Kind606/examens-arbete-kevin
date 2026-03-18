@@ -33,7 +33,13 @@ export default function EditSplitBtn({
         }}
         className={styles.button}
       >
-        <Image src="/Edit.svg" alt="Edit" width={24} height={24} />
+        <Image
+          src="/Edit.svg"
+          alt="Edit"
+          width={24}
+          height={24}
+          className={styles.icon}
+        />
       </button>
 
       {showPopover && (
@@ -49,6 +55,7 @@ export default function EditSplitBtn({
               <input
                 aria-label="Ny split title"
                 type="text"
+                placeholder="Nytt split namn"
                 {...register("title", {
                   required: "Title is required",
                   minLength: {
@@ -58,6 +65,7 @@ export default function EditSplitBtn({
                   validate: (value) => validateSplitName(value),
                 })}
                 autoFocus
+                className={`${styles.input} ${errors.title ? styles.invalid : ""}`}
               />
               {errors.title && (
                 <p style={{ color: "red", fontSize: "12px" }}>

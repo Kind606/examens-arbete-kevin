@@ -17,7 +17,8 @@ export default function LogList({ exercise, logs, setLogs }: LogListProps) {
 
   const isCardio = exercise.exerciseType === ExerciseType.CARDIO;
 
-  if (logs.length === 0) return <p>Inga loggar tillagda än.</p>;
+  if (logs.length === 0 || sortedLogs.length === 0)
+    return <p>Inga loggar tillagda än.</p>;
 
   return (
     <div className={styles.logsList}>
@@ -71,7 +72,7 @@ export default function LogList({ exercise, logs, setLogs }: LogListProps) {
                             >
                               {set.time
                                 ? `${Math.floor(set.time / 60)}:${String(
-                                    set.time % 60
+                                    set.time % 60,
                                   ).padStart(2, "0")} min`
                                 : "-"}
                             </span>

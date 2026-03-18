@@ -44,10 +44,11 @@ export default function AddExerciseBtn({
               value={newExercise}
               onChange={(e) => setNewExercise(e.target.value)}
               autoFocus
+              className={styles.input}
             />
 
             <div className={styles.selectGroup}>
-              <label htmlFor="exerciseType">Övningstyp:</label>
+              <label htmlFor="exerciseType" className={styles.selectLabel}>Övningstyp</label>
               <select
                 id="exerciseType"
                 value={exerciseType}

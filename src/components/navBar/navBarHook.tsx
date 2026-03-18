@@ -22,7 +22,7 @@ export default function useNavBar() {
     document.addEventListener("mousedown", handler);
 
     const onResize = () => {
-      if (window.innerWidth > 800) {
+      if (window.innerWidth > 1200) {
         setMobileOpen(false);
       }
     };

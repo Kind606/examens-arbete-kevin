@@ -1,8 +1,8 @@
 "use client";
 
-import { ExerciseLog, SetData } from "@/src/types";
+import { ExerciseLog, ExerciseType, SetData } from "@/src/types";
 import { useState } from "react";
-import { UseFormSetError } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { addExerciseLogAction } from "./addExerciseLogsBtnAction";
 
 interface ExerciseLogFormData {
@@ -12,30 +12,50 @@ interface ExerciseLogFormData {
 
 export function useAddExerciseLog(
   exerciseId: string,
-  onLogAdded: (log: ExerciseLog) => void
+  exerciseType: ExerciseType,
+  onLogAdded: (log: ExerciseLog) => void,
 ) {
   const [showPopover, setShowPopover] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const isCardio = exerciseType === ExerciseType.CARDIO;
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setError,
+  } = useForm<ExerciseLogFormData>({
+    defaultValues: {
+      sets: isCardio
+        ? [{ time: 0, distance: null, reps: null, weight: null }]
+        : [{ reps: 0, weight: null, time: null, distance: null }],
+      comment: "",
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "sets",
+  });
+
   const openPopover = () => setShowPopover(true);
 
-  const handleCancel = () => {
-    setShowPopover(false);
-  };
-
-  const handleAdd = async (
-    sets: SetData[],
-    comment: string,
-    setError: UseFormSetError<ExerciseLogFormData>
-  ) => {
+  const onSubmit = async (data: ExerciseLogFormData) => {
     setLoading(true);
 
     try {
-      const log = await addExerciseLogAction(exerciseId, sets, comment.trim());
+      const log = await addExerciseLogAction(
+        exerciseId,
+        data.sets,
+        data.comment.trim(),
+      );
 
       onLogAdded(log);
       setShowPopover(false);
-      return true;
+      reset();
     } catch (err) {
       console.error("Failed to add exercise log:", err);
 
@@ -46,18 +66,29 @@ export function useAddExerciseLog(
         type: "manual",
         message: errorMessage,
       });
-
-      return false;
     } finally {
       setLoading(false);
     }
   };
 
+  const onCancel = () => {
+    setShowPopover(false);
+    reset();
+  };
+
   return {
     showPopover,
     loading,
+    isCardio,
+    register,
+    control,
+    handleSubmit,
+    errors,
+    fields,
+    append,
+    remove,
     openPopover,
-    handleAdd,
-    handleCancel,
+    onSubmit,
+    onCancel,
   };
 }
