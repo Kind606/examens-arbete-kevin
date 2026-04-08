@@ -6,12 +6,13 @@ import { addExerciseAction } from "./addExerciseBtnAction";
 
 export function useAddExercise(
   dayId: string,
-  onExerciseAdded: (ex: Exercise) => void
+  userId: string,
+  onExerciseAdded: (ex: Exercise) => void,
 ) {
   const [showPopover, setShowPopover] = useState(false);
   const [newExercise, setNewExercise] = useState("");
   const [exerciseType, setExerciseType] = useState<ExerciseType>(
-    ExerciseType.STRENGTH
+    ExerciseType.STRENGTH,
   );
   const [newSets, setNewSets] = useState(3);
   const [newReps, setNewReps] = useState(10);
@@ -38,7 +39,8 @@ export function useAddExercise(
         exerciseType,
         newSets,
         newReps,
-        newVideoURL.trim()
+        newVideoURL.trim(),
+        userId,
       );
 
       onExerciseAdded(added);

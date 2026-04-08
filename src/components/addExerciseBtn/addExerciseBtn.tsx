@@ -6,9 +6,11 @@ import { useAddExercise } from "./addExerciseBtnHook";
 
 export default function AddExerciseBtn({
   dayId,
+  userId,
   onExerciseAdded,
 }: {
   dayId: string;
+  userId: string;
   onExerciseAdded: (exercise: Exercise) => void;
 }) {
   const {
@@ -26,7 +28,7 @@ export default function AddExerciseBtn({
     handleCancel,
     handleAdd,
     setNewVideoURL,
-  } = useAddExercise(dayId, onExerciseAdded);
+  } = useAddExercise(dayId, userId, onExerciseAdded);
 
   return (
     <>
@@ -48,7 +50,9 @@ export default function AddExerciseBtn({
             />
 
             <div className={styles.selectGroup}>
-              <label htmlFor="exerciseType" className={styles.selectLabel}>Övningstyp</label>
+              <label htmlFor="exerciseType" className={styles.selectLabel}>
+                Övningstyp
+              </label>
               <select
                 id="exerciseType"
                 value={exerciseType}

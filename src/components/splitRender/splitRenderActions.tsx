@@ -1,8 +1,6 @@
 "use server";
 
-import { PrismaClient } from "@/generated/prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/src/lib/prisma";
 
 export async function fetchUserSplits(userId: string) {
   try {

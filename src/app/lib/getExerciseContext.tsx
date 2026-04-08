@@ -1,17 +1,23 @@
-import { PrismaClient } from "@/generated/prisma/client";
+import { prisma } from "@/src/lib/prisma";
 import { Day, Exercise, GetExerciseContextProps } from "@/src/types";
-
-const prisma = new PrismaClient();
 
 export async function getExerciseContext({
   splitSlug,
   daySlug,
   exerciseSlug,
-}: GetExerciseContextProps) {
+  userId,
+}: GetExerciseContextProps & { userId?: string }) {
   const split = await prisma.split.findUnique({
     where: { slug: splitSlug },
   });
   if (!split) return null;
+
+  // Authorization: Verify user owns the split if userId is provided
+  if (userId && split.userId !== userId) {
+    throw new Error(
+      "Unauthorized: You don&apos;t have permission to view this exercise",
+    );
+  }
 
   const day = await prisma.day.findUnique({
     where: {

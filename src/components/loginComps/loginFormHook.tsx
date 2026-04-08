@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuthStore } from "@/src/store/authStore";
-import { AuthUser, User } from "@/src/types";
+import { User } from "@/src/types";
 import { useRouter } from "next/navigation";
 import { UseFormSetError } from "react-hook-form";
 import { loginUser } from "./loginFormActions";
@@ -13,15 +13,15 @@ export const useLogin = () => {
   const handleLogin = async (
     username: string,
     password: string,
-    setError: UseFormSetError<User>
+    setError: UseFormSetError<User>,
   ) => {
     try {
-      const user: AuthUser | null = await loginUser(username, password); // server action
+      const result = await loginUser(username, password);
 
-      if (!user) {
+      if (!result.success || !result.user) {
         setError("password", {
           type: "manual",
-          message: "Fel användarnamn eller lösenord",
+          message: result.error || "Invalid credentials",
         });
         setError("username", {
           type: "manual",
@@ -29,10 +29,10 @@ export const useLogin = () => {
         return false;
       }
 
-      loginZustand(user);
-      document.cookie = `auth_token=${user.token}; path=/; max-age=86400; samesite=strict`;
-
+      // Cookie is now set server-side with httpOnly flag
+      loginZustand(result.user);
       router.push("/");
+      router.refresh();
       return true;
     } catch {
       setError("username", { type: "manual" });
@@ -43,8 +43,9 @@ export const useLogin = () => {
 
   const handleLogout = () => {
     useAuthStore.getState().logout();
-    document.cookie = "auth_token=; path=/; max-age=0"; // clear cookie
+    // Cookie cleanup is handled server-side
     router.push("/login");
+    router.refresh();
   };
 
   return { handleLogin, handleLogout };

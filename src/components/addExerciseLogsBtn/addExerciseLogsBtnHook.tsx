@@ -13,6 +13,7 @@ interface ExerciseLogFormData {
 export function useAddExerciseLog(
   exerciseId: string,
   exerciseType: ExerciseType,
+  userId: string,
   onLogAdded: (log: ExerciseLog) => void,
 ) {
   const [showPopover, setShowPopover] = useState(false);
@@ -51,6 +52,7 @@ export function useAddExerciseLog(
         exerciseId,
         data.sets,
         data.comment.trim(),
+        userId,
       );
 
       onLogAdded(log);

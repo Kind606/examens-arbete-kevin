@@ -11,8 +11,12 @@ export default function ExerciseRender({
   splitSlug,
   daySlug,
   initialExercises,
+  userId,
 }: ExerciseRenderProps) {
-  const { exercises, handleDelete } = useExerciseRender(initialExercises);
+  const { exercises, handleDelete } = useExerciseRender(
+    initialExercises,
+    userId,
+  );
 
   if (exercises.length === 0) {
     return <p>Inga övningar tillagda än.</p>;
@@ -39,8 +43,13 @@ export default function ExerciseRender({
               handleDelete(ex.id);
             }}
           >
-            <Image src="/delete.svg" alt="Delete" width={24} height={24}            className={styles.icon}
-/>
+            <Image
+              src="/delete.svg"
+              alt="Delete"
+              width={24}
+              height={24}
+              className={styles.icon}
+            />
           </button>
         </li>
       ))}

@@ -1,17 +1,36 @@
 // src/components/registerComps/registerFormAction.ts
 "use server";
 
-import { PrismaClient } from "@/generated/prisma/client";
+import { prisma } from "@/src/lib/prisma";
+import { checkRateLimit, RATE_LIMITS } from "@/src/lib/rateLimit";
 import bcrypt from "bcryptjs";
-
-const prisma = new PrismaClient();
 
 export async function registerUser(username: string, password: string) {
   try {
+    // Rate limiting by username
+    const rateLimitCheck = checkRateLimit(
+      `register:${username}`,
+      RATE_LIMITS.REGISTER,
+    );
+    if (rateLimitCheck.limited) {
+      return {
+        success: false,
+        error: "Too many registration attempts. Please try again later.",
+      };
+    }
+
     if (!username || !password) {
       return {
         success: false,
         error: "Username and password are required",
+      };
+    }
+
+    // Validate password strength
+    if (password.length < 8) {
+      return {
+        success: false,
+        error: "Password must be at least 8 characters",
       };
     }
 

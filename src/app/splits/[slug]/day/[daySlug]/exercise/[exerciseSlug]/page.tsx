@@ -12,6 +12,7 @@ export default async function ExercisePage({ params }: ExercisePageProps) {
     splitSlug: slug,
     daySlug,
     exerciseSlug,
+    userId: user.id, // Add authorization check
   });
 
   if (!context) return <div>Exercise not found</div>;

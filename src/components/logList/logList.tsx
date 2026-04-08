@@ -4,7 +4,12 @@ import { ExerciseType, LogListProps } from "@/src/types";
 import styles from "./logList.module.css";
 import { useLogList } from "./logListHook";
 
-export default function LogList({ exercise, logs, setLogs }: LogListProps) {
+export default function LogList({
+  exercise,
+  logs,
+  setLogs,
+  userId,
+}: LogListProps) {
   const {
     sortedLogs,
     sortOrder,
@@ -13,7 +18,7 @@ export default function LogList({ exercise, logs, setLogs }: LogListProps) {
     toggleSortOrder,
     toggleExpanded,
     getStrengthComparison,
-  } = useLogList(logs, setLogs);
+  } = useLogList(logs, setLogs, userId);
 
   const isCardio = exercise.exerciseType === ExerciseType.CARDIO;
 

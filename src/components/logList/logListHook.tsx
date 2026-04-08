@@ -1,32 +1,33 @@
 "use client";
 
-import { useState } from "react";
 import { ExerciseLog } from "@/src/types";
+import { useState } from "react";
 import { deleteExerciseLogAction } from "./logListRemoveBtnAction";
 
 export function useLogList(
   logs: ExerciseLog[],
-  setLogs: React.Dispatch<React.SetStateAction<ExerciseLog[]>>
+  setLogs: React.Dispatch<React.SetStateAction<ExerciseLog[]>>,
+  userId: string,
 ) {
   const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
   const [expandedLogs, setExpandedLogs] = useState<Set<string>>(new Set());
 
-    const toggleExpanded = (logId: string) => {
+  const toggleExpanded = (logId: string) => {
     setExpandedLogs((prev) => {
       const newSet = new Set(prev);
 
-        if (newSet.has(logId)) {
+      if (newSet.has(logId)) {
         newSet.delete(logId);
-        } else {
+      } else {
         newSet.add(logId);
-        }
-        return newSet;
+      }
+      return newSet;
     });
-  }
+  };
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteExerciseLogAction(id);
+      await deleteExerciseLogAction(id, userId);
       setLogs((prev) => prev.filter((log) => log.id !== id));
     } catch (err) {
       console.error("Failed to delete log:", err);
@@ -52,10 +53,10 @@ export function useLogList(
     const previousLog = sortedLogs[1];
 
     const currentMaxWeight = Math.max(
-      ...currentLog.sets.map((s) => s.weight ?? 0)
+      ...currentLog.sets.map((s) => s.weight ?? 0),
     );
     const previousMaxWeight = Math.max(
-      ...previousLog.sets.map((s) => s.weight ?? 0)
+      ...previousLog.sets.map((s) => s.weight ?? 0),
     );
 
     const weightDiff = currentMaxWeight - previousMaxWeight;

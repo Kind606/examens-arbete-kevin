@@ -18,7 +18,7 @@ export type SetData = {
 
   // Cardio fields
   time: number | null;
-  distance: number | null; 
+  distance: number | null;
 };
 
 export type ExerciseLog = {
@@ -109,12 +109,14 @@ export interface ExerciseRenderProps {
   splitSlug: string;
   daySlug: string;
   initialExercises: Exercise[];
+  userId: string;
 }
 
 export interface LogListProps {
   exercise: Exercise;
   logs: ExerciseLog[];
   setLogs: React.Dispatch<React.SetStateAction<ExerciseLog[]>>;
+  userId: string;
 }
 
 export interface RegisterFormData {

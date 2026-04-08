@@ -6,9 +6,11 @@ import { useAddExerciseLog } from "./addExerciseLogsBtnHook";
 
 export default function AddExerciseLogBtn({
   exercise,
+  userId,
   onLogAdded,
 }: {
   exercise: Exercise;
+  userId: string;
   onLogAdded: (log: ExerciseLog) => void;
 }) {
   const {
@@ -24,7 +26,7 @@ export default function AddExerciseLogBtn({
     openPopover,
     onSubmit,
     onCancel,
-  } = useAddExerciseLog(exercise.id, exercise.exerciseType, onLogAdded);
+  } = useAddExerciseLog(exercise.id, exercise.exerciseType, userId, onLogAdded);
 
   return (
     <>

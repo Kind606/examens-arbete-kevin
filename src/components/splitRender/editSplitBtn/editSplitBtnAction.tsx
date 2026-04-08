@@ -1,9 +1,8 @@
 "use server";
 
-import { PrismaClient } from "@/generated/prisma/client";
+import { prisma } from "@/src/lib/prisma";
+import { checkRateLimit, RATE_LIMITS } from "@/src/lib/rateLimit";
 import { slugify } from "@/src/utils/slugify";
-
-const prisma = new PrismaClient();
 
 /**
  * Edit a split title
@@ -16,6 +15,15 @@ export async function editSplitAction(
   newTitle: string,
   userId: string,
 ) {
+  // Rate limiting
+  const rateLimitCheck = checkRateLimit(
+    `split:update:${userId}`,
+    RATE_LIMITS.UPDATE,
+  );
+  if (rateLimitCheck.limited) {
+    throw new Error("Too many requests. Please try again later.");
+  }
+
   const newSlug = slugify(newTitle);
 
   const split = await prisma.split.updateMany({

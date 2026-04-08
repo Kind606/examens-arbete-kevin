@@ -32,8 +32,13 @@ export default function SplitDayClient({
           initialExercises={day.exercises}
           splitSlug={splitSlug}
           daySlug={daySlug}
+          userId={user.id}
         />
-        <AddExerciseBtn dayId={day.id} onExerciseAdded={addExercise} />
+        <AddExerciseBtn
+          dayId={day.id}
+          userId={user.id}
+          onExerciseAdded={addExercise}
+        />
       </div>
     </div>
   );

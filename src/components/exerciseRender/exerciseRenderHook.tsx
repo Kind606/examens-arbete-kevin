@@ -5,7 +5,10 @@ import { Exercise } from "@/src/types";
 import { useEffect } from "react";
 import { deleteExerciseAction } from "./exerciseRenderAction";
 
-export function useExerciseRender(initialExercises: Exercise[]) {
+export function useExerciseRender(
+  initialExercises: Exercise[],
+  userId: string,
+) {
   const { exercises, setExercises, removeExercise } = useExerciseStore();
 
   useEffect(() => {
@@ -14,7 +17,7 @@ export function useExerciseRender(initialExercises: Exercise[]) {
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteExerciseAction(id);
+      await deleteExerciseAction(id, userId);
       removeExercise(id);
     } catch (err) {
       console.error("Failed to delete exercise:", err);

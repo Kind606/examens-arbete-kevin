@@ -1,9 +1,8 @@
 "use server";
 
-import { PrismaClient } from "@/generated/prisma/client";
+import { prisma } from "@/src/lib/prisma";
+import { checkRateLimit, RATE_LIMITS } from "@/src/lib/rateLimit";
 import { slugify } from "@/src/utils/slugify";
-
-const prisma = new PrismaClient();
 
 const DAYS = [
   "Måndag",
@@ -16,6 +15,15 @@ const DAYS = [
 ];
 
 export async function addSplitAction(title: string, userId: string) {
+  // Rate limiting
+  const rateLimitCheck = checkRateLimit(
+    `split:create:${userId}`,
+    RATE_LIMITS.CREATE,
+  );
+  if (rateLimitCheck.limited) {
+    throw new Error("Too many requests. Please try again later.");
+  }
+
   const splitSlug = slugify(title);
 
   const split = await prisma.split.create({
