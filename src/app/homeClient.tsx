@@ -2,6 +2,7 @@
 
 import { SplitRender } from "@/src";
 import { useHomeClient } from "../hooks/homeClinetHook";
+import { useHydrateAuth } from "../hooks/useHydrateAuth";
 import { AuthUser } from "../types";
 import styles from "./page.module.css";
 
@@ -10,6 +11,7 @@ interface HomeClientProps {
 }
 
 export default function HomeClient({ user }: HomeClientProps) {
+  useHydrateAuth(user); // Hydrate auth state first
   useHomeClient(user);
   return (
     <main className={styles.main}>

@@ -1,15 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
+import { fetchUserSplits } from "@/src/components/splitRender/splitRenderActions";
 import { useAuthStore } from "@/src/store/authStore";
 import { useSplitStore } from "@/src/store/splitStore";
-import { fetchUserSplits } from "@/src/components/splitRender/splitRenderActions";
+import { useEffect } from "react";
 import { AuthUser } from "../types";
 
 export function useHomeClient(user: AuthUser | null) {
   const { setSplits, resetSplits } = useSplitStore();
   const currentUser = useAuthStore((state) => state.user);
-  const login = useAuthStore((state) => state.login);
 
   useEffect(() => {
     const loadSplits = async () => {
@@ -18,8 +17,6 @@ export function useHomeClient(user: AuthUser | null) {
       if (!currentUser || currentUser.id !== user.id) {
         resetSplits();
       }
-
-      login(user);
 
       try {
         const freshSplits = await fetchUserSplits(user.id);
@@ -30,5 +27,5 @@ export function useHomeClient(user: AuthUser | null) {
     };
 
     loadSplits();
-  }, [user, currentUser, login, setSplits, resetSplits]);
+  }, [user, currentUser, setSplits, resetSplits]);
 }
