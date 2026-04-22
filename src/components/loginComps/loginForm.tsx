@@ -11,19 +11,19 @@ function LoginForm() {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<User>();
 
   const { handleLogin } = useLogin();
 
-  const onSubmit = (data: User) => {
-    handleLogin(data.username, data.password, setError);
+  const onSubmit = async (data: User) => {
+    await handleLogin(data.username, data.password, setError);
   };
 
   return (
     <form className={styles.LoginForm} onSubmit={handleSubmit(onSubmit)}>
       <h3>LOGIN</h3>
-      <p>välkommen! vänligen fyll i med dina uppgifter</p>
+      <p>Välkommen! vänligen fyll i med dina uppgifter</p>
 
       <div className={styles.inputGroup}>
         <label className={styles.label}>Username</label>
@@ -72,7 +72,9 @@ function LoginForm() {
         <Link href="/register">Skapa konto</Link>
       </div>
 
-      <button type="submit">Login</button>
+      <button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Laddar..." : "Logga in"}
+      </button>
     </form>
   );
 }

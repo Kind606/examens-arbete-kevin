@@ -9,8 +9,8 @@ export interface ReturnBtnProps {
 export default function ReturnBtn({ onClick }: ReturnBtnProps) {
   return (
     <button className={styles.button} onClick={onClick}>
-      <span className={styles.backArrow}>←</span>
-      <span className={styles.backText}>← tillbaka</span>
+      <span className={styles.arrow}>←</span>
+      <span className={styles.text}>Tillbaka</span>
     </button>
   );
 }

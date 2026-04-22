@@ -1,6 +1,6 @@
 "use client";
 
-import { ExerciseRenderProps } from "@/src/types";
+import { ExerciseRenderProps, ExerciseType } from "@/src/types";
 import Image from "next/image";
 import Link from "next/link";
 import Gstyles from "../splitRender/addSplitbtn/addSplitBtn.module.css";
@@ -31,7 +31,15 @@ export default function ExerciseRender({
             className={styles.exerciseLink}
           >
             <span className={styles.exerciseContent}>
-              {ex.name} — {ex.defaultSets} x {ex.defaultReps}
+              {ex.name}
+              {ex.exerciseType === ExerciseType.STRENGTH &&
+                ex.defaultSets &&
+                ex.defaultReps && (
+                  <span>
+                    {" "}
+                    — {ex.defaultSets} x {ex.defaultReps}
+                  </span>
+                )}
             </span>
           </Link>
 
