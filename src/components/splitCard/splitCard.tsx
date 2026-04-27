@@ -11,7 +11,7 @@ export default function SplitCard({
   isEmpty,
   exercises,
 }: SplitCardProps) {
-  const maxVisible = 4;
+  const maxVisible = 3;
 
   const visibleExercises = exercises?.slice(0, maxVisible) ?? [];
   const hiddenCount = exercises ? exercises.length - maxVisible : 0;

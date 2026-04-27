@@ -5,6 +5,10 @@ import {
   LogList,
   ReturnBtn,
 } from "@/src";
+import {
+  getVideoType,
+  getYouTubeEmbedUrl,
+} from "@/src/components/addExerciseBtn/utils";
 import { useHydrateAuth } from "@/src/hooks/useHydrateAuth";
 import { ExerciseLogClientProps } from "@/src/types";
 import { useRouter } from "next/navigation";
@@ -24,14 +28,11 @@ export default function ExerciseClient({
 
   const [logs, setLogs] = useState(exercise.logs ?? []);
 
-  const getYouTubeEmbedUrl = (url: string) => {
-    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/);
-    return match ? `https://www.youtube.com/embed/${match[1]}` : null;
-  };
-
-  const embedUrl = exercise.videoUrl
-    ? getYouTubeEmbedUrl(exercise.videoUrl)
-    : null;
+  const videoType = exercise.videoUrl ? getVideoType(exercise.videoUrl) : null;
+  const embedUrl =
+    videoType === "youtube" && exercise.videoUrl
+      ? getYouTubeEmbedUrl(exercise.videoUrl)
+      : null;
 
   const goToExercise = (slug: string) => {
     router.push(`/splits/${splitSlug}/day/${daySlug}/exercise/${slug}`);
@@ -47,18 +48,38 @@ export default function ExerciseClient({
         />
       </div>
 
-      <div className={styles.videoContainer}>
-        {embedUrl ? (
+      {videoType === "mp4" && exercise.videoUrl ? (
+        <div className={styles.videoContainer}>
+          <video
+            src={exercise.videoUrl}
+            controls
+            loop
+            className={styles.exerciseVideo}
+            preload="metadata"
+          >
+            Din webbläsare stöder inte video.
+          </video>
+        </div>
+      ) : videoType === "gif" && exercise.videoUrl ? (
+        <div className={styles.videoContainer}>
+          <img
+            src={exercise.videoUrl}
+            alt={`${exercise.name} demonstration`}
+            className={styles.exerciseGif}
+          />
+        </div>
+      ) : embedUrl ? (
+        <div className={styles.videoContainer}>
           <iframe
             src={embedUrl}
             title="Exercise video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
-        ) : (
-          <p>Ingen video till denna övning</p>
-        )}
-      </div>
+        </div>
+      ) : (
+        <></>
+      )}
 
       <div className={styles.navigation}>
         {prevExercise && (

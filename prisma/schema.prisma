@@ -97,3 +97,21 @@ type SetData {
   time     Int?
   distance Float?
 }
+
+// Template exercises fetched from external API (cached locally)
+model ExerciseTemplate {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  externalId  String  @unique // ID from the external API
+  name        String
+  category    String?
+  muscleGroup String?
+  equipment   String?
+  videoUrl    String?
+  imageUrl    String?
+
+  createdAt DateTime @default(now())
+
+  @@index([name])
+  @@index([category])
+  @@index([muscleGroup])
+}

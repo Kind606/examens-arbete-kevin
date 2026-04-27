@@ -19,7 +19,10 @@ export default function AddExerciseBtn({
     exerciseType,
     newSets,
     newReps,
-    newVideoURL,
+    searchResults,
+    isSearching,
+    showSuggestions,
+    isFetchingDetails,
     setNewExercise,
     setExerciseType,
     setNewSets,
@@ -27,7 +30,8 @@ export default function AddExerciseBtn({
     openPopover,
     handleCancel,
     handleAdd,
-    setNewVideoURL,
+    handleSelectExercise,
+    setShowSuggestions,
   } = useAddExercise(dayId, userId, onExerciseAdded);
 
   return (
@@ -39,44 +43,52 @@ export default function AddExerciseBtn({
       {showPopover && (
         <div className={styles.overlay} onClick={handleCancel}>
           <div className={styles.popover} onClick={(e) => e.stopPropagation()}>
-            <input
-              aria-label="Övnings namn"
-              type="text"
-              placeholder="Övnings namn"
-              value={newExercise}
-              onChange={(e) => setNewExercise(e.target.value)}
-              autoFocus
-              className={styles.input}
-            />
-
-            <div className={styles.selectGroup}>
-              <label htmlFor="exerciseType" className={styles.selectLabel}>
-                Övningstyp
-              </label>
-              <select
-                id="exerciseType"
-                value={exerciseType}
-                onChange={(e) =>
-                  setExerciseType(e.target.value as ExerciseType)
-                }
-                className={styles.select}
-              >
-                <option value={ExerciseType.STRENGTH}>
-                  Styrka (Reps/Vikt)
-                </option>
-                <option value={ExerciseType.CARDIO}>
-                  Kardio (Tid/Distans)
-                </option>
-              </select>
+            <div className={styles.searchContainer} data-search-container>
+              <div className={styles.inputWrapper}>
+                <input
+                  aria-label="Övnings namn"
+                  type="text"
+                  placeholder="Sök övning..."
+                  value={newExercise || ""}
+                  onChange={(e) => {
+                    setNewExercise(e.target.value);
+                    setShowSuggestions(true);
+                  }}
+                  autoFocus
+                  className={styles.input}
+                />
+                {(isSearching || isFetchingDetails) && (
+                  <div className={styles.loadingSpinner} />
+                )}
+              </div>
+              {showSuggestions && searchResults.length > 0 && (
+                <div className={styles.suggestions}>
+                  {searchResults.map((exercise) => (
+                    <button
+                      key={exercise.externalId}
+                      className={styles.suggestionItem}
+                      onClick={() => handleSelectExercise(exercise)}
+                      onMouseDown={(e) => e.stopPropagation()}
+                      type="button"
+                    >
+                      <span className={styles.suggestionName}>
+                        {exercise.name}
+                      </span>
+                      {(exercise.muscleGroup || exercise.equipment) && (
+                        <span className={styles.suggestionMeta}>
+                          {exercise.muscleGroup}
+                          {exercise.muscleGroup && exercise.equipment && " • "}
+                          {exercise.equipment}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
-            <input
-              aria-label="VideoURL"
-              type="url"
-              placeholder="VideoURL (valfritt)"
-              value={newVideoURL}
-              onChange={(e) => setNewVideoURL(e.target.value)}
-            />
+          
+
             {exerciseType === ExerciseType.STRENGTH && (
               <div className={styles.setInputGroup}>
                 <label htmlFor="sets">Sets:</label>

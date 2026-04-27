@@ -8,6 +8,7 @@
   border: none;
   font-weight: bold;
   height: 50px;
+  margin-bottom: var(--margin-medium);
   cursor: pointer;
   transition: all var(--transition-duration) ease;
 
@@ -98,7 +99,6 @@
   & input[type="number"] {
     width: 100%;
     padding: 12px;
-    margin-bottom: var(--margin-medium);
     border-radius: 6px;
     border: 2px solid var(--color-gray-2);
     background-color: var(--color-gray-1);
@@ -126,6 +126,7 @@
 
   & input[type="number"] {
     -moz-appearance: textfield;
+    appearance: textfield;
   }
 
   & label {
@@ -398,5 +399,113 @@
 
 .inputGroup {
   max-width: 100%;
-  overflow: hidden;
+}
+
+/* Search suggestions styles */
+.searchContainer {
+  position: relative;
+  margin-bottom: var(--margin-medium);
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.loadingSpinner {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(160, 242, 101, 0.2);
+  border-top-color: var(--color-accent-green);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--color-gray-1);
+  border: 1px solid var(--color-gray-3);
+  border-radius: 8px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1200;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.2s ease;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-gray-3);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gray-4);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.suggestionItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: rgba(160, 242, 101, 0.08);
+  }
+
+  &:active {
+    background-color: rgba(160, 242, 101, 0.12);
+  }
+}
+
+.suggestionName {
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.suggestionMeta {
+  color: #888;
+  font-size: 12px;
 }

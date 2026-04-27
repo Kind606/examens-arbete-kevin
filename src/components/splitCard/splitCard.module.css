@@ -16,7 +16,7 @@
   transition: all var(--transition-duration) ease;
 
   & p {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   &:hover {
@@ -68,6 +68,6 @@
   }
 
   & p {
-    font-size: 20px;
+    font-size: 16px;
   }
 }

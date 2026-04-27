@@ -72,6 +72,22 @@
     border-radius: 6px;
   }
 
+  & .exerciseGif {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    background: var(--color-gray-2);
+  }
+
+  & .exerciseVideo {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    background: var(--color-gray-2);
+  }
+
   & p {
     color: var(--color-white);
     text-align: center;
@@ -85,6 +101,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  gap: var(--margin-medium);
   max-width: 500px;
   margin-bottom: var(--margin-xlarge);
 }
