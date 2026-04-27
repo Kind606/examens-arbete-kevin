@@ -60,7 +60,23 @@
   flex-wrap: wrap;
 }
 
-.filterSelect {
+.dateRangeContainer {
+  display: flex;
+  gap: var(--margin-medium);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.dateLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-small);
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dateInput {
   background-color: var(--color-gray-1);
   color: var(--color-white);
   border: 2px solid var(--color-gray-2);
@@ -79,6 +95,29 @@
     outline: none;
     border-color: var(--color-accent-green);
     box-shadow: 0 0 0 3px rgba(160, 242, 101, 0.15);
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+  }
+}
+
+.clearButton {
+  background-color: var(--button-cancel-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: var(--padding-small) var(--padding-medium);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-duration) ease;
+
+  &:hover {
+    background-color: var(--button-cancel-hover-bg-color);
   }
 }
 

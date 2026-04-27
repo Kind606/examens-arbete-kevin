@@ -4,8 +4,6 @@ import { ExerciseLog } from "@/src/types";
 import { useMemo, useState } from "react";
 import { deleteExerciseLogAction } from "./logListRemoveBtnAction";
 
-type DateFilter = "7days" | "30days" | "3months" | "all";
-
 type GroupedLogs = {
   today: ExerciseLog[];
   thisWeek: ExerciseLog[];
@@ -19,7 +17,8 @@ export function useLogList(
 ) {
   const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
   const [expandedLogs, setExpandedLogs] = useState<Set<string>>(new Set());
-  const [dateFilter, setDateFilter] = useState<DateFilter>("all");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
   const [visibleCounts, setVisibleCounts] = useState({
     today: 8,
     thisWeek: 8,
@@ -52,27 +51,32 @@ export function useLogList(
   };
 
   const filteredAndGroupedLogs = useMemo(() => {
-    const now = new Date();
-    const filterDate = new Date();
+    // Apply date range filter
+    let filtered = logs;
 
-    // Apply date filter
-    switch (dateFilter) {
-      case "7days":
-        filterDate.setDate(now.getDate() - 7);
-        break;
-      case "30days":
-        filterDate.setDate(now.getDate() - 30);
-        break;
-      case "3months":
-        filterDate.setMonth(now.getMonth() - 3);
-        break;
-      default:
-        filterDate.setFullYear(2000); // All logs
+    if (startDate || endDate) {
+      filtered = logs.filter((log) => {
+        const logDate = new Date(log.createdAt);
+        logDate.setHours(0, 0, 0, 0);
+
+        if (startDate && endDate) {
+          const start = new Date(startDate);
+          start.setHours(0, 0, 0, 0);
+          const end = new Date(endDate);
+          end.setHours(23, 59, 59, 999);
+          return logDate >= start && logDate <= end;
+        } else if (startDate) {
+          const start = new Date(startDate);
+          start.setHours(0, 0, 0, 0);
+          return logDate >= start;
+        } else if (endDate) {
+          const end = new Date(endDate);
+          end.setHours(23, 59, 59, 999);
+          return logDate <= end;
+        }
+        return true;
+      });
     }
-
-    const filtered = logs.filter(
-      (log) => new Date(log.createdAt) >= filterDate,
-    );
 
     const sorted = [...filtered].sort((a, b) => {
       const dateA = new Date(a.createdAt).getTime();
@@ -108,7 +112,7 @@ export function useLogList(
     });
 
     return grouped;
-  }, [logs, dateFilter, sortOrder]);
+  }, [logs, startDate, endDate, sortOrder]);
 
   const loadMore = (group: keyof GroupedLogs) => {
     setVisibleCounts((prev) => ({
@@ -134,10 +138,12 @@ export function useLogList(
   return {
     groupedLogs: filteredAndGroupedLogs,
     sortOrder,
-    dateFilter,
+    startDate,
+    endDate,
     handleDelete,
     toggleSortOrder,
-    setDateFilter,
+    setStartDate,
+    setEndDate,
     getStrengthComparison,
     expandedLogs,
     toggleExpanded,

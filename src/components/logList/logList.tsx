@@ -13,11 +13,13 @@ export default function LogList({
   const {
     groupedLogs,
     sortOrder,
-    dateFilter,
+    startDate,
+    endDate,
     expandedLogs,
     handleDelete,
     toggleSortOrder,
-    setDateFilter,
+    setStartDate,
+    setEndDate,
     toggleExpanded,
     getStrengthComparison,
     visibleCounts,
@@ -181,20 +183,37 @@ export default function LogList({
       <div className={styles.header}>
         <h2>Exercise Logs</h2>
         <div className={styles.controls}>
-          <select
-            className={styles.filterSelect}
-            value={dateFilter}
-            onChange={(e) =>
-              setDateFilter(
-                e.target.value as "7days" | "30days" | "3months" | "all",
-              )
-            }
-          >
-            <option value="7days">Senaste 7 dagarna</option>
-            <option value="30days">Senaste 30 dagarna</option>
-            <option value="3months">Senaste 3 månaderna</option>
-            <option value="all">Alla</option>
-          </select>
+          <div className={styles.dateRangeContainer}>
+            <label className={styles.dateLabel}>
+              Från:
+              <input
+                type="date"
+                className={styles.dateInput}
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+            </label>
+            <label className={styles.dateLabel}>
+              Till:
+              <input
+                type="date"
+                className={styles.dateInput}
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+            </label>
+            {(startDate || endDate) && (
+              <button
+                className={styles.clearButton}
+                onClick={() => {
+                  setStartDate("");
+                  setEndDate("");
+                }}
+              >
+                Rensa
+              </button>
+            )}
+          </div>
           <button className={styles.sortButton} onClick={toggleSortOrder}>
             {sortOrder === "newest" ? "↓ Nyaste" : "↑ Äldsta"}
           </button>
