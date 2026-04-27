@@ -185,7 +185,8 @@ export default function LogList({
         <div className={styles.controls}>
           <div className={styles.dateRangeContainer}>
             <label className={styles.dateLabel}>
-              Från:
+              <p>Från:</p>
+
               <input
                 type="date"
                 className={styles.dateInput}
@@ -194,7 +195,7 @@ export default function LogList({
               />
             </label>
             <label className={styles.dateLabel}>
-              Till:
+              <p>Till:</p>
               <input
                 type="date"
                 className={styles.dateInput}

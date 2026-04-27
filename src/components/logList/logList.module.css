@@ -42,7 +42,6 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: var(--margin-large);
   flex-wrap: wrap;
   gap: var(--margin-medium);
@@ -56,7 +55,6 @@
 .controls {
   display: flex;
   gap: var(--margin-medium);
-  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -74,6 +72,11 @@
   color: var(--color-white);
   font-size: 14px;
   font-weight: 600;
+
+  & p {
+    margin: 0;
+    width: 30px;
+  }
 }
 
 .dateInput {
@@ -154,6 +157,10 @@
 
   transition: all var(--transition-duration) ease;
   margin-top: var(--margin-small);
+
+  & p {
+    margin: 0;
+  }
 
   &:hover {
     background-color: var(--button-cancel-hover-bg-color);
