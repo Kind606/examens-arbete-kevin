@@ -20,7 +20,7 @@ export default function SplitRender({ userId }: SplitRenderProps) {
   if (splits.length === 0) {
     return (
       <div className={styles.splitRender}>
-        <p>No splits found</p>
+        <p>Inga pass hittades</p>
         <AddSplitBtn />
       </div>
     );

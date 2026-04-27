@@ -18,11 +18,11 @@ export default function HomeClient({ user }: HomeClientProps) {
       <div className={styles.splash}>
         <div className={styles.welcomeBox}>
           <h1>Välkommen!</h1>
-          <h1>Här nere ser du alla dina splits</h1>
+          <h1>Här nere ser du alla dina pass</h1>
         </div>
 
         <div className={styles.splits}>
-          <h1>Dina splits</h1>
+          <h1>Dina pass</h1>
           <SplitRender userId={user.id} />
         </div>
       </div>

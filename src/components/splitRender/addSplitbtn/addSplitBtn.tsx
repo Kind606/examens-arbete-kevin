@@ -18,7 +18,7 @@ export default function AddSplitBtn() {
   return (
     <>
       <button className={styles.addButton} onClick={openPopover}>
-        Lägg till split
+        Lägg till pass
       </button>
 
       {showPopover && (
