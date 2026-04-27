@@ -27,9 +27,9 @@ function RegisterForm() {
       <p>välkommen! vänligen fyll i med dina uppgifter</p>
 
       <div className={styles.inputGroup}>
-        <label className={styles.label}>Username</label>
+        <label className={styles.label}>Användarnamn</label>
         <input
-          aria-label="username"
+          aria-label="Användarnamn"
           type="text"
           placeholder="användarnamn"
           {...register("username", {
@@ -45,9 +45,9 @@ function RegisterForm() {
           <span className={styles.error}>{errors.username.message}</span>
         )}
 
-        <label className={styles.label}>Password</label>
+        <label className={styles.label}>Lösenord</label>
         <input
-          aria-label="password"
+          aria-label="Lösenord"
           type="password"
           placeholder="lösenord"
           {...register("password", {
@@ -63,9 +63,9 @@ function RegisterForm() {
           <span className={styles.error}>{errors.password.message}</span>
         )}
 
-        <label className={styles.label}>Confirm Password</label>
+        <label className={styles.label}>Bekräfta lösenord</label>
         <input
-          aria-label="confirm password"
+          aria-label="Bekräfta lösenord"
           type="password"
           placeholder="bekräfta lösenord"
           {...register("confirmPassword", {

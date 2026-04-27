@@ -26,9 +26,9 @@ function LoginForm() {
       <p>Välkommen! vänligen fyll i med dina uppgifter</p>
 
       <div className={styles.inputGroup}>
-        <label className={styles.label}>Username</label>
+        <label className={styles.label}>Användarnamn</label>
         <input
-          aria-label="username"
+          aria-label="Användarnamn"
           type="text"
           placeholder="användarnamn"
           {...register("username", {
@@ -44,9 +44,9 @@ function LoginForm() {
           <span className={styles.error}>{errors.username.message}</span>
         )}
 
-        <label className={styles.label}>Password</label>
+        <label className={styles.label}>Lösenord</label>
         <input
-          aria-label="password"
+          aria-label="Lösenord"
           type="password"
           placeholder="lösenord"
           {...register("password", {
